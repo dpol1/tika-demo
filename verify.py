@@ -66,9 +66,10 @@ docs = [r for r in results if not r.get("error")]
 
 check("no rpc errors", not errors, "; ".join(f"{r['url']}: {r['error']}" for r in errors) or "none")
 
-not_clean = [(path_of(r["url"]), r.get("pipes_status"), r.get("errors")) for r in docs
-             if r.get("pipes_status") != "PARSE_SUCCESS" or r.get("errors")]
-check("all parse success", bool(docs) and not not_clean, not_clean or f"{len(docs)}/{len(docs)} PARSE_SUCCESS, no parser errors")
+not_clean = [(path_of(r["url"]), r.get("pipes_status"), r.get("status"), r.get("errors")) for r in docs
+             if r.get("pipes_status") != "PARSE_SUCCESS" or r.get("status") != "SUCCESS" or r.get("errors")]
+check("all parse success", bool(docs) and not not_clean,
+      not_clean or f"{len(docs)}/{len(docs)} PARSE_SUCCESS, status SUCCESS, no parser errors")
 
 # The bolt sends "crawl:" + URL as the correlation id; it must come back as Document.id and as
 # the reply's correlation_id, and it is never the bare URL.
@@ -151,13 +152,15 @@ check("served files unchanged", bool(served) and not mismatch,
 
 by_path = {path_of(r["url"]): r for r in docs}
 
-# The values Tika's own PDFParserTest asserts for this file.
+# The values Tika's own PDFParserTest asserts for this file, plus its page count (one page)
+# tagged as an integer.
 real = by_path.get("/docs/testPDF.pdf")
 check(
     "test pdf metadata",
     bool(real) and real["content_type"].startswith("application/pdf") and real["title"] == "Apache Tika - Apache Tika"
-    and "Bertrand Delacrétaz" in real.get("authors", "") and bool(real.get("created")),
-    {k: real.get(k) for k in ("content_type", "title", "authors", "created")} if real else "no result",
+    and "Bertrand Delacrétaz" in real.get("authors", "") and bool(real.get("created"))
+    and real.get("pages") == 1 and real.get("pages_type") == "integers",
+    {k: real.get(k) for k in ("content_type", "title", "authors", "created", "pages", "pages_type")} if real else "no result",
 )
 
 # Same bytes as testPDF.pdf, served as "blob" with content type application/octet-stream.

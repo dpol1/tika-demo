@@ -22,6 +22,8 @@ import org.apache.storm.topology.base.BaseRichBolt;
 import org.apache.storm.tuple.Tuple;
 import org.apache.stormcrawler.Metadata;
 import org.apache.tika.grpc.v2.Document;
+import org.apache.tika.grpc.v2.MetadataField;
+import org.apache.tika.grpc.v2.MetadataValue;
 import org.apache.tika.grpc.v2.ParseBytesReply;
 import org.apache.tika.grpc.v2.ParseBytesRequest;
 import org.apache.tika.grpc.v2.TikaV2Grpc;
@@ -93,11 +95,22 @@ public class ParseBytesBolt extends BaseRichBolt {
                     .put("parsers_used", String.join(",", doc.getStatus().getParsersUsedList()))
                     .put("errors", String.join(" | ", doc.getStatus().getErrorsList()))
                     .put("pipes_status", doc.getStatus().getPipesStatus())
+                    .put("status", doc.getStatus().getStatus().name())
                     .put("tika_version", doc.getStatus().getTikaVersion())
                     .put("extra_fields", doc.getExtraCount())
                     .put("document_bytes", doc.getSerializedSize())
                     .put("truncated_sent", request.getTruncated())
                     .put("truncated", doc.getOrigin().getTruncated());
+            // the page count, with the type it was tagged with
+            for (MetadataField field : doc.getExtraList()) {
+                if (field.getKey().equals("xmpTPg:NPages")) {
+                    MetadataValue value = field.getValue();
+                    line.put("pages_type", value.getValuesCase().name().toLowerCase());
+                    if (value.hasIntegers() && value.getIntegers().getValuesCount() > 0) {
+                        line.put("pages", value.getIntegers().getValues(0));
+                    }
+                }
+            }
         } catch (StatusRuntimeException e) {
             line.put("error", e.getStatus().toString());
         } catch (Exception e) {

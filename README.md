@@ -5,8 +5,8 @@ document to Apache Tika over gRPC with Tika's new `ParseBytes` call: the crawler
 the bytes, so Tika parses exactly those bytes instead of fetching the URL itself. Tika returns
 a typed `Document` (media type, title, authors, dates, and the remaining metadata as typed
 fields). A checker then compares what the crawler sent with what Tika reported and counts the
-requests the web server saw. The crawler side depends only on the classes generated from
-Tika's proto files, not on Tika itself.
+requests the web server saw. The bolt that talks to Tika uses only the classes generated from
+Tika's proto files.
 
 `ParseBytes` and the typed `Document` are new in Tika and not released yet. They live on the
 [`TIKA-4795-parseBytes`](https://github.com/ai-pipestream/tika/tree/TIKA-4795-parseBytes)
@@ -20,7 +20,8 @@ branch of the ai-pipestream fork ([TIKA-4795](https://issues.apache.org/jira/bro
 - The web server saw one GET per URL: Tika never fetched anything itself.
 - The byte count, the source URL and the truncation flag sent with each document came back in
   the reply unchanged; the one page the crawler cut at its size limit is the only one flagged.
-- Tika's own test PDFs came back with the title and author Tika's test suite expects, plus a creation date; a
+- Tika's own test PDFs came back with the title and author Tika's test suite expects, a creation date and the page
+  count as a typed integer; a
   PDF served without a file extension and with a generic content type was still detected as a
   PDF; a PDF with attachments and a password-protected PDF parsed without errors.
 
