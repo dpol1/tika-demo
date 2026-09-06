@@ -1,13 +1,13 @@
 PASS  every URL once: 15 results for 15 expected URLs
 PASS  no rpc errors: none
-PASS  all parse success: 15/15 PARSE_SUCCESS, no parser errors
+PASS  all parse success: 15/15 PARSE_SUCCESS, status SUCCESS, no parser errors
 PASS  correlation id echoed: 15/15, none equal to the URL
 PASS  source url echoed: 15/15 origin.source_uri == url
 PASS  byte size echoed: 15/15 origin.byte_size == bytes sent
 PASS  same sha256: 15/15 sha256 equal, non-empty
 PASS  one GET per URL: 1 GET each for 15 URLs
 PASS  served files unchanged: 5 served files identical end to end
-PASS  test pdf metadata: {'content_type': 'application/pdf', 'title': 'Apache Tika - Apache Tika', 'authors': 'Bertrand Delacrétaz', 'created': '2007-09-15T09:02:31Z'}
+PASS  test pdf metadata: {'content_type': 'application/pdf', 'title': 'Apache Tika - Apache Tika', 'authors': 'Bertrand Delacrétaz', 'created': '2007-09-15T09:02:31Z', 'pages': 1, 'pages_type': 'integers'}
 PASS  detected without name or type: application/pdf
 PASS  pdf with attachments parsed: {'content_type': 'application/pdf', 'extra_fields': 60, 'parsers_used': 'org.apache.tika.parser.DefaultParser,org.apache.tika.parser.pdf.PDFParser,org.apache.tika.parser.csv.TextAndCSVParser,org.apache.tika.parser.microsoft.OfficeParser'}
 PASS  protected pdf parsed: {'pipes_status': 'PARSE_SUCCESS', 'title': 'Rethinking the Financial Network, Speech by Andrew G Haldane, Executive Director, Financial Stability delivered at the Financial Student Association, Amsterdam on 28 April 2009'}
