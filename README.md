@@ -35,14 +35,14 @@ Linux or macOS (tested on Linux x86_64; on Windows use WSL2), Java 25, Maven, Do
 and DNS: the web server is reached through a nip.io name. Offline, add a name for 127.0.0.1 to
 `/etc/hosts` and pass it as `FIXTURE_HOST`.
 
-Build tika-grpc at commit `a060ac5d35483b9f5f684b6c356332474494e2f8`, in a folder next to
+Build tika-grpc at commit `92817ea8d4b776e3e55251e18b1538b870cc844e`, in a folder next to
 this repository:
 
 ```sh
 git clone https://github.com/dpol1/tika-demo.git
 git clone https://github.com/ai-pipestream/tika.git tika-4795-demo
 cd tika-4795-demo
-git checkout a060ac5d35483b9f5f684b6c356332474494e2f8
+git checkout 92817ea8d4b776e3e55251e18b1538b870cc844e
 ./mvnw -q clean -pl tika-grpc -am -DskipTests -Dmaven.javadoc.skip=true -Drat.skip=true \
   -Dcheckstyle.skip=true -Dforbiddenapis.skip=true -Dspotless.check.skip=true \
   -Dmdep.includeScope=runtime -Dmdep.outputFile="$PWD/tika-grpc/target/cp.txt" \
