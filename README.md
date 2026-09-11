@@ -31,7 +31,7 @@ complete output of one run, with the commits, versions and file hashes that prod
 
 ## Run it
 
-Linux or macOS (tested on Linux x86_64; on Windows use WSL2), Java 25, Maven, Docker, python3
+Linux or macOS (tested on Linux x86_64; on Windows use WSL2), Java 17+, Maven, Docker, python3
 and DNS: the web server is reached through a nip.io name. Offline, add a name for 127.0.0.1 to
 `/etc/hosts` and pass it as `FIXTURE_HOST`.
 
@@ -58,12 +58,14 @@ cd ../tika-demo
 
 The script starts tika-grpc from that build, URLFrontier in Docker and the local web server,
 crawls for two minutes, then runs the checker. Exit code 0 means every check passed.
-Everything a run writes goes to `out/`. Environment variables: `TIKA_WT` (the Tika checkout,
-default `../tika-4795-demo`), `RUN_MINUTES` (default 2), `TIKA_PORT` (default 50052, moved
-automatically if the port is taken), `ARCHIVE=1` (refuse to run from a checkout with
-uncommitted changes), `SKIP_TIKA=1` (use a server you started yourself, see below).
+Everything a run writes goes to `out/`. Environment variables: `TIKA_WT` (the Tika checkout
+built with the command above, default `../tika-4795-demo`), `RUN_MINUTES` (default 2),
+`TIKA_PORT` (default 50052, moved automatically if the port is taken), `ARCHIVE=1` (refuse to
+run from a checkout with uncommitted changes), `SKIP_TIKA=1` (use a server you started
+yourself, see below).
 
-A run takes about two minutes. The first call includes tika-grpc starting its parser process;
+The crawl runs for two minutes; initial downloads and startup take additional time. The first
+call includes tika-grpc starting its parser process;
 after that each document takes milliseconds to a few seconds.
 
 ## Using another ParseBytes server

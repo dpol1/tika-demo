@@ -47,7 +47,7 @@ if [ -n "${ARCHIVE:-}" ]; then
     [ -n "$SKIP_TIKA" ] || [ -z "$(dirty "$TIKA_WT")" ] || { echo "ARCHIVE=1 but $TIKA_WT is dirty"; exit 2; }
 fi
 if [ -z "$SKIP_TIKA" ]; then
-    [ -f "$CP_FILE" ] || { echo "missing $CP_FILE: build tika-grpc in $TIKA_WT first"; exit 2; }
+    [ -f "$CP_FILE" ] || { echo "missing $CP_FILE: build tika-grpc in $TIKA_WT with the mvnw command in README.md"; exit 2; }
 fi
 
 rm -rf out && mkdir -p out
