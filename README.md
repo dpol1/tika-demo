@@ -70,6 +70,38 @@ after that each document takes milliseconds to a few seconds.
 
 ## Using another ParseBytes server
 
+Use the Tika build above with this configuration:
+
+```json
+{
+  "parse-context": {
+    "commons-digester-factory": {
+      "digests": [ { "algorithm": "SHA256" } ],
+      "skipContainerDocumentDigest": false
+    }
+  },
+  "pipes": { "emitStrategy": { "type": "PASSBACK_ALL" } },
+  "plugin-roots": "/path/to/tika/tika-grpc/target/plugins"
+}
+```
+
+- The digester supplies `origin.sha256` for the checksum check.
+- `PASSBACK_ALL` returns large results without requiring an emitter.
+- `plugin-roots` must be in the file so the forked parser can read it; the command-line
+  option reaches only the parent process.
+
+Save this as `tika-grpc-demo.json` in the Tika checkout and start the server:
+
+```sh
+cd /path/to/tika
+java -cp "tika-grpc/target/classes:$(tr ':' '\n' < tika-grpc/target/cp.txt | grep -v '\.zip$' | paste -s -d : -)" \
+  org.apache.tika.pipes.grpc.TikaGrpcServer -c tika-grpc-demo.json -p 50052
+```
+
+Use this command: with `run-dev.sh`, forked parsers inherit Maven's classpath and fail to start.
+
+Then point the demo at it:
+
 ```sh
 echo '  parsebytes.target: "host:port"' >> crawler-conf.yaml
 SKIP_TIKA=1 ./run.sh
