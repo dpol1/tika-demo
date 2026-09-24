@@ -71,38 +71,27 @@ not_clean = [(path_of(r["url"]), r.get("pipes_status"), r.get("status"), r.get("
 check("all parse success", bool(docs) and not not_clean,
       not_clean or f"{len(docs)}/{len(docs)} PARSE_SUCCESS, status SUCCESS, no parser errors")
 
-# The bolt sends "crawl:" + URL as the correlation id; it must come back as Document.id and as
-# the reply's correlation_id, and it is never the bare URL.
-check(
-    "correlation id echoed",
-    bool(docs) and all(r["doc_id"] == r["correlation_id"] == r.get("reply_correlation_id") != r["url"]
-                       for r in docs),
-    [(path_of(r["url"]), r["doc_id"], r.get("reply_correlation_id")) for r in docs
-     if not (r["doc_id"] == r["correlation_id"] == r.get("reply_correlation_id") != r["url"])]
-    or f"{len(docs)}/{len(docs)}, none equal to the URL",
-)
+# A distinct correlation id detects replies that only echo the source URL.
+bad = [(path_of(r["url"]), r["doc_id"], r.get("reply_correlation_id")) for r in docs
+       if not (r["doc_id"] == r["correlation_id"] == r.get("reply_correlation_id") != r["url"])]
+check("correlation id echoed", bool(docs) and not bad,
+      bad or f"{len(docs)}/{len(docs)}, none equal to the URL")
 
-check(
-    "source url echoed",
-    bool(docs) and all(r.get("origin_source_uri") == r["url"] for r in docs),
-    [(path_of(r["url"]), r.get("origin_source_uri")) for r in docs if r.get("origin_source_uri") != r["url"]]
-    or f"{len(docs)}/{len(docs)} origin.source_uri == url",
-)
+bad = [(path_of(r["url"]), r.get("origin_source_uri")) for r in docs
+       if r.get("origin_source_uri") != r["url"]]
+check("source url echoed", bool(docs) and not bad,
+      bad or f"{len(docs)}/{len(docs)} origin.source_uri == url")
 
-check(
-    "byte size echoed",
-    bool(docs) and all(r.get("origin_byte_size") == r["bytes"] for r in docs),
-    [(path_of(r["url"]), r["bytes"], r.get("origin_byte_size")) for r in docs
-     if r.get("origin_byte_size") != r["bytes"]] or f"{len(docs)}/{len(docs)} origin.byte_size == bytes sent",
-)
+bad = [(path_of(r["url"]), r["bytes"], r.get("origin_byte_size")) for r in docs
+       if r.get("origin_byte_size") != r["bytes"]]
+check("byte size echoed", bool(docs) and not bad,
+      bad or f"{len(docs)}/{len(docs)} origin.byte_size == bytes sent")
 
 # Both sides hashed the bytes independently; an empty hash on the server side does not count.
-check(
-    "same sha256",
-    bool(docs) and all(r["origin_sha256"] and r["origin_sha256"] == r["client_sha256"] for r in docs),
-    [(path_of(r["url"]), r["client_sha256"][:12], r["origin_sha256"][:12]) for r in docs
-     if r["origin_sha256"] != r["client_sha256"]] or f"{len(docs)}/{len(docs)} sha256 equal, non-empty",
-)
+bad = [(path_of(r["url"]), r["client_sha256"][:12], r["origin_sha256"][:12]) for r in docs
+       if not (r["origin_sha256"] and r["origin_sha256"] == r["client_sha256"])]
+check("same sha256", bool(docs) and not bad,
+      bad or f"{len(docs)}/{len(docs)} sha256 equal, non-empty")
 
 gets = Counter()
 try:
@@ -122,11 +111,8 @@ def key(r):
 
 
 counts = {path_of(r["url"]): gets[key(r)] for r in docs}
-check(
-    "one GET per URL",
-    bool(docs) and all(n == 1 for n in counts.values()),
-    {p: n for p, n in counts.items() if n != 1} or f"1 GET each for {len(counts)} URLs",
-)
+bad = {p: n for p, n in counts.items() if n != 1}
+check("one GET per URL", bool(docs) and not bad, bad or f"1 GET each for {len(counts)} URLs")
 
 
 # Files served from disk; the HTML pages are generated and have no file to compare with.
@@ -152,8 +138,7 @@ check("served files unchanged", bool(served) and not mismatch,
 
 by_path = {path_of(r["url"]): r for r in docs}
 
-# The values Tika's own PDFParserTest asserts for this file, plus its page count (one page)
-# tagged as an integer.
+# PDFParserTest supplies the expected title and author.
 real = by_path.get("/docs/testPDF.pdf")
 check(
     "test pdf metadata",
@@ -180,8 +165,7 @@ prot = by_path.get("/docs/testPDF_protected.pdf")
 check("protected pdf parsed", bool(prot) and prot["content_type"].startswith("application/pdf") and bool(prot["title"]),
       {k: prot.get(k) for k in ("pipes_status", "title")} if prot else "no result")
 
-# /big is the one page the crawler cut at http.content.limit; the flag must be true on both
-# sides for it and false on both sides for every other document.
+# /big is the only fixture that exceeds http.content.limit.
 big = by_path.get("/big")
 others_flagged = [path_of(r["url"]) for r in docs if r is not big and (r.get("truncated") or r.get("truncated_sent"))]
 check(
