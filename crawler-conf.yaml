@@ -20,6 +20,5 @@ config:
   # smaller.
   http.content.limit: 3145728
 
-  # Where ParseBytesBolt sends the bytes and where it writes its result lines.
-  # parsebytes.target: "localhost:50052"
+  # Where ParseBytesBolt writes its result lines. run.sh appends parsebytes.target.
   # parsebytes.results: "out/results.jsonl"

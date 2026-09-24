@@ -30,10 +30,8 @@ import org.apache.stormcrawler.urlfrontier.StatusUpdaterBolt;
 import org.yaml.snakeyaml.Yaml;
 
 /**
- * URLFrontier spout, URL partitioner, FetcherBolt, then each fetched tuple goes to two bolts:
- * JSoupParserBolt, which discovers links, and ParseBytesBolt, which sends the bytes to Tika.
- * The status updater sends discovered links back to the frontier. Runs in a LocalCluster for
- * a fixed number of minutes, then exits.
+ * Runs a local crawl: JSoupParserBolt discovers links, while ParseBytesBolt sends the fetched
+ * bytes to Tika. The status updater sends discovered URLs back to URLFrontier.
  *
  * <p>Usage: {@code CrawlTopology [minutes] [seeds file] [crawler conf]}
  */
@@ -45,7 +43,6 @@ public class CrawlTopology {
         String crawlerConf = args.length > 2 ? args[2] : "crawler-conf.yaml";
 
         Config conf = new Config();
-        // StormCrawler's defaults, then the overrides from the crawler config file.
         conf.putAll(loadConfigSection("/crawler-default.yaml", true));
         conf.putAll(loadConfigSection(crawlerConf, false));
 
@@ -86,7 +83,6 @@ public class CrawlTopology {
         }
     }
 
-    /** Puts the seed URLs into URLFrontier. */
     private static void injectSeeds(List<String> seedUrls) throws Exception {
         ManagedChannel channel =
                 ManagedChannelBuilder.forTarget("localhost:7072").usePlaintext().build();

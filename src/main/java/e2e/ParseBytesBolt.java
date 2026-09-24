@@ -29,10 +29,8 @@ import org.apache.tika.grpc.v2.ParseBytesRequest;
 import org.apache.tika.grpc.v2.TikaV2Grpc;
 
 /**
- * Sends the content of each tuple FetcherBolt emitted (url, content, metadata) to
- * TikaV2.ParseBytes and writes one JSON line per tuple with what came back. Acks every tuple,
- * records failures in the line, emits nothing downstream. Depends only on the generated
- * org.apache.tika.grpc.v2 stubs.
+ * Sends fetched bytes to TikaV2.ParseBytes and writes each reply or error as a JSON line.
+ * Acks every tuple and emits nothing downstream.
  */
 public class ParseBytesBolt extends BaseRichBolt {
 
@@ -101,7 +99,6 @@ public class ParseBytesBolt extends BaseRichBolt {
                     .put("document_bytes", doc.getSerializedSize())
                     .put("truncated_sent", request.getTruncated())
                     .put("truncated", doc.getOrigin().getTruncated());
-            // the page count, with the type it was tagged with
             for (MetadataField field : doc.getExtraList()) {
                 if (field.getKey().equals("xmpTPg:NPages")) {
                     MetadataValue value = field.getValue();
@@ -124,7 +121,6 @@ public class ParseBytesBolt extends BaseRichBolt {
 
     @Override
     public void declareOutputFields(OutputFieldsDeclarer declarer) {
-        // nothing goes downstream
     }
 
     @Override
