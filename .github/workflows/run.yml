@@ -16,7 +16,7 @@ jobs:
           java-version: '17'
       - name: Build tika-grpc from the tag in README.md
         run: |
-          TAG=$(grep -o -m1 'TIKA-4795-parseBytes-demo-[0-9a-f]*' README.md)
+          TAG=$(grep -o -m1 'TIKA-4795-parseBytes-demo-[0-9a-f]*' README.md | head -1)
           git clone --depth 1 --branch "$TAG" https://github.com/ai-pipestream/tika.git ../tika-4795-demo
           cd ../tika-4795-demo
           ./mvnw -q -B clean package dependency:build-classpath -pl tika-grpc -am -Pfast \

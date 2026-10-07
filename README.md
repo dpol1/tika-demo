@@ -18,11 +18,18 @@ over the bytes it sends equals `origin.sha256` in Tika's reply.
 
 ## How it works
 
-```
-seeds ─> URLFrontier ─> StormCrawler fetcher ─┬─> JSoupParserBolt ─> indexer (stdout)
-                                              └─> ParseBytesBolt ─> Tika ParseBytes ─> out/results.jsonl
-
-web server access log + out/results.jsonl ─> verify.py
+```mermaid
+flowchart LR
+    seeds --> frontier[URLFrontier]
+    frontier --> fetcher[StormCrawler fetcher]
+    web[local web server] -- pages and PDFs --> fetcher
+    fetcher --> jsoup[JSoupParserBolt] --> indexer["indexer (stdout)"]
+    fetcher --> bolt[ParseBytesBolt]
+    bolt -- "ParseBytes (gRPC)" --> tika[Tika]
+    tika -- Document --> bolt
+    bolt --> results["out/results.jsonl"]
+    results --> verify[verify.py]
+    web -- access log --> verify
 ```
 
 ## What the checker verifies
