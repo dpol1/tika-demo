@@ -10,7 +10,7 @@ public interface MetadataValueOrBuilder extends
 
   /**
    * <pre>
-   * default for untyped text; never guessed
+   * keys without a declared type
    * </pre>
    *
    * <code>.org.apache.tika.grpc.v2.StringValues strings = 1;</code>
@@ -19,7 +19,7 @@ public interface MetadataValueOrBuilder extends
   boolean hasStrings();
   /**
    * <pre>
-   * default for untyped text; never guessed
+   * keys without a declared type
    * </pre>
    *
    * <code>.org.apache.tika.grpc.v2.StringValues strings = 1;</code>
@@ -28,7 +28,7 @@ public interface MetadataValueOrBuilder extends
   org.apache.tika.grpc.v2.StringValues getStrings();
   /**
    * <pre>
-   * default for untyped text; never guessed
+   * keys without a declared type
    * </pre>
    *
    * <code>.org.apache.tika.grpc.v2.StringValues strings = 1;</code>

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Runs the demo and checker; outputs go to out/. See README.md for setup and options.
-# The fixture server and URLFrontier bind to loopback by default.
+# URLFrontier binds to loopback. The fixture server binds to FIXTURE_BIND, loopback by default.
 # Tika listens on all interfaces in plaintext.
 set -euo pipefail
 cd "$(dirname "$0")"
@@ -26,6 +26,7 @@ cleanup() {
 }
 trap cleanup EXIT
 
+# Checks before out/ is touched.
 python3 -c 'import socket, sys; socket.gethostbyname(sys.argv[1])' "$FIXTURE_HOST" 2>/dev/null \
     || { echo "$FIXTURE_HOST does not resolve: nip.io names need DNS; offline, put a name in /etc/hosts and pass it as FIXTURE_HOST"; exit 2; }
 if [ -n "${ARCHIVE:-}" ]; then
@@ -75,7 +76,8 @@ echo ">>> running topology for ${RUN_MINUTES} minute(s) on stormcrawler ${SC_VER
 MVN_EXIT=0
 mvn -q -Dstormcrawler.version="${SC_VERSION}" -Dstorm.version="${STORM_VERSION}" compile exec:java \
     -Dexec.args="${RUN_MINUTES} out/seeds.txt out/crawler-conf.yaml" > out/topology.log 2>&1 || MVN_EXIT=$?
-# AsyncLocalizer and ZooKeeper-on-::1 lines are Storm LocalCluster noise.
+# Drops Storm LocalCluster errors that do not affect the run: AsyncLocalizer cleanup failures
+# and ZooKeeper failing to connect over IPv6.
 grep -E ">>>|ERROR" out/topology.log | grep -v -E "AsyncLocalizer|ClientCnxn.*(Unable to open socket|Network is unreachable)" || true
 [ "$MVN_EXIT" -eq 0 ] || { echo "topology run failed (exit $MVN_EXIT), see out/topology.log"; exit "$MVN_EXIT"; }
 
@@ -98,6 +100,12 @@ echo ">>> manifest"
 for f in sys.argv[1:]:
     print("sha256", hashlib.sha256(open(f, "rb").read()).hexdigest(), "", f)' proto/org/apache/tika/grpc/v2/*.proto tika/config.template.json testserver/server.py testserver/fixture.pdf testserver/docs/*.pdf testserver/seeds.txt
     echo "java=$(java -version 2>&1 | head -1)"
+    echo "maven=$(mvn -v 2>/dev/null | head -1)"
+    echo "docker=$(docker version --format '{{.Server.Version}}' 2>/dev/null)"
+    echo "python=$(python3 --version 2>&1)"
+    echo "os=$(uname -sm)"
+    echo "date=$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+    echo "run_seconds=$SECONDS"
 } | tee out/manifest.txt
 
 echo ">>> verifying"

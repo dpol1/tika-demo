@@ -33,7 +33,7 @@ def failed(out, name, path=""):
     return any(line.startswith(f"FAIL  {name}: ") and path in line for line in out.splitlines())
 
 
-REFACTORED = ["correlation id echoed", "source url echoed", "byte size echoed", "same sha256",
+MUST_FAIL_WHEN_EMPTY = ["correlation id echoed", "source url echoed", "byte size echoed", "same sha256",
               "one GET per URL"]
 CASES = [
     ("correlation id echoed", "/p5", run(broken("/p5", doc_id="crawl:other"))),
@@ -47,7 +47,7 @@ CASES = [
 
 assert run(ROWS) == Path("sample-run/verify.txt").read_text(), "sample run output changed"
 empty = run([])
-assert all(failed(empty, name) for name in REFACTORED), "a check passed with no results"
+assert all(failed(empty, name) for name in MUST_FAIL_WHEN_EMPTY), "a check passed with no results"
 for name, path, out in CASES:
     assert failed(out, name, path), f"{name} did not fail naming {path}"
 print(f"ok: sample run unchanged, empty run fails, {len(CASES)} broken runs fail")

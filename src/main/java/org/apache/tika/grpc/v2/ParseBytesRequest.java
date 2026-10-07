@@ -51,8 +51,8 @@ private static final long serialVersionUID = 0L;
   private volatile java.lang.Object correlationId_ = "";
   /**
    * <pre>
-   * Opaque caller correlation id. Echoed as Document.id and ParseBytesReply.correlation_id
-   * when set; never interpreted by the service.
+   * The caller's id for this request, returned unchanged as Document.id and
+   * ParseBytesReply.correlation_id.
    * </pre>
    *
    * <code>string correlation_id = 1;</code>
@@ -73,8 +73,8 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * Opaque caller correlation id. Echoed as Document.id and ParseBytesReply.correlation_id
-   * when set; never interpreted by the service.
+   * The caller's id for this request, returned unchanged as Document.id and
+   * ParseBytesReply.correlation_id.
    * </pre>
    *
    * <code>string correlation_id = 1;</code>
@@ -99,7 +99,9 @@ private static final long serialVersionUID = 0L;
   private com.google.protobuf.ByteString content_ = com.google.protobuf.ByteString.EMPTY;
   /**
    * <pre>
-   * Exact bytes to parse. Required; must be non-empty and within the server bound.
+   * Bytes to parse. Required, at most the server's parseBytesMaxContentBytes. The
+   * whole request must also fit the server's gRPC inbound limit: 4 MiB unless
+   * maxInboundMessageBytes sets another value.
    * </pre>
    *
    * <code>bytes content = 2;</code>
@@ -115,7 +117,8 @@ private static final long serialVersionUID = 0L;
   private volatile java.lang.Object resourceName_ = "";
   /**
    * <pre>
-   * Optional resource name (e.g. "page.html") used as a detection/name hint.
+   * Optional file name, such as "page.html". Tika uses it to detect the content type
+   * and returns it as Document.origin.filename.
    * </pre>
    *
    * <code>string resource_name = 3;</code>
@@ -136,7 +139,8 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * Optional resource name (e.g. "page.html") used as a detection/name hint.
+   * Optional file name, such as "page.html". Tika uses it to detect the content type
+   * and returns it as Document.origin.filename.
    * </pre>
    *
    * <code>string resource_name = 3;</code>
@@ -162,7 +166,9 @@ private static final long serialVersionUID = 0L;
   private volatile java.lang.Object sourceUri_ = "";
   /**
    * <pre>
-   * Provenance: never dereferenced by the service.
+   * Optional URIs the caller records for the bytes, such as the requested URL, the
+   * URL after redirects and the base URL for relative links. Tika returns them in
+   * Document.origin and does not use them.
    * </pre>
    *
    * <code>string source_uri = 4;</code>
@@ -183,7 +189,9 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * Provenance: never dereferenced by the service.
+   * Optional URIs the caller records for the bytes, such as the requested URL, the
+   * URL after redirects and the base URL for relative links. Tika returns them in
+   * Document.origin and does not use them.
    * </pre>
    *
    * <code>string source_uri = 4;</code>
@@ -282,16 +290,15 @@ private static final long serialVersionUID = 0L;
     }
   }
 
-  public static final int TRUNCATED_FIELD_NUMBER = 11;
+  public static final int TRUNCATED_FIELD_NUMBER = 7;
   private boolean truncated_ = false;
   /**
    * <pre>
-   * Field numbers 7-10 held for declared hints/integrity (content type, charset,
-   * length, digest) -- semantics under discussion on TIKA-4795; reintroduced only
-   * with verifiable semantics and tests of their own.
+   * Set when the caller cut the bytes short, for example at a crawler's size limit.
+   * Returned as Document.origin.truncated.
    * </pre>
    *
-   * <code>bool truncated = 11;</code>
+   * <code>bool truncated = 7;</code>
    * @return The truncated.
    */
   @java.lang.Override
@@ -299,7 +306,7 @@ private static final long serialVersionUID = 0L;
     return truncated_;
   }
 
-  public static final int PARSE_CONTEXT_JSON_FIELD_NUMBER = 12;
+  public static final int PARSE_CONTEXT_JSON_FIELD_NUMBER = 8;
   @SuppressWarnings("serial")
   private volatile java.lang.Object parseContextJson_ = "";
   /**
@@ -307,7 +314,7 @@ private static final long serialVersionUID = 0L;
    * Optional JSON object to configure the ParseContext for this request.
    * </pre>
    *
-   * <code>string parse_context_json = 12;</code>
+   * <code>string parse_context_json = 8;</code>
    * @return The parseContextJson.
    */
   @java.lang.Override
@@ -328,7 +335,7 @@ private static final long serialVersionUID = 0L;
    * Optional JSON object to configure the ParseContext for this request.
    * </pre>
    *
-   * <code>string parse_context_json = 12;</code>
+   * <code>string parse_context_json = 8;</code>
    * @return The bytes for parseContextJson.
    */
   @java.lang.Override
@@ -379,10 +386,10 @@ private static final long serialVersionUID = 0L;
       com.google.protobuf.GeneratedMessageV3.writeString(output, 6, baseUri_);
     }
     if (truncated_ != false) {
-      output.writeBool(11, truncated_);
+      output.writeBool(7, truncated_);
     }
     if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(parseContextJson_)) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 12, parseContextJson_);
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 8, parseContextJson_);
     }
     getUnknownFields().writeTo(output);
   }
@@ -414,10 +421,10 @@ private static final long serialVersionUID = 0L;
     }
     if (truncated_ != false) {
       size += com.google.protobuf.CodedOutputStream
-        .computeBoolSize(11, truncated_);
+        .computeBoolSize(7, truncated_);
     }
     if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(parseContextJson_)) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(12, parseContextJson_);
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(8, parseContextJson_);
     }
     size += getUnknownFields().getSerializedSize();
     memoizedSize = size;
@@ -812,16 +819,16 @@ private static final long serialVersionUID = 0L;
               bitField0_ |= 0x00000020;
               break;
             } // case 50
-            case 88: {
+            case 56: {
               truncated_ = input.readBool();
               bitField0_ |= 0x00000040;
               break;
-            } // case 88
-            case 98: {
+            } // case 56
+            case 66: {
               parseContextJson_ = input.readStringRequireUtf8();
               bitField0_ |= 0x00000080;
               break;
-            } // case 98
+            } // case 66
             default: {
               if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                 done = true; // was an endgroup tag
@@ -842,8 +849,8 @@ private static final long serialVersionUID = 0L;
     private java.lang.Object correlationId_ = "";
     /**
      * <pre>
-     * Opaque caller correlation id. Echoed as Document.id and ParseBytesReply.correlation_id
-     * when set; never interpreted by the service.
+     * The caller's id for this request, returned unchanged as Document.id and
+     * ParseBytesReply.correlation_id.
      * </pre>
      *
      * <code>string correlation_id = 1;</code>
@@ -863,8 +870,8 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Opaque caller correlation id. Echoed as Document.id and ParseBytesReply.correlation_id
-     * when set; never interpreted by the service.
+     * The caller's id for this request, returned unchanged as Document.id and
+     * ParseBytesReply.correlation_id.
      * </pre>
      *
      * <code>string correlation_id = 1;</code>
@@ -885,8 +892,8 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Opaque caller correlation id. Echoed as Document.id and ParseBytesReply.correlation_id
-     * when set; never interpreted by the service.
+     * The caller's id for this request, returned unchanged as Document.id and
+     * ParseBytesReply.correlation_id.
      * </pre>
      *
      * <code>string correlation_id = 1;</code>
@@ -903,8 +910,8 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Opaque caller correlation id. Echoed as Document.id and ParseBytesReply.correlation_id
-     * when set; never interpreted by the service.
+     * The caller's id for this request, returned unchanged as Document.id and
+     * ParseBytesReply.correlation_id.
      * </pre>
      *
      * <code>string correlation_id = 1;</code>
@@ -918,8 +925,8 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Opaque caller correlation id. Echoed as Document.id and ParseBytesReply.correlation_id
-     * when set; never interpreted by the service.
+     * The caller's id for this request, returned unchanged as Document.id and
+     * ParseBytesReply.correlation_id.
      * </pre>
      *
      * <code>string correlation_id = 1;</code>
@@ -939,7 +946,9 @@ private static final long serialVersionUID = 0L;
     private com.google.protobuf.ByteString content_ = com.google.protobuf.ByteString.EMPTY;
     /**
      * <pre>
-     * Exact bytes to parse. Required; must be non-empty and within the server bound.
+     * Bytes to parse. Required, at most the server's parseBytesMaxContentBytes. The
+     * whole request must also fit the server's gRPC inbound limit: 4 MiB unless
+     * maxInboundMessageBytes sets another value.
      * </pre>
      *
      * <code>bytes content = 2;</code>
@@ -951,7 +960,9 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Exact bytes to parse. Required; must be non-empty and within the server bound.
+     * Bytes to parse. Required, at most the server's parseBytesMaxContentBytes. The
+     * whole request must also fit the server's gRPC inbound limit: 4 MiB unless
+     * maxInboundMessageBytes sets another value.
      * </pre>
      *
      * <code>bytes content = 2;</code>
@@ -967,7 +978,9 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Exact bytes to parse. Required; must be non-empty and within the server bound.
+     * Bytes to parse. Required, at most the server's parseBytesMaxContentBytes. The
+     * whole request must also fit the server's gRPC inbound limit: 4 MiB unless
+     * maxInboundMessageBytes sets another value.
      * </pre>
      *
      * <code>bytes content = 2;</code>
@@ -983,7 +996,8 @@ private static final long serialVersionUID = 0L;
     private java.lang.Object resourceName_ = "";
     /**
      * <pre>
-     * Optional resource name (e.g. "page.html") used as a detection/name hint.
+     * Optional file name, such as "page.html". Tika uses it to detect the content type
+     * and returns it as Document.origin.filename.
      * </pre>
      *
      * <code>string resource_name = 3;</code>
@@ -1003,7 +1017,8 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Optional resource name (e.g. "page.html") used as a detection/name hint.
+     * Optional file name, such as "page.html". Tika uses it to detect the content type
+     * and returns it as Document.origin.filename.
      * </pre>
      *
      * <code>string resource_name = 3;</code>
@@ -1024,7 +1039,8 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Optional resource name (e.g. "page.html") used as a detection/name hint.
+     * Optional file name, such as "page.html". Tika uses it to detect the content type
+     * and returns it as Document.origin.filename.
      * </pre>
      *
      * <code>string resource_name = 3;</code>
@@ -1041,7 +1057,8 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Optional resource name (e.g. "page.html") used as a detection/name hint.
+     * Optional file name, such as "page.html". Tika uses it to detect the content type
+     * and returns it as Document.origin.filename.
      * </pre>
      *
      * <code>string resource_name = 3;</code>
@@ -1055,7 +1072,8 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Optional resource name (e.g. "page.html") used as a detection/name hint.
+     * Optional file name, such as "page.html". Tika uses it to detect the content type
+     * and returns it as Document.origin.filename.
      * </pre>
      *
      * <code>string resource_name = 3;</code>
@@ -1075,7 +1093,9 @@ private static final long serialVersionUID = 0L;
     private java.lang.Object sourceUri_ = "";
     /**
      * <pre>
-     * Provenance: never dereferenced by the service.
+     * Optional URIs the caller records for the bytes, such as the requested URL, the
+     * URL after redirects and the base URL for relative links. Tika returns them in
+     * Document.origin and does not use them.
      * </pre>
      *
      * <code>string source_uri = 4;</code>
@@ -1095,7 +1115,9 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Provenance: never dereferenced by the service.
+     * Optional URIs the caller records for the bytes, such as the requested URL, the
+     * URL after redirects and the base URL for relative links. Tika returns them in
+     * Document.origin and does not use them.
      * </pre>
      *
      * <code>string source_uri = 4;</code>
@@ -1116,7 +1138,9 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Provenance: never dereferenced by the service.
+     * Optional URIs the caller records for the bytes, such as the requested URL, the
+     * URL after redirects and the base URL for relative links. Tika returns them in
+     * Document.origin and does not use them.
      * </pre>
      *
      * <code>string source_uri = 4;</code>
@@ -1133,7 +1157,9 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Provenance: never dereferenced by the service.
+     * Optional URIs the caller records for the bytes, such as the requested URL, the
+     * URL after redirects and the base URL for relative links. Tika returns them in
+     * Document.origin and does not use them.
      * </pre>
      *
      * <code>string source_uri = 4;</code>
@@ -1147,7 +1173,9 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Provenance: never dereferenced by the service.
+     * Optional URIs the caller records for the bytes, such as the requested URL, the
+     * URL after redirects and the base URL for relative links. Tika returns them in
+     * Document.origin and does not use them.
      * </pre>
      *
      * <code>string source_uri = 4;</code>
@@ -1311,12 +1339,11 @@ private static final long serialVersionUID = 0L;
     private boolean truncated_ ;
     /**
      * <pre>
-     * Field numbers 7-10 held for declared hints/integrity (content type, charset,
-     * length, digest) -- semantics under discussion on TIKA-4795; reintroduced only
-     * with verifiable semantics and tests of their own.
+     * Set when the caller cut the bytes short, for example at a crawler's size limit.
+     * Returned as Document.origin.truncated.
      * </pre>
      *
-     * <code>bool truncated = 11;</code>
+     * <code>bool truncated = 7;</code>
      * @return The truncated.
      */
     @java.lang.Override
@@ -1325,12 +1352,11 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Field numbers 7-10 held for declared hints/integrity (content type, charset,
-     * length, digest) -- semantics under discussion on TIKA-4795; reintroduced only
-     * with verifiable semantics and tests of their own.
+     * Set when the caller cut the bytes short, for example at a crawler's size limit.
+     * Returned as Document.origin.truncated.
      * </pre>
      *
-     * <code>bool truncated = 11;</code>
+     * <code>bool truncated = 7;</code>
      * @param value The truncated to set.
      * @return This builder for chaining.
      */
@@ -1343,12 +1369,11 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Field numbers 7-10 held for declared hints/integrity (content type, charset,
-     * length, digest) -- semantics under discussion on TIKA-4795; reintroduced only
-     * with verifiable semantics and tests of their own.
+     * Set when the caller cut the bytes short, for example at a crawler's size limit.
+     * Returned as Document.origin.truncated.
      * </pre>
      *
-     * <code>bool truncated = 11;</code>
+     * <code>bool truncated = 7;</code>
      * @return This builder for chaining.
      */
     public Builder clearTruncated() {
@@ -1364,7 +1389,7 @@ private static final long serialVersionUID = 0L;
      * Optional JSON object to configure the ParseContext for this request.
      * </pre>
      *
-     * <code>string parse_context_json = 12;</code>
+     * <code>string parse_context_json = 8;</code>
      * @return The parseContextJson.
      */
     public java.lang.String getParseContextJson() {
@@ -1384,7 +1409,7 @@ private static final long serialVersionUID = 0L;
      * Optional JSON object to configure the ParseContext for this request.
      * </pre>
      *
-     * <code>string parse_context_json = 12;</code>
+     * <code>string parse_context_json = 8;</code>
      * @return The bytes for parseContextJson.
      */
     public com.google.protobuf.ByteString
@@ -1405,7 +1430,7 @@ private static final long serialVersionUID = 0L;
      * Optional JSON object to configure the ParseContext for this request.
      * </pre>
      *
-     * <code>string parse_context_json = 12;</code>
+     * <code>string parse_context_json = 8;</code>
      * @param value The parseContextJson to set.
      * @return This builder for chaining.
      */
@@ -1422,7 +1447,7 @@ private static final long serialVersionUID = 0L;
      * Optional JSON object to configure the ParseContext for this request.
      * </pre>
      *
-     * <code>string parse_context_json = 12;</code>
+     * <code>string parse_context_json = 8;</code>
      * @return This builder for chaining.
      */
     public Builder clearParseContextJson() {
@@ -1436,7 +1461,7 @@ private static final long serialVersionUID = 0L;
      * Optional JSON object to configure the ParseContext for this request.
      * </pre>
      *
-     * <code>string parse_context_json = 12;</code>
+     * <code>string parse_context_json = 8;</code>
      * @param value The bytes for parseContextJson to set.
      * @return This builder for chaining.
      */

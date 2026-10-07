@@ -10,8 +10,8 @@ public interface ParseBytesRequestOrBuilder extends
 
   /**
    * <pre>
-   * Opaque caller correlation id. Echoed as Document.id and ParseBytesReply.correlation_id
-   * when set; never interpreted by the service.
+   * The caller's id for this request, returned unchanged as Document.id and
+   * ParseBytesReply.correlation_id.
    * </pre>
    *
    * <code>string correlation_id = 1;</code>
@@ -20,8 +20,8 @@ public interface ParseBytesRequestOrBuilder extends
   java.lang.String getCorrelationId();
   /**
    * <pre>
-   * Opaque caller correlation id. Echoed as Document.id and ParseBytesReply.correlation_id
-   * when set; never interpreted by the service.
+   * The caller's id for this request, returned unchanged as Document.id and
+   * ParseBytesReply.correlation_id.
    * </pre>
    *
    * <code>string correlation_id = 1;</code>
@@ -32,7 +32,9 @@ public interface ParseBytesRequestOrBuilder extends
 
   /**
    * <pre>
-   * Exact bytes to parse. Required; must be non-empty and within the server bound.
+   * Bytes to parse. Required, at most the server's parseBytesMaxContentBytes. The
+   * whole request must also fit the server's gRPC inbound limit: 4 MiB unless
+   * maxInboundMessageBytes sets another value.
    * </pre>
    *
    * <code>bytes content = 2;</code>
@@ -42,7 +44,8 @@ public interface ParseBytesRequestOrBuilder extends
 
   /**
    * <pre>
-   * Optional resource name (e.g. "page.html") used as a detection/name hint.
+   * Optional file name, such as "page.html". Tika uses it to detect the content type
+   * and returns it as Document.origin.filename.
    * </pre>
    *
    * <code>string resource_name = 3;</code>
@@ -51,7 +54,8 @@ public interface ParseBytesRequestOrBuilder extends
   java.lang.String getResourceName();
   /**
    * <pre>
-   * Optional resource name (e.g. "page.html") used as a detection/name hint.
+   * Optional file name, such as "page.html". Tika uses it to detect the content type
+   * and returns it as Document.origin.filename.
    * </pre>
    *
    * <code>string resource_name = 3;</code>
@@ -62,7 +66,9 @@ public interface ParseBytesRequestOrBuilder extends
 
   /**
    * <pre>
-   * Provenance: never dereferenced by the service.
+   * Optional URIs the caller records for the bytes, such as the requested URL, the
+   * URL after redirects and the base URL for relative links. Tika returns them in
+   * Document.origin and does not use them.
    * </pre>
    *
    * <code>string source_uri = 4;</code>
@@ -71,7 +77,9 @@ public interface ParseBytesRequestOrBuilder extends
   java.lang.String getSourceUri();
   /**
    * <pre>
-   * Provenance: never dereferenced by the service.
+   * Optional URIs the caller records for the bytes, such as the requested URL, the
+   * URL after redirects and the base URL for relative links. Tika returns them in
+   * Document.origin and does not use them.
    * </pre>
    *
    * <code>string source_uri = 4;</code>
@@ -106,12 +114,11 @@ public interface ParseBytesRequestOrBuilder extends
 
   /**
    * <pre>
-   * Field numbers 7-10 held for declared hints/integrity (content type, charset,
-   * length, digest) -- semantics under discussion on TIKA-4795; reintroduced only
-   * with verifiable semantics and tests of their own.
+   * Set when the caller cut the bytes short, for example at a crawler's size limit.
+   * Returned as Document.origin.truncated.
    * </pre>
    *
-   * <code>bool truncated = 11;</code>
+   * <code>bool truncated = 7;</code>
    * @return The truncated.
    */
   boolean getTruncated();
@@ -121,7 +128,7 @@ public interface ParseBytesRequestOrBuilder extends
    * Optional JSON object to configure the ParseContext for this request.
    * </pre>
    *
-   * <code>string parse_context_json = 12;</code>
+   * <code>string parse_context_json = 8;</code>
    * @return The parseContextJson.
    */
   java.lang.String getParseContextJson();
@@ -130,7 +137,7 @@ public interface ParseBytesRequestOrBuilder extends
    * Optional JSON object to configure the ParseContext for this request.
    * </pre>
    *
-   * <code>string parse_context_json = 12;</code>
+   * <code>string parse_context_json = 8;</code>
    * @return The bytes for parseContextJson.
    */
   com.google.protobuf.ByteString

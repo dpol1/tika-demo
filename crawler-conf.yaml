@@ -11,14 +11,19 @@ config:
   urlfrontier.port: 7072
   partition.url.mode: "byHost"
 
-  # All URLs are on one host and wait in the fetcher's queue behind the politeness delay;
-  # the timeout covers the whole run so no tuple is replayed and re-fetched.
+  # All URLs are on one host and wait in the fetcher's queue behind the politeness delay.
+  # The 300-second timeout is longer than the default two-minute run, so Storm does not
+  # replay a tuple and the fetcher does not fetch a URL twice.
   topology.max.spout.pending: 10
   topology.message.timeout.secs: 300
 
-  # Maximum bytes fetched per document. /big is served larger than this, everything else is
-  # smaller.
+  # Maximum bytes fetched per document. /big is served larger than this; every other
+  # document is smaller.
   http.content.limit: 3145728
 
   # Where ParseBytesBolt writes its result lines. run.sh appends parsebytes.target.
   # parsebytes.results: "out/results.jsonl"
+
+  # PDFs also reach JSoupParserBolt, which passes them to the indexer instead of logging an
+  # error; ParseBytesBolt sends them to Tika.
+  jsoup.treat.non.html.as.error: false

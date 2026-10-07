@@ -225,8 +225,8 @@ public final class TikaV2Grpc {
 
     /**
      * <pre>
-     * Parse-only entrypoint (TIKA-4795 PoC): parse the exact bytes the caller already
-     * holds. No fetcher registration. Reply is the same Document contract.
+     * Parses the bytes sent in the request, without a fetcher, and returns the same
+     * Document as FetchAndParse.
      * </pre>
      */
     default void parseBytes(org.apache.tika.grpc.v2.ParseBytesRequest request,
@@ -291,8 +291,8 @@ public final class TikaV2Grpc {
 
     /**
      * <pre>
-     * Parse-only entrypoint (TIKA-4795 PoC): parse the exact bytes the caller already
-     * holds. No fetcher registration. Reply is the same Document contract.
+     * Parses the bytes sent in the request, without a fetcher, and returns the same
+     * Document as FetchAndParse.
      * </pre>
      */
     public void parseBytes(org.apache.tika.grpc.v2.ParseBytesRequest request,
@@ -348,8 +348,8 @@ public final class TikaV2Grpc {
 
     /**
      * <pre>
-     * Parse-only entrypoint (TIKA-4795 PoC): parse the exact bytes the caller already
-     * holds. No fetcher registration. Reply is the same Document contract.
+     * Parses the bytes sent in the request, without a fetcher, and returns the same
+     * Document as FetchAndParse.
      * </pre>
      */
     public org.apache.tika.grpc.v2.ParseBytesReply parseBytes(org.apache.tika.grpc.v2.ParseBytesRequest request) throws io.grpc.StatusException {
@@ -394,8 +394,8 @@ public final class TikaV2Grpc {
 
     /**
      * <pre>
-     * Parse-only entrypoint (TIKA-4795 PoC): parse the exact bytes the caller already
-     * holds. No fetcher registration. Reply is the same Document contract.
+     * Parses the bytes sent in the request, without a fetcher, and returns the same
+     * Document as FetchAndParse.
      * </pre>
      */
     public org.apache.tika.grpc.v2.ParseBytesReply parseBytes(org.apache.tika.grpc.v2.ParseBytesRequest request) {
@@ -433,8 +433,8 @@ public final class TikaV2Grpc {
 
     /**
      * <pre>
-     * Parse-only entrypoint (TIKA-4795 PoC): parse the exact bytes the caller already
-     * holds. No fetcher registration. Reply is the same Document contract.
+     * Parses the bytes sent in the request, without a fetcher, and returns the same
+     * Document as FetchAndParse.
      * </pre>
      */
     public com.google.common.util.concurrent.ListenableFuture<org.apache.tika.grpc.v2.ParseBytesReply> parseBytes(

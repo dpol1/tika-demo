@@ -21,9 +21,8 @@ public interface ParseStatusOrBuilder extends
 
   /**
    * <pre>
-   * Wall-clock milliseconds for the whole fetch+parse round trip as observed by the
-   * server. Fetch and parse happen together inside the forked pipes worker, so a
-   * parse-only time is not separable here -- the name says what is actually measured.
+   * Milliseconds for the whole fetch and parse, measured by the server. Both happen
+   * in the forked pipes worker, so the parse time alone is not available.
    * </pre>
    *
    * <code>int64 fetch_parse_time_ms = 2;</code>
@@ -105,10 +104,9 @@ public interface ParseStatusOrBuilder extends
 
   /**
    * <pre>
-   * The raw pipes result name this document's status was derived from (e.g.
-   * "PARSE_SUCCESS", "TIMEOUT"; see org.apache.tika.pipes.api.PipesResult.RESULT_STATUS).
-   * Diagnostic detail behind the typed `status`, not a stable enumeration: branch on
-   * `status`, log this.
+   * The raw pipes result `status` was derived from (e.g. "PARSE_SUCCESS", "TIMEOUT";
+   * see org.apache.tika.pipes.api.PipesResult.RESULT_STATUS). Its values can change
+   * between Tika versions: branch on `status` and use this for logs.
    * </pre>
    *
    * <code>string pipes_status = 6;</code>
@@ -117,10 +115,9 @@ public interface ParseStatusOrBuilder extends
   java.lang.String getPipesStatus();
   /**
    * <pre>
-   * The raw pipes result name this document's status was derived from (e.g.
-   * "PARSE_SUCCESS", "TIMEOUT"; see org.apache.tika.pipes.api.PipesResult.RESULT_STATUS).
-   * Diagnostic detail behind the typed `status`, not a stable enumeration: branch on
-   * `status`, log this.
+   * The raw pipes result `status` was derived from (e.g. "PARSE_SUCCESS", "TIMEOUT";
+   * see org.apache.tika.pipes.api.PipesResult.RESULT_STATUS). Its values can change
+   * between Tika versions: branch on `status` and use this for logs.
    * </pre>
    *
    * <code>string pipes_status = 6;</code>

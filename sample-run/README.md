@@ -1,11 +1,9 @@
-# Archived run
+# Recorded run
 
-`manifest.txt` records commits, versions and file hashes. `results.jsonl` contains one result
-per document, `access.log` the HTTP requests, and `verify.txt` the checker output.
+`manifest.txt` records the commits, versions, system and file hashes of the run.
+`results.jsonl` contains one result per document, `access.log` the HTTP requests, and
+`verify.txt` the checker output.
 
-Observations:
-
-- ASCII HTML without a declared charset returns as `text/html; charset=windows-1252`.
-  `ParseBytesRequest` has no field for a declared charset.
-- For `testPDF_childAttachments.pdf`, `parsers_used` includes `OfficeParser` for the embedded
-  Office documents. `Document` has no field for embedded documents.
+The run was recorded with `ARCHIVE=1 ./run.sh`, which refuses to start when the demo
+checkout or the Tika checkout has uncommitted changes or untracked files. The four files
+were then copied from `out/`.

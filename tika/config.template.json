@@ -11,8 +11,7 @@
     "javaPath": "JAVA_PATH",
     "numClients": 2,
     "maxInlineBytes": 1048576,
-    "forkedJvmArgs": [ "-Xmx1g", "-XX:ParallelGCThreads=2" ],
-    "emitStrategy": { "type": "PASSBACK_ALL" }
+    "forkedJvmArgs": [ "-Xmx1g", "-XX:ParallelGCThreads=2" ]
   },
   "plugin-roots": "PLUGIN_ROOTS"
 }

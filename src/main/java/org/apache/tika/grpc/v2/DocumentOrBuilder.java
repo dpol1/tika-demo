@@ -11,9 +11,9 @@ public interface DocumentOrBuilder extends
   /**
    * <pre>
    * envelope
-   * Opaque caller-supplied work key: fetch_key on FetchAndParse, correlation_id
-   * on ParseBytes. Echoed verbatim and never interpreted. It is not content
-   * identity; when available, origin.sha256 identifies the bytes parsed.
+   * The caller's key for the request: fetch_key on FetchAndParse, correlation_id
+   * on ParseBytes, returned unchanged. To identify the parsed bytes, use
+   * origin.sha256, which is set when a digester is configured.
    * </pre>
    *
    * <code>string id = 1;</code>
@@ -23,9 +23,9 @@ public interface DocumentOrBuilder extends
   /**
    * <pre>
    * envelope
-   * Opaque caller-supplied work key: fetch_key on FetchAndParse, correlation_id
-   * on ParseBytes. Echoed verbatim and never interpreted. It is not content
-   * identity; when available, origin.sha256 identifies the bytes parsed.
+   * The caller's key for the request: fetch_key on FetchAndParse, correlation_id
+   * on ParseBytes, returned unchanged. To identify the parsed bytes, use
+   * origin.sha256, which is set when a digester is configured.
    * </pre>
    *
    * <code>string id = 1;</code>

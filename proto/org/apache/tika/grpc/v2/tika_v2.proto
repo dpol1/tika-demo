@@ -17,8 +17,7 @@
 
 // Experimental v2 parse surface. Fetcher/iterator management stays on the
 // existing `tika.Tika` (v1) service; this service returns the typed Document
-// contract instead of the legacy fields map. Additive follow-ups (ParseBytes,
-// content tree, embedded recursion) extend this package.
+// contract instead of the v1 fields map.
 
 syntax = "proto3";
 
@@ -38,8 +37,8 @@ service TikaV2 {
   rpc FetchAndParseBiDirectionalStreaming(stream FetchAndParseRequest)
       returns (stream FetchAndParseReply) {}
 
-  // Parse-only entrypoint (TIKA-4795 PoC): parse the exact bytes the caller already
-  // holds. No fetcher registration. Reply is the same Document contract.
+  // Parses the bytes sent in the request, without a fetcher, and returns the same
+  // Document as FetchAndParse.
   rpc ParseBytes(ParseBytesRequest) returns (ParseBytesReply) {}
 }
 
@@ -59,23 +58,27 @@ message FetchAndParseReply {
 }
 
 message ParseBytesRequest {
-  // Opaque caller correlation id. Echoed as Document.id and ParseBytesReply.correlation_id
-  // when set; never interpreted by the service.
+  // The caller's id for this request, returned unchanged as Document.id and
+  // ParseBytesReply.correlation_id.
   string correlation_id = 1;
-  // Exact bytes to parse. Required; must be non-empty and within the server bound.
+  // Bytes to parse. Required, at most the server's parseBytesMaxContentBytes. The
+  // whole request must also fit the server's gRPC inbound limit: 4 MiB unless
+  // maxInboundMessageBytes sets another value.
   bytes content = 2;
-  // Optional resource name (e.g. "page.html") used as a detection/name hint.
+  // Optional file name, such as "page.html". Tika uses it to detect the content type
+  // and returns it as Document.origin.filename.
   string resource_name = 3;
-  // Provenance: never dereferenced by the service.
+  // Optional URIs the caller records for the bytes, such as the requested URL, the
+  // URL after redirects and the base URL for relative links. Tika returns them in
+  // Document.origin and does not use them.
   string source_uri = 4;
   string effective_uri = 5;
   string base_uri = 6;
-  // Field numbers 7-10 held for declared hints/integrity (content type, charset,
-  // length, digest) -- semantics under discussion on TIKA-4795; reintroduced only
-  // with verifiable semantics and tests of their own.
-  bool truncated = 11;
+  // Set when the caller cut the bytes short, for example at a crawler's size limit.
+  // Returned as Document.origin.truncated.
+  bool truncated = 7;
   // Optional JSON object to configure the ParseContext for this request.
-  string parse_context_json = 12;
+  string parse_context_json = 8;
 }
 
 message ParseBytesReply {

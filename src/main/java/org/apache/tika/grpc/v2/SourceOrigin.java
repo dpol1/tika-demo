@@ -140,7 +140,7 @@ private static final long serialVersionUID = 0L;
   /**
    * <pre>
    * Hex-encoded SHA-256 of the source bytes, taken from the digest the parse pipeline
-   * recorded (the X-TIKA:digest:SHA256 metadata value). Empty when the pipeline has no
+   * recorded (the tk:digest:SHA-256 metadata value). Empty when the pipeline has no
    * digester configured. Downstream consumers use it to tie derived artifacts
    * (annotations, index entries) back to the exact bytes that were parsed.
    * </pre>
@@ -164,7 +164,7 @@ private static final long serialVersionUID = 0L;
   /**
    * <pre>
    * Hex-encoded SHA-256 of the source bytes, taken from the digest the parse pipeline
-   * recorded (the X-TIKA:digest:SHA256 metadata value). Empty when the pipeline has no
+   * recorded (the tk:digest:SHA-256 metadata value). Empty when the pipeline has no
    * digester configured. Downstream consumers use it to tie derived artifacts
    * (annotations, index entries) back to the exact bytes that were parsed.
    * </pre>
@@ -192,9 +192,9 @@ private static final long serialVersionUID = 0L;
   private volatile java.lang.Object sourceUri_ = "";
   /**
    * <pre>
-   * Caller-supplied provenance for parse-only entrypoints (e.g. ParseBytes). These
-   * are never dereferenced by the service; they describe the representation the
-   * caller already captured.
+   * Set only by ParseBytes, from the request; empty for FetchAndParse. The URIs the
+   * caller recorded for the bytes, which Tika does not use, and whether the caller
+   * cut the bytes short.
    * </pre>
    *
    * <code>string source_uri = 5;</code>
@@ -215,9 +215,9 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * Caller-supplied provenance for parse-only entrypoints (e.g. ParseBytes). These
-   * are never dereferenced by the service; they describe the representation the
-   * caller already captured.
+   * Set only by ParseBytes, from the request; empty for FetchAndParse. The URIs the
+   * caller recorded for the bytes, which Tika does not use, and whether the caller
+   * cut the bytes short.
    * </pre>
    *
    * <code>string source_uri = 5;</code>
@@ -1001,7 +1001,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Hex-encoded SHA-256 of the source bytes, taken from the digest the parse pipeline
-     * recorded (the X-TIKA:digest:SHA256 metadata value). Empty when the pipeline has no
+     * recorded (the tk:digest:SHA-256 metadata value). Empty when the pipeline has no
      * digester configured. Downstream consumers use it to tie derived artifacts
      * (annotations, index entries) back to the exact bytes that were parsed.
      * </pre>
@@ -1024,7 +1024,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Hex-encoded SHA-256 of the source bytes, taken from the digest the parse pipeline
-     * recorded (the X-TIKA:digest:SHA256 metadata value). Empty when the pipeline has no
+     * recorded (the tk:digest:SHA-256 metadata value). Empty when the pipeline has no
      * digester configured. Downstream consumers use it to tie derived artifacts
      * (annotations, index entries) back to the exact bytes that were parsed.
      * </pre>
@@ -1048,7 +1048,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Hex-encoded SHA-256 of the source bytes, taken from the digest the parse pipeline
-     * recorded (the X-TIKA:digest:SHA256 metadata value). Empty when the pipeline has no
+     * recorded (the tk:digest:SHA-256 metadata value). Empty when the pipeline has no
      * digester configured. Downstream consumers use it to tie derived artifacts
      * (annotations, index entries) back to the exact bytes that were parsed.
      * </pre>
@@ -1068,7 +1068,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Hex-encoded SHA-256 of the source bytes, taken from the digest the parse pipeline
-     * recorded (the X-TIKA:digest:SHA256 metadata value). Empty when the pipeline has no
+     * recorded (the tk:digest:SHA-256 metadata value). Empty when the pipeline has no
      * digester configured. Downstream consumers use it to tie derived artifacts
      * (annotations, index entries) back to the exact bytes that were parsed.
      * </pre>
@@ -1085,7 +1085,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Hex-encoded SHA-256 of the source bytes, taken from the digest the parse pipeline
-     * recorded (the X-TIKA:digest:SHA256 metadata value). Empty when the pipeline has no
+     * recorded (the tk:digest:SHA-256 metadata value). Empty when the pipeline has no
      * digester configured. Downstream consumers use it to tie derived artifacts
      * (annotations, index entries) back to the exact bytes that were parsed.
      * </pre>
@@ -1107,9 +1107,9 @@ private static final long serialVersionUID = 0L;
     private java.lang.Object sourceUri_ = "";
     /**
      * <pre>
-     * Caller-supplied provenance for parse-only entrypoints (e.g. ParseBytes). These
-     * are never dereferenced by the service; they describe the representation the
-     * caller already captured.
+     * Set only by ParseBytes, from the request; empty for FetchAndParse. The URIs the
+     * caller recorded for the bytes, which Tika does not use, and whether the caller
+     * cut the bytes short.
      * </pre>
      *
      * <code>string source_uri = 5;</code>
@@ -1129,9 +1129,9 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Caller-supplied provenance for parse-only entrypoints (e.g. ParseBytes). These
-     * are never dereferenced by the service; they describe the representation the
-     * caller already captured.
+     * Set only by ParseBytes, from the request; empty for FetchAndParse. The URIs the
+     * caller recorded for the bytes, which Tika does not use, and whether the caller
+     * cut the bytes short.
      * </pre>
      *
      * <code>string source_uri = 5;</code>
@@ -1152,9 +1152,9 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Caller-supplied provenance for parse-only entrypoints (e.g. ParseBytes). These
-     * are never dereferenced by the service; they describe the representation the
-     * caller already captured.
+     * Set only by ParseBytes, from the request; empty for FetchAndParse. The URIs the
+     * caller recorded for the bytes, which Tika does not use, and whether the caller
+     * cut the bytes short.
      * </pre>
      *
      * <code>string source_uri = 5;</code>
@@ -1171,9 +1171,9 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Caller-supplied provenance for parse-only entrypoints (e.g. ParseBytes). These
-     * are never dereferenced by the service; they describe the representation the
-     * caller already captured.
+     * Set only by ParseBytes, from the request; empty for FetchAndParse. The URIs the
+     * caller recorded for the bytes, which Tika does not use, and whether the caller
+     * cut the bytes short.
      * </pre>
      *
      * <code>string source_uri = 5;</code>
@@ -1187,9 +1187,9 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Caller-supplied provenance for parse-only entrypoints (e.g. ParseBytes). These
-     * are never dereferenced by the service; they describe the representation the
-     * caller already captured.
+     * Set only by ParseBytes, from the request; empty for FetchAndParse. The URIs the
+     * caller recorded for the bytes, which Tika does not use, and whether the caller
+     * cut the bytes short.
      * </pre>
      *
      * <code>string source_uri = 5;</code>

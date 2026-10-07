@@ -7,12 +7,10 @@ package org.apache.tika.grpc.v2;
 /**
  * <pre>
  * =========================================================================
- * Metadata: typed common fields. The descriptive core follows the Dublin Core
- * element set (title, creator, description, subject, language, publisher,
- * identifier, date, rights), which is also the vocabulary Tika's own property
- * model and XMP anchor to. Anything narrower -- page counts, dimensions,
- * format-specific keys -- travels in `extra` with its declared type preserved,
- * so it never forces a wire-contract change.
+ * Metadata: typed common fields from the Dublin Core element set (title, creator,
+ * description, subject, language, publisher, identifier, date, rights), the same
+ * vocabulary Tika's property model and XMP use. Narrower keys (page counts,
+ * dimensions, format-specific keys) go to `extra` with their declared type.
  * =========================================================================
  * </pre>
  *
@@ -742,12 +740,10 @@ private static final long serialVersionUID = 0L;
   /**
    * <pre>
    * =========================================================================
-   * Metadata: typed common fields. The descriptive core follows the Dublin Core
-   * element set (title, creator, description, subject, language, publisher,
-   * identifier, date, rights), which is also the vocabulary Tika's own property
-   * model and XMP anchor to. Anything narrower -- page counts, dimensions,
-   * format-specific keys -- travels in `extra` with its declared type preserved,
-   * so it never forces a wire-contract change.
+   * Metadata: typed common fields from the Dublin Core element set (title, creator,
+   * description, subject, language, publisher, identifier, date, rights), the same
+   * vocabulary Tika's property model and XMP use. Narrower keys (page counts,
+   * dimensions, format-specific keys) go to `extra` with their declared type.
    * =========================================================================
    * </pre>
    *

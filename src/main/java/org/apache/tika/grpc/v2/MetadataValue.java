@@ -90,7 +90,7 @@ private static final long serialVersionUID = 0L;
   public static final int STRINGS_FIELD_NUMBER = 1;
   /**
    * <pre>
-   * default for untyped text; never guessed
+   * keys without a declared type
    * </pre>
    *
    * <code>.org.apache.tika.grpc.v2.StringValues strings = 1;</code>
@@ -102,7 +102,7 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * default for untyped text; never guessed
+   * keys without a declared type
    * </pre>
    *
    * <code>.org.apache.tika.grpc.v2.StringValues strings = 1;</code>
@@ -117,7 +117,7 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * default for untyped text; never guessed
+   * keys without a declared type
    * </pre>
    *
    * <code>.org.apache.tika.grpc.v2.StringValues strings = 1;</code>
@@ -762,7 +762,7 @@ private static final long serialVersionUID = 0L;
         org.apache.tika.grpc.v2.StringValues, org.apache.tika.grpc.v2.StringValues.Builder, org.apache.tika.grpc.v2.StringValuesOrBuilder> stringsBuilder_;
     /**
      * <pre>
-     * default for untyped text; never guessed
+     * keys without a declared type
      * </pre>
      *
      * <code>.org.apache.tika.grpc.v2.StringValues strings = 1;</code>
@@ -774,7 +774,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * default for untyped text; never guessed
+     * keys without a declared type
      * </pre>
      *
      * <code>.org.apache.tika.grpc.v2.StringValues strings = 1;</code>
@@ -796,7 +796,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * default for untyped text; never guessed
+     * keys without a declared type
      * </pre>
      *
      * <code>.org.apache.tika.grpc.v2.StringValues strings = 1;</code>
@@ -816,7 +816,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * default for untyped text; never guessed
+     * keys without a declared type
      * </pre>
      *
      * <code>.org.apache.tika.grpc.v2.StringValues strings = 1;</code>
@@ -834,7 +834,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * default for untyped text; never guessed
+     * keys without a declared type
      * </pre>
      *
      * <code>.org.apache.tika.grpc.v2.StringValues strings = 1;</code>
@@ -861,7 +861,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * default for untyped text; never guessed
+     * keys without a declared type
      * </pre>
      *
      * <code>.org.apache.tika.grpc.v2.StringValues strings = 1;</code>
@@ -884,7 +884,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * default for untyped text; never guessed
+     * keys without a declared type
      * </pre>
      *
      * <code>.org.apache.tika.grpc.v2.StringValues strings = 1;</code>
@@ -894,7 +894,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * default for untyped text; never guessed
+     * keys without a declared type
      * </pre>
      *
      * <code>.org.apache.tika.grpc.v2.StringValues strings = 1;</code>
@@ -912,7 +912,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * default for untyped text; never guessed
+     * keys without a declared type
      * </pre>
      *
      * <code>.org.apache.tika.grpc.v2.StringValues strings = 1;</code>

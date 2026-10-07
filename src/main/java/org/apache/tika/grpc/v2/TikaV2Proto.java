@@ -56,8 +56,8 @@ public final class TikaV2Proto {
       "tesRequest\022\026\n\016correlation_id\030\001 \001(\t\022\017\n\007co" +
       "ntent\030\002 \001(\014\022\025\n\rresource_name\030\003 \001(\t\022\022\n\nso" +
       "urce_uri\030\004 \001(\t\022\025\n\reffective_uri\030\005 \001(\t\022\020\n" +
-      "\010base_uri\030\006 \001(\t\022\021\n\ttruncated\030\013 \001(\010\022\032\n\022pa" +
-      "rse_context_json\030\014 \001(\t\"^\n\017ParseBytesRepl" +
+      "\010base_uri\030\006 \001(\t\022\021\n\ttruncated\030\007 \001(\010\022\032\n\022pa" +
+      "rse_context_json\030\010 \001(\t\"^\n\017ParseBytesRepl" +
       "y\022\026\n\016correlation_id\030\001 \001(\t\0223\n\010document\030\002 " +
       "\001(\0132!.org.apache.tika.grpc.v2.Document2\354" +
       "\003\n\006TikaV2\022m\n\rFetchAndParse\022-.org.apache." +

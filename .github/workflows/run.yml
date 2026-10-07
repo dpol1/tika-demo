@@ -1,0 +1,30 @@
+name: run
+
+# Started by hand: builds tika-grpc from the tag named in README.md and runs the demo.
+on:
+  workflow_dispatch:
+
+jobs:
+  run:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Build tika-grpc from the tag in README.md
+        run: |
+          TAG=$(grep -o -m1 'TIKA-4795-parseBytes-demo-[0-9a-f]*' README.md)
+          git clone --depth 1 --branch "$TAG" https://github.com/ai-pipestream/tika.git ../tika-4795-demo
+          cd ../tika-4795-demo
+          ./mvnw -q -B clean package dependency:build-classpath -pl tika-grpc -am -Pfast \
+            -Dmdep.includeScope=runtime -Dmdep.outputFile="$PWD/tika-grpc/target/cp.txt"
+      - name: Run the demo
+        run: ./run.sh
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: out
+          path: out/

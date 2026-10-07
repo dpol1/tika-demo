@@ -173,7 +173,7 @@ check(
     bool(big) and big.get("truncated_sent") and big.get("truncated") and big["bytes"] == CONTENT_LIMIT
     and not others_flagged,
     ({k: big.get(k) for k in ("bytes", "truncated_sent", "truncated")} if big else "no result")
-    if not others_flagged else f"flagged without a cut: {others_flagged}",
+    if not others_flagged else f"truncated set on untruncated documents: {others_flagged}",
 )
 
 fixture = by_path.get("/fixture.pdf")

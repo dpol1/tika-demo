@@ -7,14 +7,12 @@ package org.apache.tika.grpc.v2;
 /**
  * <pre>
  * =========================================================================
- * Tagged tail: typed where Tika declares the type, string otherwise (never guessed).
- *
- * A Tika metadata entry is an ARRAY of values under one key (tika-core's Metadata is
- * String[]-backed; a single value is a one-element array, and declared sequences such
- * as pdf:charsPerPage or tiff:BitsPerSample carry one element per page/sample). The
- * oneof therefore tags the ELEMENT type of the whole array -- integers stay int64,
- * dates stay Timestamps, even when there are many of them. Scalar consumers read
- * values[0]; nothing is ever collapsed or stringified to make that convenient.
+ * A metadata key with its values. Tika stores every metadata value as an array of
+ * strings under one key: a single value is a one-element array, and declared
+ * sequences such as pdf:charsPerPage or tiff:BitsPerSample have one element per page
+ * or sample. The oneof gives the element type of the whole array, so integers stay
+ * int64 and dates stay Timestamps however many there are. Consumers of a single value
+ * read values[0].
  * =========================================================================
  * </pre>
  *
@@ -294,14 +292,12 @@ private static final long serialVersionUID = 0L;
   /**
    * <pre>
    * =========================================================================
-   * Tagged tail: typed where Tika declares the type, string otherwise (never guessed).
-   *
-   * A Tika metadata entry is an ARRAY of values under one key (tika-core's Metadata is
-   * String[]-backed; a single value is a one-element array, and declared sequences such
-   * as pdf:charsPerPage or tiff:BitsPerSample carry one element per page/sample). The
-   * oneof therefore tags the ELEMENT type of the whole array -- integers stay int64,
-   * dates stay Timestamps, even when there are many of them. Scalar consumers read
-   * values[0]; nothing is ever collapsed or stringified to make that convenient.
+   * A metadata key with its values. Tika stores every metadata value as an array of
+   * strings under one key: a single value is a one-element array, and declared
+   * sequences such as pdf:charsPerPage or tiff:BitsPerSample have one element per page
+   * or sample. The oneof gives the element type of the whole array, so integers stay
+   * int64 and dates stay Timestamps however many there are. Consumers of a single value
+   * read values[0].
    * =========================================================================
    * </pre>
    *
