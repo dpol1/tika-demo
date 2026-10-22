@@ -1,8 +1,8 @@
 # Tika demo
 
-StormCrawler fetches pages and PDFs from a local web server and sends their bytes to
-Apache Tika over gRPC. Tika's `ParseBytes` call parses those bytes and returns a typed
-`Document` with metadata and parse status. The bolt that talks to Tika uses only the
+StormCrawler fetches pages, PDFs and a CSV file from a local web server and sends their
+bytes to Apache Tika over gRPC. Tika's `ParseBytes` call parses those bytes and returns a
+typed `Document` with metadata and parse status. The bolt that talks to Tika uses only the
 classes generated from Tika's proto files.
 
 A crawler already holds the bytes of every page it fetches. With `ParseBytes`, Tika parses
@@ -11,10 +11,20 @@ confirms it: the web server logs one GET per URL, and the SHA-256 that ParseByte
 over the bytes it sends equals `origin.sha256` in Tika's reply.
 
 `ParseBytes` and `Document` are not released yet. The demo builds Tika from the tag
-[`TIKA-4795-parseBytes-demo-26488ed`](https://github.com/ai-pipestream/tika/tree/TIKA-4795-parseBytes-demo-26488ed) on a fork: Apache Tika
-`main` at `37f2c4b9f6` plus the commits of
+[`TIKA-4795-parseBytes-demo-ebbf877`](https://github.com/ai-pipestream/tika/tree/TIKA-4795-parseBytes-demo-ebbf877) on a fork: Apache Tika
+`main` at `60e11be2f0` plus the commits of
 [TIKA-4766](https://issues.apache.org/jira/browse/TIKA-4766) (the `Document`) and
 [TIKA-4795](https://issues.apache.org/jira/browse/TIKA-4795) (`ParseBytes`).
+
+Some metadata values arrive typed, such as `xmpTPg:NPages` of a PDF as an integer. The type
+of a key comes from the Tika class that declares it: the CSV parser declares `csv:num-rows`
+as an integer. Tika parses in separate parser processes. Only those processes load the CSV
+parser, so the gRPC server does not know the type of `csv:num-rows`. With
+`"metadata-list": { "typedValues": true }` in [`tika/config.template.json`](tika/config.template.json),
+the parser processes report the value types of the keys they wrote
+([TIKA-4969](https://issues.apache.org/jira/browse/TIKA-4969)). The TIKA-4766 commits use
+those types in the `Document`, so the server returns `csv:num-rows` as an integer. Without
+the setting, it returns the value as a string.
 
 ## How it works
 
@@ -22,7 +32,7 @@ over the bytes it sends equals `origin.sha256` in Tika's reply.
 flowchart LR
     seeds --> frontier[URLFrontier]
     frontier --> fetcher[StormCrawler fetcher]
-    web[local web server] -- pages and PDFs --> fetcher
+    web[local web server] -- pages, PDFs, CSV --> fetcher
     fetcher --> jsoup[JSoupParserBolt] --> indexer["indexer (stdout)"]
     fetcher --> bolt[ParseBytesBolt]
     bolt -- "ParseBytes (gRPC)" --> tika[Tika]
@@ -37,11 +47,13 @@ flowchart LR
 - Each seeded or discovered URL produces one result, with no RPC or parse errors.
 - Correlation IDs, source URLs, byte sizes and truncation flags match the request.
 - The SHA-256 that ParseBytesBolt computes equals `origin.sha256` in Tika's reply; for the
-  PDFs, it also equals the SHA-256 of the file on disk.
+  PDFs and the CSV file, it also equals the SHA-256 of the file on disk.
 - The access log contains one GET for each document URL.
 - `testPDF.pdf` returns the expected title and author, a creation date and an integer page count.
 - A PDF served without an extension as `application/octet-stream` is detected as a PDF.
 - The PDF with attachments and the PDF with an owner password parse successfully.
+- `fixture.csv` has a header line and 11 data rows. Tika counts the header, so `csv:num-rows`
+  is the integer 12.
 
 See [`verify.py`](verify.py) for the checks and [`sample-run/`](sample-run/) for a recorded run.
 
@@ -67,7 +79,7 @@ Build tika-grpc from the tag, in a folder next to this repository:
 
 ```sh
 git clone https://github.com/dpol1/tika-demo.git
-git clone --depth 1 --branch TIKA-4795-parseBytes-demo-26488ed https://github.com/ai-pipestream/tika.git tika-4795-demo
+git clone --depth 1 --branch TIKA-4795-parseBytes-demo-ebbf877 https://github.com/ai-pipestream/tika.git tika-4795-demo
 cd tika-4795-demo
 ./mvnw -q clean package dependency:build-classpath -pl tika-grpc -am -Pfast \
   -Dmdep.includeScope=runtime -Dmdep.outputFile="$PWD/tika-grpc/target/cp.txt"
@@ -86,8 +98,8 @@ time of the recorded run, without the first Maven and Docker downloads. Results 
 0 means all checks passed. The last lines of the checker's output:
 
 ```
-PASS  truncation flag: {'bytes': 3145728, 'truncated_sent': True, 'truncated': True}
 PASS  small pdf metadata: {'content_type': 'application/pdf', 'title': 'ParseBytes fixture'}
+PASS  csv row count typed: {'content_type': 'text/csv; charset=windows-1252; delimiter=comma', 'rows': 12, 'rows_type': 'integers'}
 
 ALL CHECKS PASSED
 ```
@@ -115,8 +127,9 @@ when a server does not open its port.
 
 `TIKA_TARGET=host:port ./run.sh` skips the local Tika. The server must run the build above,
 configured like [`tika/config.template.json`](tika/config.template.json): the digester supplies
-`origin.sha256` for the checksum check, and `plugin-roots` must be in the configuration file
-because the parser processes Tika starts do not see the command-line option.
+`origin.sha256` for the checksum check. `typedValues` makes Tika return `csv:num-rows` as an
+integer, which the CSV check needs. `plugin-roots` must be in the configuration file because
+the parser processes Tika starts do not see the command-line option.
 [`run.sh`](run.sh) shows the command that starts the server. For a Tika server on another
 machine, set `FIXTURE_HOST` to a host name it can reach and `FIXTURE_BIND=0.0.0.0`. The
 recorded run does not cover this mode.

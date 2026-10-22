@@ -6,6 +6,7 @@
       "skipContainerDocumentDigest": false
     }
   },
+  "metadata-list": { "typedValues": true },
   "grpc": { "maxInboundMessageBytes": 104857600 },
   "pipes": {
     "javaPath": "JAVA_PATH",

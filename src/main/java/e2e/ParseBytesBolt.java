@@ -36,6 +36,11 @@ public class ParseBytesBolt extends BaseRichBolt {
 
     private static final ObjectMapper JSON = new ObjectMapper();
 
+    // Keys of Document.extra copied to the result line: the value type under <name>_type,
+    // and the first integer value under <name>.
+    private static final Map<String, String> TYPED_FIELDS =
+            Map.of("xmpTPg:NPages", "pages", "csv:num-rows", "rows");
+
     // Storm serializes the bolt; the non-serializable parts are created in prepare().
     private transient OutputCollector collector;
     private transient ManagedChannel channel;
@@ -100,11 +105,12 @@ public class ParseBytesBolt extends BaseRichBolt {
                     .put("truncated_sent", request.getTruncated())
                     .put("truncated", doc.getOrigin().getTruncated());
             for (MetadataField field : doc.getExtraList()) {
-                if (field.getKey().equals("xmpTPg:NPages")) {
+                String name = TYPED_FIELDS.get(field.getKey());
+                if (name != null) {
                     MetadataValue value = field.getValue();
-                    line.put("pages_type", value.getValuesCase().name().toLowerCase());
+                    line.put(name + "_type", value.getValuesCase().name().toLowerCase());
                     if (value.hasIntegers() && value.getIntegers().getValuesCount() > 0) {
-                        line.put("pages", value.getIntegers().getValues(0));
+                        line.put(name, value.getIntegers().getValues(0));
                     }
                 }
             }

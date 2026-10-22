@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-"""Test web server: a few generated HTML pages, a handful of PDFs, and one line per request
-appended to an access log:
+"""Test web server: a few generated HTML pages, a handful of PDFs, a CSV file, and one line per
+request appended to an access log:
 
     epoch host path status
 
@@ -8,6 +8,7 @@ Routes, on any host name:
     /robots.txt      allow everything
     /p<N>            a small HTML page linking to /p<N+1> and /p<N+2>, up to /p9
     /fixture.pdf     the hand-written 734-byte PDF, as application/pdf
+    /fixture.csv     a header line and 11 data rows, as text/csv
     /docs/<file>     a file from testserver/docs/, as application/pdf
     /octet/blob      the bytes of docs/testPDF.pdf, no extension, as application/octet-stream
     /big             a generated 4 MiB HTML page
@@ -27,6 +28,8 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 DOCS_DIR = os.path.join(HERE, "docs")
 with open(os.path.join(HERE, "fixture.pdf"), "rb") as fh:
     FIXTURE_PDF = fh.read()
+with open(os.path.join(HERE, "fixture.csv"), "rb") as fh:
+    FIXTURE_CSV = fh.read()
 logfile = open(LOG_PATH, "a", buffering=1)
 BIG_HTML = b"<html><body><h1>/big</h1>" + b"0123456789abcdef" * (4 * 1024 * 1024 // 16) + b"</body></html>"
 
@@ -56,6 +59,8 @@ class Handler(BaseHTTPRequestHandler):
                 body, ctype = b"User-agent: *\nDisallow:\n", "text/plain"
             elif self.path == "/fixture.pdf":
                 body, ctype = FIXTURE_PDF, "application/pdf"
+            elif self.path == "/fixture.csv":
+                body, ctype = FIXTURE_CSV, "text/csv"
             elif self.path.startswith("/docs/"):
                 body, ctype = doc_bytes(self.path), "application/pdf"
             elif self.path == "/octet/blob":

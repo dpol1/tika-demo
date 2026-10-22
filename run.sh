@@ -98,7 +98,7 @@ echo ">>> manifest"
     echo "fixture_host=${FIXTURE_HOST} fixture_bind=${FIXTURE_BIND}"
     python3 -c 'import hashlib, sys
 for f in sys.argv[1:]:
-    print("sha256", hashlib.sha256(open(f, "rb").read()).hexdigest(), "", f)' proto/org/apache/tika/grpc/v2/*.proto tika/config.template.json testserver/server.py testserver/fixture.pdf testserver/docs/*.pdf testserver/seeds.txt
+    print("sha256", hashlib.sha256(open(f, "rb").read()).hexdigest(), "", f)' proto/org/apache/tika/grpc/v2/*.proto tika/config.template.json testserver/server.py testserver/fixture.pdf testserver/fixture.csv testserver/docs/*.pdf testserver/seeds.txt
     echo "java=$(java -version 2>&1 | head -1)"
     echo "maven=$(mvn -v 2>/dev/null | head -1)"
     echo "docker=$(docker version --format '{{.Server.Version}}' 2>/dev/null)"

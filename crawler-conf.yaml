@@ -24,6 +24,6 @@ config:
   # Where ParseBytesBolt writes its result lines. run.sh appends parsebytes.target.
   # parsebytes.results: "out/results.jsonl"
 
-  # PDFs also reach JSoupParserBolt, which passes them to the indexer instead of logging an
-  # error; ParseBytesBolt sends them to Tika.
+  # PDFs and the CSV file also reach JSoupParserBolt, which passes them to the indexer
+  # instead of logging an error; ParseBytesBolt sends them to Tika.
   jsoup.treat.non.html.as.error: false

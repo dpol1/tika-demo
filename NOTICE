@@ -4,7 +4,7 @@ Copyright 2026 Davide Polato
 This repository redistributes:
 
 - proto/org/apache/tika/grpc/v2/document.proto and tika_v2.proto, copied unchanged from
-  commit 26488ed83ddd575f457b85ecea0b13fccb307288 of
+  commit ebbf877c885e9831c16c5456e82d79e86cf7af41 of
   https://github.com/ai-pipestream/tika (a fork of Apache Tika, Apache License 2.0), and the
   Java classes under src/main/java/org/apache/tika/grpc/v2 generated from them;
 - testserver/docs/testPDF.pdf, testPDF_childAttachments.pdf and testPDF_protected.pdf, as

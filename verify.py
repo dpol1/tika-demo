@@ -117,8 +117,8 @@ check("one GET per URL", bool(docs) and not bad, bad or f"1 GET each for {len(co
 
 # Files served from disk; the HTML pages are generated and have no file to compare with.
 def on_disk(path):
-    if path == "/fixture.pdf":
-        return os.path.join("testserver", "fixture.pdf")
+    if path in ("/fixture.pdf", "/fixture.csv"):
+        return os.path.join("testserver", path[1:])
     if path == "/octet/blob":
         return os.path.join("testserver", "docs", "testPDF.pdf")
     if path.startswith("/docs/"):
@@ -181,6 +181,16 @@ check(
     "small pdf metadata",
     bool(fixture) and fixture["content_type"].startswith("application/pdf") and fixture["title"] == "ParseBytes fixture",
     {k: fixture.get(k) for k in ("content_type", "title")} if fixture else "no result",
+)
+
+# A header line and 11 data rows; Tika counts the header. The CSV parser declares
+# csv:num-rows as an integer.
+table = by_path.get("/fixture.csv")
+check(
+    "csv row count typed",
+    bool(table) and table["content_type"].startswith("text/csv") and table.get("rows") == 12
+    and table.get("rows_type") == "integers",
+    {k: table.get(k) for k in ("content_type", "rows", "rows_type")} if table else "no result",
 )
 
 print()
