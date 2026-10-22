@@ -1,25 +1,26 @@
-demo_sha=b7fe02db77246f4c1eb4a3cd96bc91c8509f9ddc
-tika_server_sha=26488ed83ddd575f457b85ecea0b13fccb307288
+demo_sha=b650fe5e664344998897a4c818028152bc3505df
+tika_server_sha=ebbf877c885e9831c16c5456e82d79e86cf7af41
 tika_server_uncommitted_patch_sha256=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
 tika_port=50052
-tika_version_reported=Apache Tika 4.2.0-SNAPSHOT
+tika_version_reported=Apache Tika 4.2.1-SNAPSHOT
 stormcrawler_version=3.7.0
 storm_version=2.8.9
 urlfrontier_version=2.5
 fixture_host=parsebytes.127.0.0.1.nip.io fixture_bind=127.0.0.1
 sha256 f9f1ac5973ae937ab43b96e449fd1e43c4361aca0b3b4c5eefe45084bb4ed3be  proto/org/apache/tika/grpc/v2/document.proto
 sha256 3385f8e72f695ddd63cf6430c9a28d95075225c90420ffea0bf078cfb6818c91  proto/org/apache/tika/grpc/v2/tika_v2.proto
-sha256 5cfb45b8bf82c83da04bd673d3f751cbe814fa1daad38cf873d798fc9b30d22f  tika/config.template.json
-sha256 77b65708f7041c7246ff39b3ba8f72926ce758e9bcc1fa949446d2b4456ea9b9  testserver/server.py
+sha256 9acaf740f0a0e52abfc0e6b5721ba6d20d03550d2385a9282eae96f862fbb017  tika/config.template.json
+sha256 e473b749f99b01ac2d40703356f7837de04fb7178cf7c06bbba578decd10733d  testserver/server.py
 sha256 e3dab9aca375c152075cfc3ce764f60ec74823a51d8bf7cf134f515d0365851d  testserver/fixture.pdf
+sha256 08c2c5e4a7ecae664628b257e8417ff87a5a329effafa0d3f56ecc105ab4d0d9  testserver/fixture.csv
 sha256 9396d203b78cc367d8879c867f45de0f8ea16e15ecd5831e570240aba081083e  testserver/docs/testPDF_childAttachments.pdf
 sha256 8035bc3f748d8b97b8a9978bd812197bf40cf2b294a7e9b30e39d7167ddc720e  testserver/docs/testPDF.pdf
 sha256 ff4f3a11b2ae08e8a38cd026317a4aac84cd489ebc5a4015f51503c99711f729  testserver/docs/testPDF_protected.pdf
-sha256 a5465bad8fb1e16bddf22fb29d1efb0bcc726b4e363210e1726a33655bd94180  testserver/seeds.txt
-java=openjdk version "17.0.18" 2026-01-20
+sha256 25af01163bc7f1c79b3498d5e3a9824940c270dd17aa490bd26d5aa6e788fde5  testserver/seeds.txt
+java=Picked up JAVA_TOOL_OPTIONS: -Djava.net.preferIPv4Stack=true
 maven=Apache Maven 3.9.11 (Red Hat 3.9.11-5)
-docker=29.8.2
-python=Python 3.14.3
+docker=29.9.0
+python=Python 3.14.8
 os=Linux x86_64
-date=2026-10-07T07:39:19Z
-run_seconds=160
+date=2026-10-22T14:04:22Z
+run_seconds=137
