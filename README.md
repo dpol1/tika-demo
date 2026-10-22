@@ -11,7 +11,7 @@ confirms it: the web server logs one GET per URL, and the SHA-256 that ParseByte
 over the bytes it sends equals `origin.sha256` in Tika's reply.
 
 `ParseBytes` and `Document` are not released yet. The demo builds Tika from the tag
-[`TIKA-4795-parseBytes-demo-ebbf877`](https://github.com/ai-pipestream/tika/tree/TIKA-4795-parseBytes-demo-ebbf877) on a fork: Apache Tika
+[`tika-demo-2`](https://github.com/ai-pipestream/tika/tree/tika-demo-2) on a fork: Apache Tika
 `main` at `60e11be2f0` plus the commits of
 [TIKA-4766](https://issues.apache.org/jira/browse/TIKA-4766) (the `Document`) and
 [TIKA-4795](https://issues.apache.org/jira/browse/TIKA-4795) (`ParseBytes`).
@@ -79,7 +79,7 @@ Build tika-grpc from the tag, in a folder next to this repository:
 
 ```sh
 git clone https://github.com/dpol1/tika-demo.git
-git clone --depth 1 --branch TIKA-4795-parseBytes-demo-ebbf877 https://github.com/ai-pipestream/tika.git tika-4795-demo
+git clone --depth 1 --branch tika-demo-2 https://github.com/ai-pipestream/tika.git tika-4795-demo
 cd tika-4795-demo
 ./mvnw -q clean package dependency:build-classpath -pl tika-grpc -am -Pfast \
   -Dmdep.includeScope=runtime -Dmdep.outputFile="$PWD/tika-grpc/target/cp.txt"
