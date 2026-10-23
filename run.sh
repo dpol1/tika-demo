@@ -35,6 +35,10 @@ if [ -n "${ARCHIVE:-}" ]; then
 fi
 if [ -z "$TIKA_TARGET" ]; then
     [ -f "$CP_FILE" ] || { echo "missing $CP_FILE: build tika-grpc in $TIKA_DIR with the mvnw command in README.md"; exit 2; }
+    for f in document.proto tika_v2.proto; do
+        cmp -s "proto/org/apache/tika/grpc/v2/$f" "$TIKA_DIR/tika-grpc-api/src/main/proto/org/apache/tika/grpc/v2/$f" \
+            || { echo "proto/org/apache/tika/grpc/v2/$f differs from the one in $TIKA_DIR: copy it, run gen-stubs.sh and update NOTICE"; exit 2; }
+    done
 fi
 
 rm -rf out && mkdir -p out

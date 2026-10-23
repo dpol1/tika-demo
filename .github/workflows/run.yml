@@ -1,6 +1,6 @@
 name: run
 
-# Started by hand: builds tika-grpc from the tag named in README.md and runs the demo.
+# Started by hand: builds tika-grpc from the tika-demo branch of the fork and runs the demo.
 on:
   workflow_dispatch:
 
@@ -14,10 +14,9 @@ jobs:
         with:
           distribution: temurin
           java-version: '17'
-      - name: Build tika-grpc from the tag in README.md
+      - name: Build tika-grpc from the tika-demo branch
         run: |
-          TAG=$(grep -o -m1 -E 'tika-demo-[0-9]+' README.md | head -1)
-          git clone --depth 1 --branch "$TAG" https://github.com/ai-pipestream/tika.git ../tika-4795-demo
+          git clone --depth 1 --branch tika-demo https://github.com/ai-pipestream/tika.git ../tika-4795-demo
           cd ../tika-4795-demo
           ./mvnw -q -B clean package dependency:build-classpath -pl tika-grpc -am -Pfast \
             -Dmdep.includeScope=runtime -Dmdep.outputFile="$PWD/tika-grpc/target/cp.txt"

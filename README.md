@@ -10,11 +10,12 @@ those exact bytes and never downloads the page a second time. The checker, `veri
 confirms it: the web server logs one GET per URL, and the SHA-256 that ParseBytesBolt computes
 over the bytes it sends equals `origin.sha256` in Tika's reply.
 
-`ParseBytes` and `Document` are not released yet. The demo builds Tika from the tag
-[`tika-demo-2`](https://github.com/ai-pipestream/tika/tree/tika-demo-2) on a fork: Apache Tika
-`main` at `60e11be2f0` plus the commits of
+`ParseBytes` and `Document` are not released yet. The demo builds Tika from the branch
+[`tika-demo`](https://github.com/ai-pipestream/tika/tree/tika-demo) on a fork: Apache Tika
+`main` plus the commits of
 [TIKA-4766](https://issues.apache.org/jira/browse/TIKA-4766) (the `Document`) and
-[TIKA-4795](https://issues.apache.org/jira/browse/TIKA-4795) (`ParseBytes`).
+[TIKA-4795](https://issues.apache.org/jira/browse/TIKA-4795) (`ParseBytes`). `tika_server_sha`
+in [`sample-run/manifest.txt`](sample-run/manifest.txt) is the Tika commit of the recorded run.
 
 Some metadata values arrive typed, such as `xmpTPg:NPages` of a PDF as an integer. The type
 of a key comes from the Tika class that declares it: the CSV parser declares `csv:num-rows`
@@ -75,11 +76,11 @@ is a nip.io name, which resolves to 127.0.0.1 through public DNS.
 [`sample-run/manifest.txt`](sample-run/manifest.txt) records the system and versions of the
 recorded run.
 
-Build tika-grpc from the tag, in a folder next to this repository:
+Build tika-grpc from the branch, in a folder next to this repository:
 
 ```sh
 git clone https://github.com/dpol1/tika-demo.git
-git clone --depth 1 --branch tika-demo-2 https://github.com/ai-pipestream/tika.git tika-4795-demo
+git clone --depth 1 --branch tika-demo https://github.com/ai-pipestream/tika.git tika-4795-demo
 cd tika-4795-demo
 ./mvnw -q clean package dependency:build-classpath -pl tika-grpc -am -Pfast \
   -Dmdep.includeScope=runtime -Dmdep.outputFile="$PWD/tika-grpc/target/cp.txt"
@@ -120,8 +121,9 @@ Environment variables:
   URLFrontier 2.5 by default.
 
 If it fails, `out/tika-server.log` and `out/topology.log` hold the logs of Tika and of the
-crawl. The script stops early when the host name does not resolve, when Tika is not built, or
-when a server does not open its port.
+crawl. The script stops early when the host name does not resolve, when Tika is not built,
+when the protos in `proto/` differ from the ones in `TIKA_DIR`, or when a server does not open
+its port.
 
 ## Using your own tika-grpc server
 
@@ -139,8 +141,11 @@ recorded run does not cover this mode.
 [`gen-stubs.sh`](gen-stubs.sh) regenerates `src/main/java/org/apache/tika/grpc/v2` from the
 protos in `proto/`. [`test_verify.py`](test_verify.py) runs the checker against broken runs and
 checks that `sample-run/verify.txt` matches the checker's output. CI runs both on every push.
-The `run` workflow, started by hand from the Actions tab, builds Tika from the tag, runs
-`run.sh` and uploads `out/` as a workflow artifact.
+The `run` workflow, started by hand from the Actions tab, builds Tika from the `tika-demo`
+branch, runs `run.sh` and uploads `out/` as a workflow artifact.
+
+When the `tika-demo` branch changes its protos, copy them into `proto/`, run `gen-stubs.sh` and
+update the commit in [NOTICE](NOTICE).
 
 ## License
 
