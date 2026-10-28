@@ -27,3 +27,9 @@ config:
   # PDFs and the CSV file also reach JSoupParserBolt, which passes them to the indexer
   # instead of logging an error; ParseBytesBolt sends them to Tika.
   jsoup.treat.non.html.as.error: false
+
+  # StdOutIndexer prints these keys of each document's metadata; ParseBytesBolt writes the
+  # tika.* keys. run.sh keeps the indexer's lines in out/index.log for the checker.
+  indexer.md.mapping:
+  - parse.title=title
+  - tika.*

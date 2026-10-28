@@ -5,37 +5,37 @@ import static io.grpc.MethodDescriptor.generateFullMethodName;
 /**
  */
 @io.grpc.stub.annotations.GrpcGenerated
-public final class TikaV2Grpc {
+public final class TikaV2ServiceGrpc {
 
-  private TikaV2Grpc() {}
+  private TikaV2ServiceGrpc() {}
 
-  public static final java.lang.String SERVICE_NAME = "org.apache.tika.grpc.v2.TikaV2";
+  public static final java.lang.String SERVICE_NAME = "org.apache.tika.grpc.v2.TikaV2Service";
 
   // Static method descriptors that strictly reflect the proto.
   private static volatile io.grpc.MethodDescriptor<org.apache.tika.grpc.v2.FetchAndParseRequest,
-      org.apache.tika.grpc.v2.FetchAndParseReply> getFetchAndParseMethod;
+      org.apache.tika.grpc.v2.FetchAndParseResponse> getFetchAndParseMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "FetchAndParse",
       requestType = org.apache.tika.grpc.v2.FetchAndParseRequest.class,
-      responseType = org.apache.tika.grpc.v2.FetchAndParseReply.class,
+      responseType = org.apache.tika.grpc.v2.FetchAndParseResponse.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
   public static io.grpc.MethodDescriptor<org.apache.tika.grpc.v2.FetchAndParseRequest,
-      org.apache.tika.grpc.v2.FetchAndParseReply> getFetchAndParseMethod() {
-    io.grpc.MethodDescriptor<org.apache.tika.grpc.v2.FetchAndParseRequest, org.apache.tika.grpc.v2.FetchAndParseReply> getFetchAndParseMethod;
-    if ((getFetchAndParseMethod = TikaV2Grpc.getFetchAndParseMethod) == null) {
-      synchronized (TikaV2Grpc.class) {
-        if ((getFetchAndParseMethod = TikaV2Grpc.getFetchAndParseMethod) == null) {
-          TikaV2Grpc.getFetchAndParseMethod = getFetchAndParseMethod =
-              io.grpc.MethodDescriptor.<org.apache.tika.grpc.v2.FetchAndParseRequest, org.apache.tika.grpc.v2.FetchAndParseReply>newBuilder()
+      org.apache.tika.grpc.v2.FetchAndParseResponse> getFetchAndParseMethod() {
+    io.grpc.MethodDescriptor<org.apache.tika.grpc.v2.FetchAndParseRequest, org.apache.tika.grpc.v2.FetchAndParseResponse> getFetchAndParseMethod;
+    if ((getFetchAndParseMethod = TikaV2ServiceGrpc.getFetchAndParseMethod) == null) {
+      synchronized (TikaV2ServiceGrpc.class) {
+        if ((getFetchAndParseMethod = TikaV2ServiceGrpc.getFetchAndParseMethod) == null) {
+          TikaV2ServiceGrpc.getFetchAndParseMethod = getFetchAndParseMethod =
+              io.grpc.MethodDescriptor.<org.apache.tika.grpc.v2.FetchAndParseRequest, org.apache.tika.grpc.v2.FetchAndParseResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "FetchAndParse"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   org.apache.tika.grpc.v2.FetchAndParseRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  org.apache.tika.grpc.v2.FetchAndParseReply.getDefaultInstance()))
-              .setSchemaDescriptor(new TikaV2MethodDescriptorSupplier("FetchAndParse"))
+                  org.apache.tika.grpc.v2.FetchAndParseResponse.getDefaultInstance()))
+              .setSchemaDescriptor(new TikaV2ServiceMethodDescriptorSupplier("FetchAndParse"))
               .build();
         }
       }
@@ -43,30 +43,30 @@ public final class TikaV2Grpc {
     return getFetchAndParseMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<org.apache.tika.grpc.v2.FetchAndParseRequest,
-      org.apache.tika.grpc.v2.FetchAndParseReply> getFetchAndParseServerSideStreamingMethod;
+  private static volatile io.grpc.MethodDescriptor<org.apache.tika.grpc.v2.FetchAndParseServerSideStreamingRequest,
+      org.apache.tika.grpc.v2.FetchAndParseServerSideStreamingResponse> getFetchAndParseServerSideStreamingMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "FetchAndParseServerSideStreaming",
-      requestType = org.apache.tika.grpc.v2.FetchAndParseRequest.class,
-      responseType = org.apache.tika.grpc.v2.FetchAndParseReply.class,
+      requestType = org.apache.tika.grpc.v2.FetchAndParseServerSideStreamingRequest.class,
+      responseType = org.apache.tika.grpc.v2.FetchAndParseServerSideStreamingResponse.class,
       methodType = io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
-  public static io.grpc.MethodDescriptor<org.apache.tika.grpc.v2.FetchAndParseRequest,
-      org.apache.tika.grpc.v2.FetchAndParseReply> getFetchAndParseServerSideStreamingMethod() {
-    io.grpc.MethodDescriptor<org.apache.tika.grpc.v2.FetchAndParseRequest, org.apache.tika.grpc.v2.FetchAndParseReply> getFetchAndParseServerSideStreamingMethod;
-    if ((getFetchAndParseServerSideStreamingMethod = TikaV2Grpc.getFetchAndParseServerSideStreamingMethod) == null) {
-      synchronized (TikaV2Grpc.class) {
-        if ((getFetchAndParseServerSideStreamingMethod = TikaV2Grpc.getFetchAndParseServerSideStreamingMethod) == null) {
-          TikaV2Grpc.getFetchAndParseServerSideStreamingMethod = getFetchAndParseServerSideStreamingMethod =
-              io.grpc.MethodDescriptor.<org.apache.tika.grpc.v2.FetchAndParseRequest, org.apache.tika.grpc.v2.FetchAndParseReply>newBuilder()
+  public static io.grpc.MethodDescriptor<org.apache.tika.grpc.v2.FetchAndParseServerSideStreamingRequest,
+      org.apache.tika.grpc.v2.FetchAndParseServerSideStreamingResponse> getFetchAndParseServerSideStreamingMethod() {
+    io.grpc.MethodDescriptor<org.apache.tika.grpc.v2.FetchAndParseServerSideStreamingRequest, org.apache.tika.grpc.v2.FetchAndParseServerSideStreamingResponse> getFetchAndParseServerSideStreamingMethod;
+    if ((getFetchAndParseServerSideStreamingMethod = TikaV2ServiceGrpc.getFetchAndParseServerSideStreamingMethod) == null) {
+      synchronized (TikaV2ServiceGrpc.class) {
+        if ((getFetchAndParseServerSideStreamingMethod = TikaV2ServiceGrpc.getFetchAndParseServerSideStreamingMethod) == null) {
+          TikaV2ServiceGrpc.getFetchAndParseServerSideStreamingMethod = getFetchAndParseServerSideStreamingMethod =
+              io.grpc.MethodDescriptor.<org.apache.tika.grpc.v2.FetchAndParseServerSideStreamingRequest, org.apache.tika.grpc.v2.FetchAndParseServerSideStreamingResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "FetchAndParseServerSideStreaming"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  org.apache.tika.grpc.v2.FetchAndParseRequest.getDefaultInstance()))
+                  org.apache.tika.grpc.v2.FetchAndParseServerSideStreamingRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  org.apache.tika.grpc.v2.FetchAndParseReply.getDefaultInstance()))
-              .setSchemaDescriptor(new TikaV2MethodDescriptorSupplier("FetchAndParseServerSideStreaming"))
+                  org.apache.tika.grpc.v2.FetchAndParseServerSideStreamingResponse.getDefaultInstance()))
+              .setSchemaDescriptor(new TikaV2ServiceMethodDescriptorSupplier("FetchAndParseServerSideStreaming"))
               .build();
         }
       }
@@ -74,30 +74,30 @@ public final class TikaV2Grpc {
     return getFetchAndParseServerSideStreamingMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<org.apache.tika.grpc.v2.FetchAndParseRequest,
-      org.apache.tika.grpc.v2.FetchAndParseReply> getFetchAndParseBiDirectionalStreamingMethod;
+  private static volatile io.grpc.MethodDescriptor<org.apache.tika.grpc.v2.FetchAndParseBiDirectionalStreamingRequest,
+      org.apache.tika.grpc.v2.FetchAndParseBiDirectionalStreamingResponse> getFetchAndParseBiDirectionalStreamingMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "FetchAndParseBiDirectionalStreaming",
-      requestType = org.apache.tika.grpc.v2.FetchAndParseRequest.class,
-      responseType = org.apache.tika.grpc.v2.FetchAndParseReply.class,
+      requestType = org.apache.tika.grpc.v2.FetchAndParseBiDirectionalStreamingRequest.class,
+      responseType = org.apache.tika.grpc.v2.FetchAndParseBiDirectionalStreamingResponse.class,
       methodType = io.grpc.MethodDescriptor.MethodType.BIDI_STREAMING)
-  public static io.grpc.MethodDescriptor<org.apache.tika.grpc.v2.FetchAndParseRequest,
-      org.apache.tika.grpc.v2.FetchAndParseReply> getFetchAndParseBiDirectionalStreamingMethod() {
-    io.grpc.MethodDescriptor<org.apache.tika.grpc.v2.FetchAndParseRequest, org.apache.tika.grpc.v2.FetchAndParseReply> getFetchAndParseBiDirectionalStreamingMethod;
-    if ((getFetchAndParseBiDirectionalStreamingMethod = TikaV2Grpc.getFetchAndParseBiDirectionalStreamingMethod) == null) {
-      synchronized (TikaV2Grpc.class) {
-        if ((getFetchAndParseBiDirectionalStreamingMethod = TikaV2Grpc.getFetchAndParseBiDirectionalStreamingMethod) == null) {
-          TikaV2Grpc.getFetchAndParseBiDirectionalStreamingMethod = getFetchAndParseBiDirectionalStreamingMethod =
-              io.grpc.MethodDescriptor.<org.apache.tika.grpc.v2.FetchAndParseRequest, org.apache.tika.grpc.v2.FetchAndParseReply>newBuilder()
+  public static io.grpc.MethodDescriptor<org.apache.tika.grpc.v2.FetchAndParseBiDirectionalStreamingRequest,
+      org.apache.tika.grpc.v2.FetchAndParseBiDirectionalStreamingResponse> getFetchAndParseBiDirectionalStreamingMethod() {
+    io.grpc.MethodDescriptor<org.apache.tika.grpc.v2.FetchAndParseBiDirectionalStreamingRequest, org.apache.tika.grpc.v2.FetchAndParseBiDirectionalStreamingResponse> getFetchAndParseBiDirectionalStreamingMethod;
+    if ((getFetchAndParseBiDirectionalStreamingMethod = TikaV2ServiceGrpc.getFetchAndParseBiDirectionalStreamingMethod) == null) {
+      synchronized (TikaV2ServiceGrpc.class) {
+        if ((getFetchAndParseBiDirectionalStreamingMethod = TikaV2ServiceGrpc.getFetchAndParseBiDirectionalStreamingMethod) == null) {
+          TikaV2ServiceGrpc.getFetchAndParseBiDirectionalStreamingMethod = getFetchAndParseBiDirectionalStreamingMethod =
+              io.grpc.MethodDescriptor.<org.apache.tika.grpc.v2.FetchAndParseBiDirectionalStreamingRequest, org.apache.tika.grpc.v2.FetchAndParseBiDirectionalStreamingResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.BIDI_STREAMING)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "FetchAndParseBiDirectionalStreaming"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  org.apache.tika.grpc.v2.FetchAndParseRequest.getDefaultInstance()))
+                  org.apache.tika.grpc.v2.FetchAndParseBiDirectionalStreamingRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  org.apache.tika.grpc.v2.FetchAndParseReply.getDefaultInstance()))
-              .setSchemaDescriptor(new TikaV2MethodDescriptorSupplier("FetchAndParseBiDirectionalStreaming"))
+                  org.apache.tika.grpc.v2.FetchAndParseBiDirectionalStreamingResponse.getDefaultInstance()))
+              .setSchemaDescriptor(new TikaV2ServiceMethodDescriptorSupplier("FetchAndParseBiDirectionalStreaming"))
               .build();
         }
       }
@@ -106,29 +106,29 @@ public final class TikaV2Grpc {
   }
 
   private static volatile io.grpc.MethodDescriptor<org.apache.tika.grpc.v2.ParseBytesRequest,
-      org.apache.tika.grpc.v2.ParseBytesReply> getParseBytesMethod;
+      org.apache.tika.grpc.v2.ParseBytesResponse> getParseBytesMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "ParseBytes",
       requestType = org.apache.tika.grpc.v2.ParseBytesRequest.class,
-      responseType = org.apache.tika.grpc.v2.ParseBytesReply.class,
+      responseType = org.apache.tika.grpc.v2.ParseBytesResponse.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
   public static io.grpc.MethodDescriptor<org.apache.tika.grpc.v2.ParseBytesRequest,
-      org.apache.tika.grpc.v2.ParseBytesReply> getParseBytesMethod() {
-    io.grpc.MethodDescriptor<org.apache.tika.grpc.v2.ParseBytesRequest, org.apache.tika.grpc.v2.ParseBytesReply> getParseBytesMethod;
-    if ((getParseBytesMethod = TikaV2Grpc.getParseBytesMethod) == null) {
-      synchronized (TikaV2Grpc.class) {
-        if ((getParseBytesMethod = TikaV2Grpc.getParseBytesMethod) == null) {
-          TikaV2Grpc.getParseBytesMethod = getParseBytesMethod =
-              io.grpc.MethodDescriptor.<org.apache.tika.grpc.v2.ParseBytesRequest, org.apache.tika.grpc.v2.ParseBytesReply>newBuilder()
+      org.apache.tika.grpc.v2.ParseBytesResponse> getParseBytesMethod() {
+    io.grpc.MethodDescriptor<org.apache.tika.grpc.v2.ParseBytesRequest, org.apache.tika.grpc.v2.ParseBytesResponse> getParseBytesMethod;
+    if ((getParseBytesMethod = TikaV2ServiceGrpc.getParseBytesMethod) == null) {
+      synchronized (TikaV2ServiceGrpc.class) {
+        if ((getParseBytesMethod = TikaV2ServiceGrpc.getParseBytesMethod) == null) {
+          TikaV2ServiceGrpc.getParseBytesMethod = getParseBytesMethod =
+              io.grpc.MethodDescriptor.<org.apache.tika.grpc.v2.ParseBytesRequest, org.apache.tika.grpc.v2.ParseBytesResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "ParseBytes"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   org.apache.tika.grpc.v2.ParseBytesRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  org.apache.tika.grpc.v2.ParseBytesReply.getDefaultInstance()))
-              .setSchemaDescriptor(new TikaV2MethodDescriptorSupplier("ParseBytes"))
+                  org.apache.tika.grpc.v2.ParseBytesResponse.getDefaultInstance()))
+              .setSchemaDescriptor(new TikaV2ServiceMethodDescriptorSupplier("ParseBytes"))
               .build();
         }
       }
@@ -139,60 +139,60 @@ public final class TikaV2Grpc {
   /**
    * Creates a new async stub that supports all call types for the service
    */
-  public static TikaV2Stub newStub(io.grpc.Channel channel) {
-    io.grpc.stub.AbstractStub.StubFactory<TikaV2Stub> factory =
-      new io.grpc.stub.AbstractStub.StubFactory<TikaV2Stub>() {
+  public static TikaV2ServiceStub newStub(io.grpc.Channel channel) {
+    io.grpc.stub.AbstractStub.StubFactory<TikaV2ServiceStub> factory =
+      new io.grpc.stub.AbstractStub.StubFactory<TikaV2ServiceStub>() {
         @java.lang.Override
-        public TikaV2Stub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
-          return new TikaV2Stub(channel, callOptions);
+        public TikaV2ServiceStub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+          return new TikaV2ServiceStub(channel, callOptions);
         }
       };
-    return TikaV2Stub.newStub(factory, channel);
+    return TikaV2ServiceStub.newStub(factory, channel);
   }
 
   /**
    * Creates a new blocking-style stub that supports all types of calls on the service
    */
-  public static TikaV2BlockingV2Stub newBlockingV2Stub(
+  public static TikaV2ServiceBlockingV2Stub newBlockingV2Stub(
       io.grpc.Channel channel) {
-    io.grpc.stub.AbstractStub.StubFactory<TikaV2BlockingV2Stub> factory =
-      new io.grpc.stub.AbstractStub.StubFactory<TikaV2BlockingV2Stub>() {
+    io.grpc.stub.AbstractStub.StubFactory<TikaV2ServiceBlockingV2Stub> factory =
+      new io.grpc.stub.AbstractStub.StubFactory<TikaV2ServiceBlockingV2Stub>() {
         @java.lang.Override
-        public TikaV2BlockingV2Stub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
-          return new TikaV2BlockingV2Stub(channel, callOptions);
+        public TikaV2ServiceBlockingV2Stub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+          return new TikaV2ServiceBlockingV2Stub(channel, callOptions);
         }
       };
-    return TikaV2BlockingV2Stub.newStub(factory, channel);
+    return TikaV2ServiceBlockingV2Stub.newStub(factory, channel);
   }
 
   /**
    * Creates a new blocking-style stub that supports unary and streaming output calls on the service
    */
-  public static TikaV2BlockingStub newBlockingStub(
+  public static TikaV2ServiceBlockingStub newBlockingStub(
       io.grpc.Channel channel) {
-    io.grpc.stub.AbstractStub.StubFactory<TikaV2BlockingStub> factory =
-      new io.grpc.stub.AbstractStub.StubFactory<TikaV2BlockingStub>() {
+    io.grpc.stub.AbstractStub.StubFactory<TikaV2ServiceBlockingStub> factory =
+      new io.grpc.stub.AbstractStub.StubFactory<TikaV2ServiceBlockingStub>() {
         @java.lang.Override
-        public TikaV2BlockingStub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
-          return new TikaV2BlockingStub(channel, callOptions);
+        public TikaV2ServiceBlockingStub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+          return new TikaV2ServiceBlockingStub(channel, callOptions);
         }
       };
-    return TikaV2BlockingStub.newStub(factory, channel);
+    return TikaV2ServiceBlockingStub.newStub(factory, channel);
   }
 
   /**
    * Creates a new ListenableFuture-style stub that supports unary calls on the service
    */
-  public static TikaV2FutureStub newFutureStub(
+  public static TikaV2ServiceFutureStub newFutureStub(
       io.grpc.Channel channel) {
-    io.grpc.stub.AbstractStub.StubFactory<TikaV2FutureStub> factory =
-      new io.grpc.stub.AbstractStub.StubFactory<TikaV2FutureStub>() {
+    io.grpc.stub.AbstractStub.StubFactory<TikaV2ServiceFutureStub> factory =
+      new io.grpc.stub.AbstractStub.StubFactory<TikaV2ServiceFutureStub>() {
         @java.lang.Override
-        public TikaV2FutureStub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
-          return new TikaV2FutureStub(channel, callOptions);
+        public TikaV2ServiceFutureStub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+          return new TikaV2ServiceFutureStub(channel, callOptions);
         }
       };
-    return TikaV2FutureStub.newStub(factory, channel);
+    return TikaV2ServiceFutureStub.newStub(factory, channel);
   }
 
   /**
@@ -205,21 +205,27 @@ public final class TikaV2Grpc {
      * </pre>
      */
     default void fetchAndParse(org.apache.tika.grpc.v2.FetchAndParseRequest request,
-        io.grpc.stub.StreamObserver<org.apache.tika.grpc.v2.FetchAndParseReply> responseObserver) {
+        io.grpc.stub.StreamObserver<org.apache.tika.grpc.v2.FetchAndParseResponse> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getFetchAndParseMethod(), responseObserver);
     }
 
     /**
+     * <pre>
+     * FetchAndParse as a server stream: one response, then the stream completes.
+     * </pre>
      */
-    default void fetchAndParseServerSideStreaming(org.apache.tika.grpc.v2.FetchAndParseRequest request,
-        io.grpc.stub.StreamObserver<org.apache.tika.grpc.v2.FetchAndParseReply> responseObserver) {
+    default void fetchAndParseServerSideStreaming(org.apache.tika.grpc.v2.FetchAndParseServerSideStreamingRequest request,
+        io.grpc.stub.StreamObserver<org.apache.tika.grpc.v2.FetchAndParseServerSideStreamingResponse> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getFetchAndParseServerSideStreamingMethod(), responseObserver);
     }
 
     /**
+     * <pre>
+     * One response for each request on the stream.
+     * </pre>
      */
-    default io.grpc.stub.StreamObserver<org.apache.tika.grpc.v2.FetchAndParseRequest> fetchAndParseBiDirectionalStreaming(
-        io.grpc.stub.StreamObserver<org.apache.tika.grpc.v2.FetchAndParseReply> responseObserver) {
+    default io.grpc.stub.StreamObserver<org.apache.tika.grpc.v2.FetchAndParseBiDirectionalStreamingRequest> fetchAndParseBiDirectionalStreaming(
+        io.grpc.stub.StreamObserver<org.apache.tika.grpc.v2.FetchAndParseBiDirectionalStreamingResponse> responseObserver) {
       return io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall(getFetchAndParseBiDirectionalStreamingMethod(), responseObserver);
     }
 
@@ -230,36 +236,36 @@ public final class TikaV2Grpc {
      * </pre>
      */
     default void parseBytes(org.apache.tika.grpc.v2.ParseBytesRequest request,
-        io.grpc.stub.StreamObserver<org.apache.tika.grpc.v2.ParseBytesReply> responseObserver) {
+        io.grpc.stub.StreamObserver<org.apache.tika.grpc.v2.ParseBytesResponse> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getParseBytesMethod(), responseObserver);
     }
   }
 
   /**
-   * Base class for the server implementation of the service TikaV2.
+   * Base class for the server implementation of the service TikaV2Service.
    */
-  public static abstract class TikaV2ImplBase
+  public static abstract class TikaV2ServiceImplBase
       implements io.grpc.BindableService, AsyncService {
 
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
-      return TikaV2Grpc.bindService(this);
+      return TikaV2ServiceGrpc.bindService(this);
     }
   }
 
   /**
-   * A stub to allow clients to do asynchronous rpc calls to service TikaV2.
+   * A stub to allow clients to do asynchronous rpc calls to service TikaV2Service.
    */
-  public static final class TikaV2Stub
-      extends io.grpc.stub.AbstractAsyncStub<TikaV2Stub> {
-    private TikaV2Stub(
+  public static final class TikaV2ServiceStub
+      extends io.grpc.stub.AbstractAsyncStub<TikaV2ServiceStub> {
+    private TikaV2ServiceStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
     }
 
     @java.lang.Override
-    protected TikaV2Stub build(
+    protected TikaV2ServiceStub build(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
-      return new TikaV2Stub(channel, callOptions);
+      return new TikaV2ServiceStub(channel, callOptions);
     }
 
     /**
@@ -268,23 +274,29 @@ public final class TikaV2Grpc {
      * </pre>
      */
     public void fetchAndParse(org.apache.tika.grpc.v2.FetchAndParseRequest request,
-        io.grpc.stub.StreamObserver<org.apache.tika.grpc.v2.FetchAndParseReply> responseObserver) {
+        io.grpc.stub.StreamObserver<org.apache.tika.grpc.v2.FetchAndParseResponse> responseObserver) {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getFetchAndParseMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
+     * <pre>
+     * FetchAndParse as a server stream: one response, then the stream completes.
+     * </pre>
      */
-    public void fetchAndParseServerSideStreaming(org.apache.tika.grpc.v2.FetchAndParseRequest request,
-        io.grpc.stub.StreamObserver<org.apache.tika.grpc.v2.FetchAndParseReply> responseObserver) {
+    public void fetchAndParseServerSideStreaming(org.apache.tika.grpc.v2.FetchAndParseServerSideStreamingRequest request,
+        io.grpc.stub.StreamObserver<org.apache.tika.grpc.v2.FetchAndParseServerSideStreamingResponse> responseObserver) {
       io.grpc.stub.ClientCalls.asyncServerStreamingCall(
           getChannel().newCall(getFetchAndParseServerSideStreamingMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
+     * <pre>
+     * One response for each request on the stream.
+     * </pre>
      */
-    public io.grpc.stub.StreamObserver<org.apache.tika.grpc.v2.FetchAndParseRequest> fetchAndParseBiDirectionalStreaming(
-        io.grpc.stub.StreamObserver<org.apache.tika.grpc.v2.FetchAndParseReply> responseObserver) {
+    public io.grpc.stub.StreamObserver<org.apache.tika.grpc.v2.FetchAndParseBiDirectionalStreamingRequest> fetchAndParseBiDirectionalStreaming(
+        io.grpc.stub.StreamObserver<org.apache.tika.grpc.v2.FetchAndParseBiDirectionalStreamingResponse> responseObserver) {
       return io.grpc.stub.ClientCalls.asyncBidiStreamingCall(
           getChannel().newCall(getFetchAndParseBiDirectionalStreamingMethod(), getCallOptions()), responseObserver);
     }
@@ -296,26 +308,26 @@ public final class TikaV2Grpc {
      * </pre>
      */
     public void parseBytes(org.apache.tika.grpc.v2.ParseBytesRequest request,
-        io.grpc.stub.StreamObserver<org.apache.tika.grpc.v2.ParseBytesReply> responseObserver) {
+        io.grpc.stub.StreamObserver<org.apache.tika.grpc.v2.ParseBytesResponse> responseObserver) {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getParseBytesMethod(), getCallOptions()), request, responseObserver);
     }
   }
 
   /**
-   * A stub to allow clients to do synchronous rpc calls to service TikaV2.
+   * A stub to allow clients to do synchronous rpc calls to service TikaV2Service.
    */
-  public static final class TikaV2BlockingV2Stub
-      extends io.grpc.stub.AbstractBlockingStub<TikaV2BlockingV2Stub> {
-    private TikaV2BlockingV2Stub(
+  public static final class TikaV2ServiceBlockingV2Stub
+      extends io.grpc.stub.AbstractBlockingStub<TikaV2ServiceBlockingV2Stub> {
+    private TikaV2ServiceBlockingV2Stub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
     }
 
     @java.lang.Override
-    protected TikaV2BlockingV2Stub build(
+    protected TikaV2ServiceBlockingV2Stub build(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
-      return new TikaV2BlockingV2Stub(channel, callOptions);
+      return new TikaV2ServiceBlockingV2Stub(channel, callOptions);
     }
 
     /**
@@ -323,24 +335,30 @@ public final class TikaV2Grpc {
      * Fetch via a previously saved fetcher and return a typed Document.
      * </pre>
      */
-    public org.apache.tika.grpc.v2.FetchAndParseReply fetchAndParse(org.apache.tika.grpc.v2.FetchAndParseRequest request) throws io.grpc.StatusException {
+    public org.apache.tika.grpc.v2.FetchAndParseResponse fetchAndParse(org.apache.tika.grpc.v2.FetchAndParseRequest request) throws io.grpc.StatusException {
       return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getFetchAndParseMethod(), getCallOptions(), request);
     }
 
     /**
+     * <pre>
+     * FetchAndParse as a server stream: one response, then the stream completes.
+     * </pre>
      */
     @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/10918")
-    public io.grpc.stub.BlockingClientCall<?, org.apache.tika.grpc.v2.FetchAndParseReply>
-        fetchAndParseServerSideStreaming(org.apache.tika.grpc.v2.FetchAndParseRequest request) {
+    public io.grpc.stub.BlockingClientCall<?, org.apache.tika.grpc.v2.FetchAndParseServerSideStreamingResponse>
+        fetchAndParseServerSideStreaming(org.apache.tika.grpc.v2.FetchAndParseServerSideStreamingRequest request) {
       return io.grpc.stub.ClientCalls.blockingV2ServerStreamingCall(
           getChannel(), getFetchAndParseServerSideStreamingMethod(), getCallOptions(), request);
     }
 
     /**
+     * <pre>
+     * One response for each request on the stream.
+     * </pre>
      */
     @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/10918")
-    public io.grpc.stub.BlockingClientCall<org.apache.tika.grpc.v2.FetchAndParseRequest, org.apache.tika.grpc.v2.FetchAndParseReply>
+    public io.grpc.stub.BlockingClientCall<org.apache.tika.grpc.v2.FetchAndParseBiDirectionalStreamingRequest, org.apache.tika.grpc.v2.FetchAndParseBiDirectionalStreamingResponse>
         fetchAndParseBiDirectionalStreaming() {
       return io.grpc.stub.ClientCalls.blockingBidiStreamingCall(
           getChannel(), getFetchAndParseBiDirectionalStreamingMethod(), getCallOptions());
@@ -352,26 +370,26 @@ public final class TikaV2Grpc {
      * Document as FetchAndParse.
      * </pre>
      */
-    public org.apache.tika.grpc.v2.ParseBytesReply parseBytes(org.apache.tika.grpc.v2.ParseBytesRequest request) throws io.grpc.StatusException {
+    public org.apache.tika.grpc.v2.ParseBytesResponse parseBytes(org.apache.tika.grpc.v2.ParseBytesRequest request) throws io.grpc.StatusException {
       return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getParseBytesMethod(), getCallOptions(), request);
     }
   }
 
   /**
-   * A stub to allow clients to do limited synchronous rpc calls to service TikaV2.
+   * A stub to allow clients to do limited synchronous rpc calls to service TikaV2Service.
    */
-  public static final class TikaV2BlockingStub
-      extends io.grpc.stub.AbstractBlockingStub<TikaV2BlockingStub> {
-    private TikaV2BlockingStub(
+  public static final class TikaV2ServiceBlockingStub
+      extends io.grpc.stub.AbstractBlockingStub<TikaV2ServiceBlockingStub> {
+    private TikaV2ServiceBlockingStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
     }
 
     @java.lang.Override
-    protected TikaV2BlockingStub build(
+    protected TikaV2ServiceBlockingStub build(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
-      return new TikaV2BlockingStub(channel, callOptions);
+      return new TikaV2ServiceBlockingStub(channel, callOptions);
     }
 
     /**
@@ -379,15 +397,18 @@ public final class TikaV2Grpc {
      * Fetch via a previously saved fetcher and return a typed Document.
      * </pre>
      */
-    public org.apache.tika.grpc.v2.FetchAndParseReply fetchAndParse(org.apache.tika.grpc.v2.FetchAndParseRequest request) {
+    public org.apache.tika.grpc.v2.FetchAndParseResponse fetchAndParse(org.apache.tika.grpc.v2.FetchAndParseRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getFetchAndParseMethod(), getCallOptions(), request);
     }
 
     /**
+     * <pre>
+     * FetchAndParse as a server stream: one response, then the stream completes.
+     * </pre>
      */
-    public java.util.Iterator<org.apache.tika.grpc.v2.FetchAndParseReply> fetchAndParseServerSideStreaming(
-        org.apache.tika.grpc.v2.FetchAndParseRequest request) {
+    public java.util.Iterator<org.apache.tika.grpc.v2.FetchAndParseServerSideStreamingResponse> fetchAndParseServerSideStreaming(
+        org.apache.tika.grpc.v2.FetchAndParseServerSideStreamingRequest request) {
       return io.grpc.stub.ClientCalls.blockingServerStreamingCall(
           getChannel(), getFetchAndParseServerSideStreamingMethod(), getCallOptions(), request);
     }
@@ -398,26 +419,26 @@ public final class TikaV2Grpc {
      * Document as FetchAndParse.
      * </pre>
      */
-    public org.apache.tika.grpc.v2.ParseBytesReply parseBytes(org.apache.tika.grpc.v2.ParseBytesRequest request) {
+    public org.apache.tika.grpc.v2.ParseBytesResponse parseBytes(org.apache.tika.grpc.v2.ParseBytesRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getParseBytesMethod(), getCallOptions(), request);
     }
   }
 
   /**
-   * A stub to allow clients to do ListenableFuture-style rpc calls to service TikaV2.
+   * A stub to allow clients to do ListenableFuture-style rpc calls to service TikaV2Service.
    */
-  public static final class TikaV2FutureStub
-      extends io.grpc.stub.AbstractFutureStub<TikaV2FutureStub> {
-    private TikaV2FutureStub(
+  public static final class TikaV2ServiceFutureStub
+      extends io.grpc.stub.AbstractFutureStub<TikaV2ServiceFutureStub> {
+    private TikaV2ServiceFutureStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
     }
 
     @java.lang.Override
-    protected TikaV2FutureStub build(
+    protected TikaV2ServiceFutureStub build(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
-      return new TikaV2FutureStub(channel, callOptions);
+      return new TikaV2ServiceFutureStub(channel, callOptions);
     }
 
     /**
@@ -425,7 +446,7 @@ public final class TikaV2Grpc {
      * Fetch via a previously saved fetcher and return a typed Document.
      * </pre>
      */
-    public com.google.common.util.concurrent.ListenableFuture<org.apache.tika.grpc.v2.FetchAndParseReply> fetchAndParse(
+    public com.google.common.util.concurrent.ListenableFuture<org.apache.tika.grpc.v2.FetchAndParseResponse> fetchAndParse(
         org.apache.tika.grpc.v2.FetchAndParseRequest request) {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getFetchAndParseMethod(), getCallOptions()), request);
@@ -437,7 +458,7 @@ public final class TikaV2Grpc {
      * Document as FetchAndParse.
      * </pre>
      */
-    public com.google.common.util.concurrent.ListenableFuture<org.apache.tika.grpc.v2.ParseBytesReply> parseBytes(
+    public com.google.common.util.concurrent.ListenableFuture<org.apache.tika.grpc.v2.ParseBytesResponse> parseBytes(
         org.apache.tika.grpc.v2.ParseBytesRequest request) {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getParseBytesMethod(), getCallOptions()), request);
@@ -468,15 +489,15 @@ public final class TikaV2Grpc {
       switch (methodId) {
         case METHODID_FETCH_AND_PARSE:
           serviceImpl.fetchAndParse((org.apache.tika.grpc.v2.FetchAndParseRequest) request,
-              (io.grpc.stub.StreamObserver<org.apache.tika.grpc.v2.FetchAndParseReply>) responseObserver);
+              (io.grpc.stub.StreamObserver<org.apache.tika.grpc.v2.FetchAndParseResponse>) responseObserver);
           break;
         case METHODID_FETCH_AND_PARSE_SERVER_SIDE_STREAMING:
-          serviceImpl.fetchAndParseServerSideStreaming((org.apache.tika.grpc.v2.FetchAndParseRequest) request,
-              (io.grpc.stub.StreamObserver<org.apache.tika.grpc.v2.FetchAndParseReply>) responseObserver);
+          serviceImpl.fetchAndParseServerSideStreaming((org.apache.tika.grpc.v2.FetchAndParseServerSideStreamingRequest) request,
+              (io.grpc.stub.StreamObserver<org.apache.tika.grpc.v2.FetchAndParseServerSideStreamingResponse>) responseObserver);
           break;
         case METHODID_PARSE_BYTES:
           serviceImpl.parseBytes((org.apache.tika.grpc.v2.ParseBytesRequest) request,
-              (io.grpc.stub.StreamObserver<org.apache.tika.grpc.v2.ParseBytesReply>) responseObserver);
+              (io.grpc.stub.StreamObserver<org.apache.tika.grpc.v2.ParseBytesResponse>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -490,7 +511,7 @@ public final class TikaV2Grpc {
       switch (methodId) {
         case METHODID_FETCH_AND_PARSE_BI_DIRECTIONAL_STREAMING:
           return (io.grpc.stub.StreamObserver<Req>) serviceImpl.fetchAndParseBiDirectionalStreaming(
-              (io.grpc.stub.StreamObserver<org.apache.tika.grpc.v2.FetchAndParseReply>) responseObserver);
+              (io.grpc.stub.StreamObserver<org.apache.tika.grpc.v2.FetchAndParseBiDirectionalStreamingResponse>) responseObserver);
         default:
           throw new AssertionError();
       }
@@ -504,35 +525,35 @@ public final class TikaV2Grpc {
           io.grpc.stub.ServerCalls.asyncUnaryCall(
             new MethodHandlers<
               org.apache.tika.grpc.v2.FetchAndParseRequest,
-              org.apache.tika.grpc.v2.FetchAndParseReply>(
+              org.apache.tika.grpc.v2.FetchAndParseResponse>(
                 service, METHODID_FETCH_AND_PARSE)))
         .addMethod(
           getFetchAndParseServerSideStreamingMethod(),
           io.grpc.stub.ServerCalls.asyncServerStreamingCall(
             new MethodHandlers<
-              org.apache.tika.grpc.v2.FetchAndParseRequest,
-              org.apache.tika.grpc.v2.FetchAndParseReply>(
+              org.apache.tika.grpc.v2.FetchAndParseServerSideStreamingRequest,
+              org.apache.tika.grpc.v2.FetchAndParseServerSideStreamingResponse>(
                 service, METHODID_FETCH_AND_PARSE_SERVER_SIDE_STREAMING)))
         .addMethod(
           getFetchAndParseBiDirectionalStreamingMethod(),
           io.grpc.stub.ServerCalls.asyncBidiStreamingCall(
             new MethodHandlers<
-              org.apache.tika.grpc.v2.FetchAndParseRequest,
-              org.apache.tika.grpc.v2.FetchAndParseReply>(
+              org.apache.tika.grpc.v2.FetchAndParseBiDirectionalStreamingRequest,
+              org.apache.tika.grpc.v2.FetchAndParseBiDirectionalStreamingResponse>(
                 service, METHODID_FETCH_AND_PARSE_BI_DIRECTIONAL_STREAMING)))
         .addMethod(
           getParseBytesMethod(),
           io.grpc.stub.ServerCalls.asyncUnaryCall(
             new MethodHandlers<
               org.apache.tika.grpc.v2.ParseBytesRequest,
-              org.apache.tika.grpc.v2.ParseBytesReply>(
+              org.apache.tika.grpc.v2.ParseBytesResponse>(
                 service, METHODID_PARSE_BYTES)))
         .build();
   }
 
-  private static abstract class TikaV2BaseDescriptorSupplier
+  private static abstract class TikaV2ServiceBaseDescriptorSupplier
       implements io.grpc.protobuf.ProtoFileDescriptorSupplier, io.grpc.protobuf.ProtoServiceDescriptorSupplier {
-    TikaV2BaseDescriptorSupplier() {}
+    TikaV2ServiceBaseDescriptorSupplier() {}
 
     @java.lang.Override
     public com.google.protobuf.Descriptors.FileDescriptor getFileDescriptor() {
@@ -541,21 +562,21 @@ public final class TikaV2Grpc {
 
     @java.lang.Override
     public com.google.protobuf.Descriptors.ServiceDescriptor getServiceDescriptor() {
-      return getFileDescriptor().findServiceByName("TikaV2");
+      return getFileDescriptor().findServiceByName("TikaV2Service");
     }
   }
 
-  private static final class TikaV2FileDescriptorSupplier
-      extends TikaV2BaseDescriptorSupplier {
-    TikaV2FileDescriptorSupplier() {}
+  private static final class TikaV2ServiceFileDescriptorSupplier
+      extends TikaV2ServiceBaseDescriptorSupplier {
+    TikaV2ServiceFileDescriptorSupplier() {}
   }
 
-  private static final class TikaV2MethodDescriptorSupplier
-      extends TikaV2BaseDescriptorSupplier
+  private static final class TikaV2ServiceMethodDescriptorSupplier
+      extends TikaV2ServiceBaseDescriptorSupplier
       implements io.grpc.protobuf.ProtoMethodDescriptorSupplier {
     private final java.lang.String methodName;
 
-    TikaV2MethodDescriptorSupplier(java.lang.String methodName) {
+    TikaV2ServiceMethodDescriptorSupplier(java.lang.String methodName) {
       this.methodName = methodName;
     }
 
@@ -570,11 +591,11 @@ public final class TikaV2Grpc {
   public static io.grpc.ServiceDescriptor getServiceDescriptor() {
     io.grpc.ServiceDescriptor result = serviceDescriptor;
     if (result == null) {
-      synchronized (TikaV2Grpc.class) {
+      synchronized (TikaV2ServiceGrpc.class) {
         result = serviceDescriptor;
         if (result == null) {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
-              .setSchemaDescriptor(new TikaV2FileDescriptorSupplier())
+              .setSchemaDescriptor(new TikaV2ServiceFileDescriptorSupplier())
               .addMethod(getFetchAndParseMethod())
               .addMethod(getFetchAndParseServerSideStreamingMethod())
               .addMethod(getFetchAndParseBiDirectionalStreamingMethod())

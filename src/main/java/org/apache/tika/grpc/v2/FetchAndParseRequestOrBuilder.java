@@ -53,18 +53,6 @@ public interface FetchAndParseRequestOrBuilder extends
       getAdditionalFetchConfigJsonBytes();
 
   /**
-   * <code>string emitter_id = 4;</code>
-   * @return The emitterId.
-   */
-  java.lang.String getEmitterId();
-  /**
-   * <code>string emitter_id = 4;</code>
-   * @return The bytes for emitterId.
-   */
-  com.google.protobuf.ByteString
-      getEmitterIdBytes();
-
-  /**
    * <pre>
    * Optional JSON object to configure the ParseContext for this request.
    * </pre>

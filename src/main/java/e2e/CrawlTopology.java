@@ -30,8 +30,9 @@ import org.apache.stormcrawler.urlfrontier.StatusUpdaterBolt;
 import org.yaml.snakeyaml.Yaml;
 
 /**
- * Runs a local crawl: JSoupParserBolt discovers links, while ParseBytesBolt sends the fetched
- * bytes to Tika. The status updater sends discovered URLs back to URLFrontier.
+ * Runs a local crawl: ParseBytesBolt sends the fetched bytes to Tika and adds its results to the
+ * metadata, JSoupParserBolt discovers links, and the indexer prints the {@code tika.} fields.
+ * The status updater sends discovered URLs back to URLFrontier.
  *
  * <p>Usage: {@code CrawlTopology [minutes] [seeds file] [crawler conf]}
  */
@@ -53,8 +54,10 @@ public class CrawlTopology {
         builder.setBolt("partitioner", new URLPartitionerBolt(), 1).shuffleGrouping("spout");
         builder.setBolt("fetcher", new FetcherBolt(), 1)
                 .fieldsGrouping("partitioner", new Fields("key"));
-        builder.setBolt("parse", new JSoupParserBolt(), 1).localOrShuffleGrouping("fetcher");
+        // ParseBytesBolt sits between the fetcher and the HTML parser: it adds Tika's results
+        // to each document's metadata, and JSoupParserBolt still discovers links.
         builder.setBolt("parsebytes", new ParseBytesBolt(), 1).localOrShuffleGrouping("fetcher");
+        builder.setBolt("parse", new JSoupParserBolt(), 1).localOrShuffleGrouping("parsebytes");
         builder.setBolt("index", new StdOutIndexer(), 1).localOrShuffleGrouping("parse");
         builder.setBolt("status", new StatusUpdaterBolt(), 1)
                 .fieldsGrouping("fetcher", "status", new Fields("url"))

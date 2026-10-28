@@ -21,6 +21,11 @@ public final class DocumentOuterClass {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_org_apache_tika_grpc_v2_Document_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_org_apache_tika_grpc_v2_ExtensionResult_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_org_apache_tika_grpc_v2_ExtensionResult_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
     internal_static_org_apache_tika_grpc_v2_SourceOrigin_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -80,53 +85,64 @@ public final class DocumentOuterClass {
   static {
     java.lang.String[] descriptorData = {
       "\n&org/apache/tika/grpc/v2/document.proto" +
-      "\022\027org.apache.tika.grpc.v2\032\037google/protob" +
-      "uf/timestamp.proto\"\274\002\n\010Document\022\n\n\002id\030\001 " +
-      "\001(\t\022\024\n\014content_type\030\002 \001(\t\022-\n\tparsed_at\030\004" +
-      " \001(\0132\032.google.protobuf.Timestamp\0224\n\006stat" +
-      "us\030\005 \001(\0132$.org.apache.tika.grpc.v2.Parse" +
-      "Status\0225\n\006origin\030\006 \001(\0132%.org.apache.tika" +
-      ".grpc.v2.SourceOrigin\022;\n\010metadata\030\024 \001(\0132" +
-      ").org.apache.tika.grpc.v2.DocumentMetada" +
-      "ta\0225\n\005extra\030\025 \003(\0132&.org.apache.tika.grpc" +
-      ".v2.MetadataField\"\243\001\n\014SourceOrigin\022\020\n\010fi" +
-      "lename\030\001 \001(\t\022\021\n\tbyte_size\030\002 \001(\003\022\016\n\006parse" +
-      "r\030\003 \001(\t\022\016\n\006sha256\030\004 \001(\t\022\022\n\nsource_uri\030\005 " +
-      "\001(\t\022\025\n\reffective_uri\030\006 \001(\t\022\020\n\010base_uri\030\007" +
-      " \001(\t\022\021\n\ttruncated\030\010 \001(\010\"\200\002\n\020DocumentMeta" +
-      "data\022\r\n\005title\030\001 \001(\t\022\017\n\007authors\030\002 \003(\t\022\023\n\013" +
-      "description\030\003 \001(\t\022\020\n\010keywords\030\004 \003(\t\022\021\n\tl" +
-      "anguages\030\005 \003(\t\022\022\n\npublishers\030\006 \003(\t\022\023\n\013id" +
-      "entifiers\030\007 \003(\t\022+\n\007created\030\n \001(\0132\032.googl" +
-      "e.protobuf.Timestamp\022,\n\010modified\030\013 \001(\0132\032" +
-      ".google.protobuf.Timestamp\022\016\n\006rights\030\024 \001" +
-      "(\t\"S\n\rMetadataField\022\013\n\003key\030\001 \001(\t\0225\n\005valu" +
-      "e\030\002 \001(\0132&.org.apache.tika.grpc.v2.Metada" +
-      "taValue\"\305\002\n\rMetadataValue\0228\n\007strings\030\001 \001" +
-      "(\0132%.org.apache.tika.grpc.v2.StringValue" +
-      "sH\000\022:\n\010integers\030\002 \001(\0132&.org.apache.tika." +
-      "grpc.v2.IntegerValuesH\000\0228\n\007numbers\030\003 \001(\013" +
-      "2%.org.apache.tika.grpc.v2.NumberValuesH" +
-      "\000\022:\n\010booleans\030\004 \001(\0132&.org.apache.tika.gr" +
-      "pc.v2.BooleanValuesH\000\022>\n\ntimestamps\030\005 \001(" +
-      "\0132(.org.apache.tika.grpc.v2.TimestampVal" +
-      "uesH\000B\010\n\006values\"\036\n\014StringValues\022\016\n\006value" +
-      "s\030\001 \003(\t\"\037\n\rIntegerValues\022\016\n\006values\030\001 \003(\003" +
-      "\"\036\n\014NumberValues\022\016\n\006values\030\001 \003(\001\"\037\n\rBool" +
-      "eanValues\022\016\n\006values\030\001 \003(\010\"=\n\017TimestampVa" +
-      "lues\022*\n\006values\030\001 \003(\0132\032.google.protobuf.T" +
-      "imestamp\"\372\001\n\013ParseStatus\022;\n\006status\030\001 \001(\016" +
-      "2+.org.apache.tika.grpc.v2.ParseStatus.S" +
-      "tatus\022\033\n\023fetch_parse_time_ms\030\002 \001(\003\022\024\n\014pa" +
-      "rsers_used\030\003 \003(\t\022\016\n\006errors\030\004 \003(\t\022\024\n\014tika" +
-      "_version\030\005 \001(\t\022\024\n\014pipes_status\030\006 \001(\t\"?\n\006" +
-      "Status\022\017\n\013UNSPECIFIED\020\000\022\013\n\007SUCCESS\020\001\022\013\n\007" +
-      "PARTIAL\020\002\022\n\n\006FAILED\020\003B\033\n\027org.apache.tika" +
-      ".grpc.v2P\001b\006proto3"
+      "\022\027org.apache.tika.grpc.v2\032\031google/protob" +
+      "uf/any.proto\032\037google/protobuf/timestamp." +
+      "proto\"\372\002\n\010Document\022\n\n\002id\030\001 \001(\t\022\024\n\014conten" +
+      "t_type\030\002 \001(\t\022-\n\tparsed_at\030\004 \001(\0132\032.google" +
+      ".protobuf.Timestamp\0224\n\006status\030\005 \001(\0132$.or" +
+      "g.apache.tika.grpc.v2.ParseStatus\0225\n\006ori" +
+      "gin\030\006 \001(\0132%.org.apache.tika.grpc.v2.Sour" +
+      "ceOrigin\022;\n\010metadata\030\024 \001(\0132).org.apache." +
+      "tika.grpc.v2.DocumentMetadata\0225\n\005extra\030\025" +
+      " \003(\0132&.org.apache.tika.grpc.v2.MetadataF" +
+      "ield\022<\n\nextensions\030( \003(\0132(.org.apache.ti" +
+      "ka.grpc.v2.ExtensionResult\"\236\002\n\017Extension" +
+      "Result\022\023\n\013producer_id\030\001 \001(\t\022?\n\006status\030\002 " +
+      "\001(\0162/.org.apache.tika.grpc.v2.ExtensionR" +
+      "esult.Status\022%\n\007payload\030\003 \001(\0132\024.google.p" +
+      "rotobuf.Any\022\020\n\010warnings\030\004 \003(\t\022\022\n\nelapsed" +
+      "_ms\030\005 \001(\003\"h\n\006Status\022\026\n\022STATUS_UNSPECIFIE" +
+      "D\020\000\022\r\n\tSTATUS_OK\020\001\022\020\n\014STATUS_EMPTY\020\002\022\021\n\r" +
+      "STATUS_FAILED\020\003\022\022\n\016STATUS_SKIPPED\020\004\"\243\001\n\014" +
+      "SourceOrigin\022\020\n\010filename\030\001 \001(\t\022\021\n\tbyte_s" +
+      "ize\030\002 \001(\003\022\016\n\006parser\030\003 \001(\t\022\016\n\006sha256\030\004 \001(" +
+      "\t\022\022\n\nsource_uri\030\005 \001(\t\022\025\n\reffective_uri\030\006" +
+      " \001(\t\022\020\n\010base_uri\030\007 \001(\t\022\021\n\ttruncated\030\010 \001(" +
+      "\010\"\200\002\n\020DocumentMetadata\022\r\n\005title\030\001 \001(\t\022\017\n" +
+      "\007authors\030\002 \003(\t\022\023\n\013description\030\003 \001(\t\022\020\n\010k" +
+      "eywords\030\004 \003(\t\022\021\n\tlanguages\030\005 \003(\t\022\022\n\npubl" +
+      "ishers\030\006 \003(\t\022\023\n\013identifiers\030\007 \003(\t\022+\n\007cre" +
+      "ated\030\n \001(\0132\032.google.protobuf.Timestamp\022," +
+      "\n\010modified\030\013 \001(\0132\032.google.protobuf.Times" +
+      "tamp\022\016\n\006rights\030\024 \001(\t\"S\n\rMetadataField\022\013\n" +
+      "\003key\030\001 \001(\t\0225\n\005value\030\002 \001(\0132&.org.apache.t" +
+      "ika.grpc.v2.MetadataValue\"\305\002\n\rMetadataVa" +
+      "lue\0228\n\007strings\030\001 \001(\0132%.org.apache.tika.g" +
+      "rpc.v2.StringValuesH\000\022:\n\010integers\030\002 \001(\0132" +
+      "&.org.apache.tika.grpc.v2.IntegerValuesH" +
+      "\000\0228\n\007numbers\030\003 \001(\0132%.org.apache.tika.grp" +
+      "c.v2.NumberValuesH\000\022:\n\010booleans\030\004 \001(\0132&." +
+      "org.apache.tika.grpc.v2.BooleanValuesH\000\022" +
+      ">\n\ntimestamps\030\005 \001(\0132(.org.apache.tika.gr" +
+      "pc.v2.TimestampValuesH\000B\010\n\006values\"\036\n\014Str" +
+      "ingValues\022\016\n\006values\030\001 \003(\t\"\037\n\rIntegerValu" +
+      "es\022\016\n\006values\030\001 \003(\003\"\036\n\014NumberValues\022\016\n\006va" +
+      "lues\030\001 \003(\001\"\037\n\rBooleanValues\022\016\n\006values\030\001 " +
+      "\003(\010\"=\n\017TimestampValues\022*\n\006values\030\001 \003(\0132\032" +
+      ".google.protobuf.Timestamp\"\226\002\n\013ParseStat" +
+      "us\022;\n\006status\030\001 \001(\0162+.org.apache.tika.grp" +
+      "c.v2.ParseStatus.Status\022\033\n\023fetch_parse_t" +
+      "ime_ms\030\002 \001(\003\022\024\n\014parsers_used\030\003 \003(\t\022\016\n\006er" +
+      "rors\030\004 \003(\t\022\024\n\014tika_version\030\005 \001(\t\022\024\n\014pipe" +
+      "s_status\030\006 \001(\t\"[\n\006Status\022\026\n\022STATUS_UNSPE" +
+      "CIFIED\020\000\022\022\n\016STATUS_SUCCESS\020\001\022\022\n\016STATUS_P" +
+      "ARTIAL\020\002\022\021\n\rSTATUS_FAILED\020\003B\033\n\027org.apach" +
+      "e.tika.grpc.v2P\001b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
+          com.google.protobuf.AnyProto.getDescriptor(),
           com.google.protobuf.TimestampProto.getDescriptor(),
         });
     internal_static_org_apache_tika_grpc_v2_Document_descriptor =
@@ -134,67 +150,74 @@ public final class DocumentOuterClass {
     internal_static_org_apache_tika_grpc_v2_Document_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_org_apache_tika_grpc_v2_Document_descriptor,
-        new java.lang.String[] { "Id", "ContentType", "ParsedAt", "Status", "Origin", "Metadata", "Extra", });
-    internal_static_org_apache_tika_grpc_v2_SourceOrigin_descriptor =
+        new java.lang.String[] { "Id", "ContentType", "ParsedAt", "Status", "Origin", "Metadata", "Extra", "Extensions", });
+    internal_static_org_apache_tika_grpc_v2_ExtensionResult_descriptor =
       getDescriptor().getMessageTypes().get(1);
+    internal_static_org_apache_tika_grpc_v2_ExtensionResult_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_org_apache_tika_grpc_v2_ExtensionResult_descriptor,
+        new java.lang.String[] { "ProducerId", "Status", "Payload", "Warnings", "ElapsedMs", });
+    internal_static_org_apache_tika_grpc_v2_SourceOrigin_descriptor =
+      getDescriptor().getMessageTypes().get(2);
     internal_static_org_apache_tika_grpc_v2_SourceOrigin_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_org_apache_tika_grpc_v2_SourceOrigin_descriptor,
         new java.lang.String[] { "Filename", "ByteSize", "Parser", "Sha256", "SourceUri", "EffectiveUri", "BaseUri", "Truncated", });
     internal_static_org_apache_tika_grpc_v2_DocumentMetadata_descriptor =
-      getDescriptor().getMessageTypes().get(2);
+      getDescriptor().getMessageTypes().get(3);
     internal_static_org_apache_tika_grpc_v2_DocumentMetadata_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_org_apache_tika_grpc_v2_DocumentMetadata_descriptor,
         new java.lang.String[] { "Title", "Authors", "Description", "Keywords", "Languages", "Publishers", "Identifiers", "Created", "Modified", "Rights", });
     internal_static_org_apache_tika_grpc_v2_MetadataField_descriptor =
-      getDescriptor().getMessageTypes().get(3);
+      getDescriptor().getMessageTypes().get(4);
     internal_static_org_apache_tika_grpc_v2_MetadataField_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_org_apache_tika_grpc_v2_MetadataField_descriptor,
         new java.lang.String[] { "Key", "Value", });
     internal_static_org_apache_tika_grpc_v2_MetadataValue_descriptor =
-      getDescriptor().getMessageTypes().get(4);
+      getDescriptor().getMessageTypes().get(5);
     internal_static_org_apache_tika_grpc_v2_MetadataValue_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_org_apache_tika_grpc_v2_MetadataValue_descriptor,
         new java.lang.String[] { "Strings", "Integers", "Numbers", "Booleans", "Timestamps", "Values", });
     internal_static_org_apache_tika_grpc_v2_StringValues_descriptor =
-      getDescriptor().getMessageTypes().get(5);
+      getDescriptor().getMessageTypes().get(6);
     internal_static_org_apache_tika_grpc_v2_StringValues_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_org_apache_tika_grpc_v2_StringValues_descriptor,
         new java.lang.String[] { "Values", });
     internal_static_org_apache_tika_grpc_v2_IntegerValues_descriptor =
-      getDescriptor().getMessageTypes().get(6);
+      getDescriptor().getMessageTypes().get(7);
     internal_static_org_apache_tika_grpc_v2_IntegerValues_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_org_apache_tika_grpc_v2_IntegerValues_descriptor,
         new java.lang.String[] { "Values", });
     internal_static_org_apache_tika_grpc_v2_NumberValues_descriptor =
-      getDescriptor().getMessageTypes().get(7);
+      getDescriptor().getMessageTypes().get(8);
     internal_static_org_apache_tika_grpc_v2_NumberValues_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_org_apache_tika_grpc_v2_NumberValues_descriptor,
         new java.lang.String[] { "Values", });
     internal_static_org_apache_tika_grpc_v2_BooleanValues_descriptor =
-      getDescriptor().getMessageTypes().get(8);
+      getDescriptor().getMessageTypes().get(9);
     internal_static_org_apache_tika_grpc_v2_BooleanValues_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_org_apache_tika_grpc_v2_BooleanValues_descriptor,
         new java.lang.String[] { "Values", });
     internal_static_org_apache_tika_grpc_v2_TimestampValues_descriptor =
-      getDescriptor().getMessageTypes().get(9);
+      getDescriptor().getMessageTypes().get(10);
     internal_static_org_apache_tika_grpc_v2_TimestampValues_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_org_apache_tika_grpc_v2_TimestampValues_descriptor,
         new java.lang.String[] { "Values", });
     internal_static_org_apache_tika_grpc_v2_ParseStatus_descriptor =
-      getDescriptor().getMessageTypes().get(10);
+      getDescriptor().getMessageTypes().get(11);
     internal_static_org_apache_tika_grpc_v2_ParseStatus_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_org_apache_tika_grpc_v2_ParseStatus_descriptor,
         new java.lang.String[] { "Status", "FetchParseTimeMs", "ParsersUsed", "Errors", "TikaVersion", "PipesStatus", });
+    com.google.protobuf.AnyProto.getDescriptor();
     com.google.protobuf.TimestampProto.getDescriptor();
   }
 

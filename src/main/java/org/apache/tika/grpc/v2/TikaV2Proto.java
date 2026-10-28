@@ -21,20 +21,40 @@ public final class TikaV2Proto {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_org_apache_tika_grpc_v2_FetchAndParseRequest_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_org_apache_tika_grpc_v2_FetchAndParseReply_descriptor;
+    internal_static_org_apache_tika_grpc_v2_FetchAndParseResponse_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_org_apache_tika_grpc_v2_FetchAndParseReply_fieldAccessorTable;
+      internal_static_org_apache_tika_grpc_v2_FetchAndParseResponse_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_org_apache_tika_grpc_v2_FetchAndParseServerSideStreamingRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_org_apache_tika_grpc_v2_FetchAndParseServerSideStreamingRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_org_apache_tika_grpc_v2_FetchAndParseServerSideStreamingResponse_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_org_apache_tika_grpc_v2_FetchAndParseServerSideStreamingResponse_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_org_apache_tika_grpc_v2_FetchAndParseBiDirectionalStreamingRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_org_apache_tika_grpc_v2_FetchAndParseBiDirectionalStreamingRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_org_apache_tika_grpc_v2_FetchAndParseBiDirectionalStreamingResponse_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_org_apache_tika_grpc_v2_FetchAndParseBiDirectionalStreamingResponse_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
     internal_static_org_apache_tika_grpc_v2_ParseBytesRequest_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_org_apache_tika_grpc_v2_ParseBytesRequest_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_org_apache_tika_grpc_v2_ParseBytesReply_descriptor;
+    internal_static_org_apache_tika_grpc_v2_ParseBytesResponse_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_org_apache_tika_grpc_v2_ParseBytesReply_fieldAccessorTable;
+      internal_static_org_apache_tika_grpc_v2_ParseBytesResponse_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -46,34 +66,51 @@ public final class TikaV2Proto {
     java.lang.String[] descriptorData = {
       "\n%org/apache/tika/grpc/v2/tika_v2.proto\022" +
       "\027org.apache.tika.grpc.v2\032&org/apache/tik" +
-      "a/grpc/v2/document.proto\"\223\001\n\024FetchAndPar" +
+      "a/grpc/v2/document.proto\"\221\001\n\024FetchAndPar" +
       "seRequest\022\022\n\nfetcher_id\030\001 \001(\t\022\021\n\tfetch_k" +
       "ey\030\002 \001(\t\022$\n\034additional_fetch_config_json" +
-      "\030\003 \001(\t\022\022\n\nemitter_id\030\004 \001(\t\022\032\n\022parse_cont" +
-      "ext_json\030\005 \001(\t\"\\\n\022FetchAndParseReply\022\021\n\t" +
-      "fetch_key\030\001 \001(\t\0223\n\010document\030\002 \001(\0132!.org." +
-      "apache.tika.grpc.v2.Document\"\277\001\n\021ParseBy" +
-      "tesRequest\022\026\n\016correlation_id\030\001 \001(\t\022\017\n\007co" +
-      "ntent\030\002 \001(\014\022\025\n\rresource_name\030\003 \001(\t\022\022\n\nso" +
-      "urce_uri\030\004 \001(\t\022\025\n\reffective_uri\030\005 \001(\t\022\020\n" +
-      "\010base_uri\030\006 \001(\t\022\021\n\ttruncated\030\007 \001(\010\022\032\n\022pa" +
-      "rse_context_json\030\010 \001(\t\"^\n\017ParseBytesRepl" +
-      "y\022\026\n\016correlation_id\030\001 \001(\t\0223\n\010document\030\002 " +
-      "\001(\0132!.org.apache.tika.grpc.v2.Document2\354" +
-      "\003\n\006TikaV2\022m\n\rFetchAndParse\022-.org.apache." +
-      "tika.grpc.v2.FetchAndParseRequest\032+.org." +
-      "apache.tika.grpc.v2.FetchAndParseReply\"\000" +
-      "\022\202\001\n FetchAndParseServerSideStreaming\022-." +
-      "org.apache.tika.grpc.v2.FetchAndParseReq" +
-      "uest\032+.org.apache.tika.grpc.v2.FetchAndP" +
-      "arseReply\"\0000\001\022\207\001\n#FetchAndParseBiDirecti" +
-      "onalStreaming\022-.org.apache.tika.grpc.v2." +
-      "FetchAndParseRequest\032+.org.apache.tika.g" +
-      "rpc.v2.FetchAndParseReply\"\000(\0010\001\022d\n\nParse" +
-      "Bytes\022*.org.apache.tika.grpc.v2.ParseByt" +
-      "esRequest\032(.org.apache.tika.grpc.v2.Pars" +
-      "eBytesReply\"\000B(\n\027org.apache.tika.grpc.v2" +
-      "B\013TikaV2ProtoP\001b\006proto3"
+      "\030\003 \001(\t\022\032\n\022parse_context_json\030\005 \001(\tJ\004\010\004\020\005" +
+      "R\nemitter_id\"_\n\025FetchAndParseResponse\022\021\n" +
+      "\tfetch_key\030\001 \001(\t\0223\n\010document\030\002 \001(\0132!.org" +
+      ".apache.tika.grpc.v2.Document\"\244\001\n\'FetchA" +
+      "ndParseServerSideStreamingRequest\022\022\n\nfet" +
+      "cher_id\030\001 \001(\t\022\021\n\tfetch_key\030\002 \001(\t\022$\n\034addi" +
+      "tional_fetch_config_json\030\003 \001(\t\022\032\n\022parse_" +
+      "context_json\030\005 \001(\tJ\004\010\004\020\005R\nemitter_id\"r\n(" +
+      "FetchAndParseServerSideStreamingResponse" +
+      "\022\021\n\tfetch_key\030\001 \001(\t\0223\n\010document\030\002 \001(\0132!." +
+      "org.apache.tika.grpc.v2.Document\"\247\001\n*Fet" +
+      "chAndParseBiDirectionalStreamingRequest\022" +
+      "\022\n\nfetcher_id\030\001 \001(\t\022\021\n\tfetch_key\030\002 \001(\t\022$" +
+      "\n\034additional_fetch_config_json\030\003 \001(\t\022\032\n\022" +
+      "parse_context_json\030\005 \001(\tJ\004\010\004\020\005R\nemitter_" +
+      "id\"u\n+FetchAndParseBiDirectionalStreamin" +
+      "gResponse\022\021\n\tfetch_key\030\001 \001(\t\0223\n\010document" +
+      "\030\002 \001(\0132!.org.apache.tika.grpc.v2.Documen" +
+      "t\"\277\001\n\021ParseBytesRequest\022\026\n\016correlation_i" +
+      "d\030\001 \001(\t\022\017\n\007content\030\002 \001(\014\022\025\n\rresource_nam" +
+      "e\030\003 \001(\t\022\022\n\nsource_uri\030\004 \001(\t\022\025\n\reffective" +
+      "_uri\030\005 \001(\t\022\020\n\010base_uri\030\006 \001(\t\022\021\n\ttruncate" +
+      "d\030\007 \001(\010\022\032\n\022parse_context_json\030\010 \001(\t\"a\n\022P" +
+      "arseBytesResponse\022\026\n\016correlation_id\030\001 \001(" +
+      "\t\0223\n\010document\030\002 \001(\0132!.org.apache.tika.gr" +
+      "pc.v2.Document2\321\004\n\rTikaV2Service\022p\n\rFetc" +
+      "hAndParse\022-.org.apache.tika.grpc.v2.Fetc" +
+      "hAndParseRequest\032..org.apache.tika.grpc." +
+      "v2.FetchAndParseResponse\"\000\022\253\001\n FetchAndP" +
+      "arseServerSideStreaming\022@.org.apache.tik" +
+      "a.grpc.v2.FetchAndParseServerSideStreami" +
+      "ngRequest\032A.org.apache.tika.grpc.v2.Fetc" +
+      "hAndParseServerSideStreamingResponse\"\0000\001" +
+      "\022\266\001\n#FetchAndParseBiDirectionalStreaming" +
+      "\022C.org.apache.tika.grpc.v2.FetchAndParse" +
+      "BiDirectionalStreamingRequest\032D.org.apac" +
+      "he.tika.grpc.v2.FetchAndParseBiDirection" +
+      "alStreamingResponse\"\000(\0010\001\022g\n\nParseBytes\022" +
+      "*.org.apache.tika.grpc.v2.ParseBytesRequ" +
+      "est\032+.org.apache.tika.grpc.v2.ParseBytes" +
+      "Response\"\000B(\n\027org.apache.tika.grpc.v2B\013T" +
+      "ikaV2ProtoP\001b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -85,24 +122,48 @@ public final class TikaV2Proto {
     internal_static_org_apache_tika_grpc_v2_FetchAndParseRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_org_apache_tika_grpc_v2_FetchAndParseRequest_descriptor,
-        new java.lang.String[] { "FetcherId", "FetchKey", "AdditionalFetchConfigJson", "EmitterId", "ParseContextJson", });
-    internal_static_org_apache_tika_grpc_v2_FetchAndParseReply_descriptor =
+        new java.lang.String[] { "FetcherId", "FetchKey", "AdditionalFetchConfigJson", "ParseContextJson", });
+    internal_static_org_apache_tika_grpc_v2_FetchAndParseResponse_descriptor =
       getDescriptor().getMessageTypes().get(1);
-    internal_static_org_apache_tika_grpc_v2_FetchAndParseReply_fieldAccessorTable = new
+    internal_static_org_apache_tika_grpc_v2_FetchAndParseResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_org_apache_tika_grpc_v2_FetchAndParseReply_descriptor,
+        internal_static_org_apache_tika_grpc_v2_FetchAndParseResponse_descriptor,
+        new java.lang.String[] { "FetchKey", "Document", });
+    internal_static_org_apache_tika_grpc_v2_FetchAndParseServerSideStreamingRequest_descriptor =
+      getDescriptor().getMessageTypes().get(2);
+    internal_static_org_apache_tika_grpc_v2_FetchAndParseServerSideStreamingRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_org_apache_tika_grpc_v2_FetchAndParseServerSideStreamingRequest_descriptor,
+        new java.lang.String[] { "FetcherId", "FetchKey", "AdditionalFetchConfigJson", "ParseContextJson", });
+    internal_static_org_apache_tika_grpc_v2_FetchAndParseServerSideStreamingResponse_descriptor =
+      getDescriptor().getMessageTypes().get(3);
+    internal_static_org_apache_tika_grpc_v2_FetchAndParseServerSideStreamingResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_org_apache_tika_grpc_v2_FetchAndParseServerSideStreamingResponse_descriptor,
+        new java.lang.String[] { "FetchKey", "Document", });
+    internal_static_org_apache_tika_grpc_v2_FetchAndParseBiDirectionalStreamingRequest_descriptor =
+      getDescriptor().getMessageTypes().get(4);
+    internal_static_org_apache_tika_grpc_v2_FetchAndParseBiDirectionalStreamingRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_org_apache_tika_grpc_v2_FetchAndParseBiDirectionalStreamingRequest_descriptor,
+        new java.lang.String[] { "FetcherId", "FetchKey", "AdditionalFetchConfigJson", "ParseContextJson", });
+    internal_static_org_apache_tika_grpc_v2_FetchAndParseBiDirectionalStreamingResponse_descriptor =
+      getDescriptor().getMessageTypes().get(5);
+    internal_static_org_apache_tika_grpc_v2_FetchAndParseBiDirectionalStreamingResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_org_apache_tika_grpc_v2_FetchAndParseBiDirectionalStreamingResponse_descriptor,
         new java.lang.String[] { "FetchKey", "Document", });
     internal_static_org_apache_tika_grpc_v2_ParseBytesRequest_descriptor =
-      getDescriptor().getMessageTypes().get(2);
+      getDescriptor().getMessageTypes().get(6);
     internal_static_org_apache_tika_grpc_v2_ParseBytesRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_org_apache_tika_grpc_v2_ParseBytesRequest_descriptor,
         new java.lang.String[] { "CorrelationId", "Content", "ResourceName", "SourceUri", "EffectiveUri", "BaseUri", "Truncated", "ParseContextJson", });
-    internal_static_org_apache_tika_grpc_v2_ParseBytesReply_descriptor =
-      getDescriptor().getMessageTypes().get(3);
-    internal_static_org_apache_tika_grpc_v2_ParseBytesReply_fieldAccessorTable = new
+    internal_static_org_apache_tika_grpc_v2_ParseBytesResponse_descriptor =
+      getDescriptor().getMessageTypes().get(7);
+    internal_static_org_apache_tika_grpc_v2_ParseBytesResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_org_apache_tika_grpc_v2_ParseBytesReply_descriptor,
+        internal_static_org_apache_tika_grpc_v2_ParseBytesResponse_descriptor,
         new java.lang.String[] { "CorrelationId", "Document", });
     org.apache.tika.grpc.v2.DocumentOuterClass.getDescriptor();
   }

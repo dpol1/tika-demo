@@ -13,6 +13,7 @@ from urllib.parse import urlparse
 
 ROWS = [json.loads(line) for line in Path("sample-run/results.jsonl").read_text().splitlines()]
 LOG = Path("sample-run/access.log").read_text().splitlines(keepends=True)
+INDEX = Path("sample-run/index.log")
 P5 = "http://parsebytes.127.0.0.1.nip.io:8099/p5"
 
 
@@ -21,7 +22,7 @@ def run(rows, log=LOG):
         results, access = Path(tmp, "results.jsonl"), Path(tmp, "access.log")
         results.write_text("".join(json.dumps(r) + "\n" for r in rows))
         access.write_text("".join(log))
-        return subprocess.run([sys.executable, "verify.py", results, access, "testserver/seeds.txt"],
+        return subprocess.run([sys.executable, "verify.py", results, access, "testserver/seeds.txt", INDEX],
                               capture_output=True, text=True).stdout
 
 
@@ -43,6 +44,8 @@ CASES = [
     ("same sha256", "/p8", run(broken("/p8", origin_sha256="0" * 64))),
     ("same sha256", "/p1", run(broken("/p1", origin_sha256="", client_sha256=""))),
     ("one GET per URL", "/p2", run(ROWS, LOG + [line for line in LOG if line.split()[2] == "/p2"])),
+    ("broken pdf reports why", "", run(broken("/bad/garbage.pdf", status="STATUS_SUCCESS", errors=""))),
+    ("empty body not sent", "", run(broken("/bad/empty", skipped=None, error="INVALID_ARGUMENT"))),
 ]
 
 assert run(ROWS) == Path("sample-run/verify.txt").read_text(), "sample run output changed"

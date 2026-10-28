@@ -84,6 +84,8 @@ mvn -q -Dstormcrawler.version="${SC_VERSION}" -Dstorm.version="${STORM_VERSION}"
 # and ZooKeeper failing to connect over IPv6.
 grep -E ">>>|ERROR" out/topology.log | grep -v -E "AsyncLocalizer|ClientCnxn.*(Unable to open socket|Network is unreachable)" || true
 [ "$MVN_EXIT" -eq 0 ] || { echo "topology run failed (exit $MVN_EXIT), see out/topology.log"; exit "$MVN_EXIT"; }
+# The indexer's lines: url, then the mapped metadata of that document.
+grep -E $'^(url|title|tika\\.[a-z_]+)\t' out/topology.log > out/index.log || true
 
 echo ">>> manifest"
 {
@@ -113,4 +115,4 @@ for f in sys.argv[1:]:
 } | tee out/manifest.txt
 
 echo ">>> verifying"
-python3 verify.py out/results.jsonl out/access.log out/seeds.txt | tee out/verify.txt
+python3 verify.py out/results.jsonl out/access.log out/seeds.txt out/index.log | tee out/verify.txt

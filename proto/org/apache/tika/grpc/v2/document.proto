@@ -28,6 +28,7 @@ syntax = "proto3";
 
 package org.apache.tika.grpc.v2;
 
+import "google/protobuf/any.proto";
 import "google/protobuf/timestamp.proto";
 
 option java_multiple_files = true;
@@ -48,7 +49,34 @@ message Document {
   DocumentMetadata metadata = 20;      // typed common fields
   repeated MetadataField extra = 21;   // tagged tail: everything not already typed
 
-  // Field numbers 3, 10-19 and 30+ are left unassigned for later fields.
+  // Results that external parsers attached to this document (TIKA-4771). Tika's own
+  // parse never sets them: a composer appends them after calling Tika and the external
+  // parsers with the same bytes. One entry per contribution slot.
+  repeated ExtensionResult extensions = 40;
+
+  // Field numbers 3, 10-19, 30-39 and 41+ are left unassigned for later fields.
+}
+
+// One external parser's contribution to a Document (TIKA-4771). Tika never models
+// the payload: its schema belongs to the producer, and a consumer unpacks only the
+// types it understands.
+message ExtensionResult {
+  enum Status {
+    STATUS_UNSPECIFIED = 0;
+    STATUS_OK = 1;
+    STATUS_EMPTY = 2;
+    STATUS_FAILED = 3;
+    STATUS_SKIPPED = 4;
+  }
+  // Names the composer's contribution slot, not a service instance: the same service
+  // called twice is two slots.
+  string producer_id = 1;
+  Status status = 2;
+  // The producer's own message. Several results (one per page, say) belong inside it,
+  // not in several envelopes.
+  google.protobuf.Any payload = 3;
+  repeated string warnings = 4;
+  int64 elapsed_ms = 5;
 }
 
 message SourceOrigin {
@@ -74,6 +102,9 @@ message SourceOrigin {
 // description, subject, language, publisher, identifier, date, rights), the same
 // vocabulary Tika's property model and XMP use. Narrower keys (page counts,
 // dimensions, format-specific keys) go to `extra` with their declared type.
+// A single-valued field (title, description, created, modified, rights) holds the
+// first value; when the document declares several, `extra` also carries the key
+// with all of them, so none is lost.
 // =========================================================================
 message DocumentMetadata {
   string title = 1;
@@ -117,7 +148,12 @@ message BooleanValues { repeated bool values = 1; }
 message TimestampValues { repeated google.protobuf.Timestamp values = 1; }
 
 message ParseStatus {
-  enum Status { UNSPECIFIED = 0; SUCCESS = 1; PARTIAL = 2; FAILED = 3; }
+  enum Status {
+    STATUS_UNSPECIFIED = 0;
+    STATUS_SUCCESS = 1;
+    STATUS_PARTIAL = 2;
+    STATUS_FAILED = 3;
+  }
   Status status = 1;
   // Milliseconds for the whole fetch and parse, measured by the server. Both happen
   // in the forked pipes worker, so the parse time alone is not available.

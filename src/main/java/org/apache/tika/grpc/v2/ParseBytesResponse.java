@@ -5,18 +5,18 @@
 package org.apache.tika.grpc.v2;
 
 /**
- * Protobuf type {@code org.apache.tika.grpc.v2.ParseBytesReply}
+ * Protobuf type {@code org.apache.tika.grpc.v2.ParseBytesResponse}
  */
-public final class ParseBytesReply extends
+public final class ParseBytesResponse extends
     com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:org.apache.tika.grpc.v2.ParseBytesReply)
-    ParseBytesReplyOrBuilder {
+    // @@protoc_insertion_point(message_implements:org.apache.tika.grpc.v2.ParseBytesResponse)
+    ParseBytesResponseOrBuilder {
 private static final long serialVersionUID = 0L;
-  // Use ParseBytesReply.newBuilder() to construct.
-  private ParseBytesReply(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+  // Use ParseBytesResponse.newBuilder() to construct.
+  private ParseBytesResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
   }
-  private ParseBytesReply() {
+  private ParseBytesResponse() {
     correlationId_ = "";
   }
 
@@ -24,20 +24,20 @@ private static final long serialVersionUID = 0L;
   @SuppressWarnings({"unused"})
   protected java.lang.Object newInstance(
       UnusedPrivateParameter unused) {
-    return new ParseBytesReply();
+    return new ParseBytesResponse();
   }
 
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return org.apache.tika.grpc.v2.TikaV2Proto.internal_static_org_apache_tika_grpc_v2_ParseBytesReply_descriptor;
+    return org.apache.tika.grpc.v2.TikaV2Proto.internal_static_org_apache_tika_grpc_v2_ParseBytesResponse_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return org.apache.tika.grpc.v2.TikaV2Proto.internal_static_org_apache_tika_grpc_v2_ParseBytesReply_fieldAccessorTable
+    return org.apache.tika.grpc.v2.TikaV2Proto.internal_static_org_apache_tika_grpc_v2_ParseBytesResponse_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            org.apache.tika.grpc.v2.ParseBytesReply.class, org.apache.tika.grpc.v2.ParseBytesReply.Builder.class);
+            org.apache.tika.grpc.v2.ParseBytesResponse.class, org.apache.tika.grpc.v2.ParseBytesResponse.Builder.class);
   }
 
   private int bitField0_;
@@ -152,10 +152,10 @@ private static final long serialVersionUID = 0L;
     if (obj == this) {
      return true;
     }
-    if (!(obj instanceof org.apache.tika.grpc.v2.ParseBytesReply)) {
+    if (!(obj instanceof org.apache.tika.grpc.v2.ParseBytesResponse)) {
       return super.equals(obj);
     }
-    org.apache.tika.grpc.v2.ParseBytesReply other = (org.apache.tika.grpc.v2.ParseBytesReply) obj;
+    org.apache.tika.grpc.v2.ParseBytesResponse other = (org.apache.tika.grpc.v2.ParseBytesResponse) obj;
 
     if (!getCorrelationId()
         .equals(other.getCorrelationId())) return false;
@@ -186,44 +186,44 @@ private static final long serialVersionUID = 0L;
     return hash;
   }
 
-  public static org.apache.tika.grpc.v2.ParseBytesReply parseFrom(
+  public static org.apache.tika.grpc.v2.ParseBytesResponse parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static org.apache.tika.grpc.v2.ParseBytesReply parseFrom(
+  public static org.apache.tika.grpc.v2.ParseBytesResponse parseFrom(
       java.nio.ByteBuffer data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static org.apache.tika.grpc.v2.ParseBytesReply parseFrom(
+  public static org.apache.tika.grpc.v2.ParseBytesResponse parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static org.apache.tika.grpc.v2.ParseBytesReply parseFrom(
+  public static org.apache.tika.grpc.v2.ParseBytesResponse parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static org.apache.tika.grpc.v2.ParseBytesReply parseFrom(byte[] data)
+  public static org.apache.tika.grpc.v2.ParseBytesResponse parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static org.apache.tika.grpc.v2.ParseBytesReply parseFrom(
+  public static org.apache.tika.grpc.v2.ParseBytesResponse parseFrom(
       byte[] data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static org.apache.tika.grpc.v2.ParseBytesReply parseFrom(java.io.InputStream input)
+  public static org.apache.tika.grpc.v2.ParseBytesResponse parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static org.apache.tika.grpc.v2.ParseBytesReply parseFrom(
+  public static org.apache.tika.grpc.v2.ParseBytesResponse parseFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -231,26 +231,26 @@ private static final long serialVersionUID = 0L;
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
 
-  public static org.apache.tika.grpc.v2.ParseBytesReply parseDelimitedFrom(java.io.InputStream input)
+  public static org.apache.tika.grpc.v2.ParseBytesResponse parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input);
   }
 
-  public static org.apache.tika.grpc.v2.ParseBytesReply parseDelimitedFrom(
+  public static org.apache.tika.grpc.v2.ParseBytesResponse parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
   }
-  public static org.apache.tika.grpc.v2.ParseBytesReply parseFrom(
+  public static org.apache.tika.grpc.v2.ParseBytesResponse parseFrom(
       com.google.protobuf.CodedInputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static org.apache.tika.grpc.v2.ParseBytesReply parseFrom(
+  public static org.apache.tika.grpc.v2.ParseBytesResponse parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -263,7 +263,7 @@ private static final long serialVersionUID = 0L;
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
   }
-  public static Builder newBuilder(org.apache.tika.grpc.v2.ParseBytesReply prototype) {
+  public static Builder newBuilder(org.apache.tika.grpc.v2.ParseBytesResponse prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
   @java.lang.Override
@@ -279,26 +279,26 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
-   * Protobuf type {@code org.apache.tika.grpc.v2.ParseBytesReply}
+   * Protobuf type {@code org.apache.tika.grpc.v2.ParseBytesResponse}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:org.apache.tika.grpc.v2.ParseBytesReply)
-      org.apache.tika.grpc.v2.ParseBytesReplyOrBuilder {
+      // @@protoc_insertion_point(builder_implements:org.apache.tika.grpc.v2.ParseBytesResponse)
+      org.apache.tika.grpc.v2.ParseBytesResponseOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return org.apache.tika.grpc.v2.TikaV2Proto.internal_static_org_apache_tika_grpc_v2_ParseBytesReply_descriptor;
+      return org.apache.tika.grpc.v2.TikaV2Proto.internal_static_org_apache_tika_grpc_v2_ParseBytesResponse_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return org.apache.tika.grpc.v2.TikaV2Proto.internal_static_org_apache_tika_grpc_v2_ParseBytesReply_fieldAccessorTable
+      return org.apache.tika.grpc.v2.TikaV2Proto.internal_static_org_apache_tika_grpc_v2_ParseBytesResponse_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              org.apache.tika.grpc.v2.ParseBytesReply.class, org.apache.tika.grpc.v2.ParseBytesReply.Builder.class);
+              org.apache.tika.grpc.v2.ParseBytesResponse.class, org.apache.tika.grpc.v2.ParseBytesResponse.Builder.class);
     }
 
-    // Construct using org.apache.tika.grpc.v2.ParseBytesReply.newBuilder()
+    // Construct using org.apache.tika.grpc.v2.ParseBytesResponse.newBuilder()
     private Builder() {
       maybeForceBuilderInitialization();
     }
@@ -330,17 +330,17 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return org.apache.tika.grpc.v2.TikaV2Proto.internal_static_org_apache_tika_grpc_v2_ParseBytesReply_descriptor;
+      return org.apache.tika.grpc.v2.TikaV2Proto.internal_static_org_apache_tika_grpc_v2_ParseBytesResponse_descriptor;
     }
 
     @java.lang.Override
-    public org.apache.tika.grpc.v2.ParseBytesReply getDefaultInstanceForType() {
-      return org.apache.tika.grpc.v2.ParseBytesReply.getDefaultInstance();
+    public org.apache.tika.grpc.v2.ParseBytesResponse getDefaultInstanceForType() {
+      return org.apache.tika.grpc.v2.ParseBytesResponse.getDefaultInstance();
     }
 
     @java.lang.Override
-    public org.apache.tika.grpc.v2.ParseBytesReply build() {
-      org.apache.tika.grpc.v2.ParseBytesReply result = buildPartial();
+    public org.apache.tika.grpc.v2.ParseBytesResponse build() {
+      org.apache.tika.grpc.v2.ParseBytesResponse result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
@@ -348,14 +348,14 @@ private static final long serialVersionUID = 0L;
     }
 
     @java.lang.Override
-    public org.apache.tika.grpc.v2.ParseBytesReply buildPartial() {
-      org.apache.tika.grpc.v2.ParseBytesReply result = new org.apache.tika.grpc.v2.ParseBytesReply(this);
+    public org.apache.tika.grpc.v2.ParseBytesResponse buildPartial() {
+      org.apache.tika.grpc.v2.ParseBytesResponse result = new org.apache.tika.grpc.v2.ParseBytesResponse(this);
       if (bitField0_ != 0) { buildPartial0(result); }
       onBuilt();
       return result;
     }
 
-    private void buildPartial0(org.apache.tika.grpc.v2.ParseBytesReply result) {
+    private void buildPartial0(org.apache.tika.grpc.v2.ParseBytesResponse result) {
       int from_bitField0_ = bitField0_;
       if (((from_bitField0_ & 0x00000001) != 0)) {
         result.correlationId_ = correlationId_;
@@ -404,16 +404,16 @@ private static final long serialVersionUID = 0L;
     }
     @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof org.apache.tika.grpc.v2.ParseBytesReply) {
-        return mergeFrom((org.apache.tika.grpc.v2.ParseBytesReply)other);
+      if (other instanceof org.apache.tika.grpc.v2.ParseBytesResponse) {
+        return mergeFrom((org.apache.tika.grpc.v2.ParseBytesResponse)other);
       } else {
         super.mergeFrom(other);
         return this;
       }
     }
 
-    public Builder mergeFrom(org.apache.tika.grpc.v2.ParseBytesReply other) {
-      if (other == org.apache.tika.grpc.v2.ParseBytesReply.getDefaultInstance()) return this;
+    public Builder mergeFrom(org.apache.tika.grpc.v2.ParseBytesResponse other) {
+      if (other == org.apache.tika.grpc.v2.ParseBytesResponse.getDefaultInstance()) return this;
       if (!other.getCorrelationId().isEmpty()) {
         correlationId_ = other.correlationId_;
         bitField0_ |= 0x00000001;
@@ -682,23 +682,23 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    // @@protoc_insertion_point(builder_scope:org.apache.tika.grpc.v2.ParseBytesReply)
+    // @@protoc_insertion_point(builder_scope:org.apache.tika.grpc.v2.ParseBytesResponse)
   }
 
-  // @@protoc_insertion_point(class_scope:org.apache.tika.grpc.v2.ParseBytesReply)
-  private static final org.apache.tika.grpc.v2.ParseBytesReply DEFAULT_INSTANCE;
+  // @@protoc_insertion_point(class_scope:org.apache.tika.grpc.v2.ParseBytesResponse)
+  private static final org.apache.tika.grpc.v2.ParseBytesResponse DEFAULT_INSTANCE;
   static {
-    DEFAULT_INSTANCE = new org.apache.tika.grpc.v2.ParseBytesReply();
+    DEFAULT_INSTANCE = new org.apache.tika.grpc.v2.ParseBytesResponse();
   }
 
-  public static org.apache.tika.grpc.v2.ParseBytesReply getDefaultInstance() {
+  public static org.apache.tika.grpc.v2.ParseBytesResponse getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
 
-  private static final com.google.protobuf.Parser<ParseBytesReply>
-      PARSER = new com.google.protobuf.AbstractParser<ParseBytesReply>() {
+  private static final com.google.protobuf.Parser<ParseBytesResponse>
+      PARSER = new com.google.protobuf.AbstractParser<ParseBytesResponse>() {
     @java.lang.Override
-    public ParseBytesReply parsePartialFrom(
+    public ParseBytesResponse parsePartialFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -717,17 +717,17 @@ private static final long serialVersionUID = 0L;
     }
   };
 
-  public static com.google.protobuf.Parser<ParseBytesReply> parser() {
+  public static com.google.protobuf.Parser<ParseBytesResponse> parser() {
     return PARSER;
   }
 
   @java.lang.Override
-  public com.google.protobuf.Parser<ParseBytesReply> getParserForType() {
+  public com.google.protobuf.Parser<ParseBytesResponse> getParserForType() {
     return PARSER;
   }
 
   @java.lang.Override
-  public org.apache.tika.grpc.v2.ParseBytesReply getDefaultInstanceForType() {
+  public org.apache.tika.grpc.v2.ParseBytesResponse getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }
 

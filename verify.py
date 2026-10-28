@@ -2,7 +2,9 @@
 """Reads the lines ParseBytesBolt wrote and the web server's access log, prints one PASS or FAIL
 line per check, exits 1 if any check failed.
 
-    python3 verify.py [out/results.jsonl] [out/access.log] [seeds file]
+    python3 verify.py [out/results.jsonl] [out/access.log] [seeds file] [out/index.log]
+
+The documents under /bad/ are broken on purpose; the checks that expect a clean parse skip them.
 """
 
 import hashlib
@@ -16,6 +18,7 @@ from urllib.parse import urlparse
 RESULTS = sys.argv[1] if len(sys.argv) > 1 else "out/results.jsonl"
 LOG = sys.argv[2] if len(sys.argv) > 2 else "out/access.log"
 SEEDS = sys.argv[3] if len(sys.argv) > 3 else "testserver/seeds.txt"
+INDEX = sys.argv[4] if len(sys.argv) > 4 else "out/index.log"
 with open("crawler-conf.yaml") as f:
     limit = re.search(r"^\s*http\.content\.limit:\s*(\d+)", f.read(), re.M)
 if not limit:
@@ -62,14 +65,17 @@ check(
 )
 
 errors = [r for r in results if r.get("error")]
-docs = [r for r in results if not r.get("error")]
+# Every document Tika answered for; the empty body is never sent.
+docs = [r for r in results if not r.get("error") and not r.get("skipped")]
+# The documents expected to parse cleanly.
+good = [r for r in docs if not path_of(r["url"]).startswith("/bad/")]
 
 check("no rpc errors", not errors, "; ".join(f"{r['url']}: {r['error']}" for r in errors) or "none")
 
-not_clean = [(path_of(r["url"]), r.get("pipes_status"), r.get("status"), r.get("errors")) for r in docs
-             if r.get("pipes_status") != "PARSE_SUCCESS" or r.get("status") != "SUCCESS" or r.get("errors")]
-check("all parse success", bool(docs) and not not_clean,
-      not_clean or f"{len(docs)}/{len(docs)} PARSE_SUCCESS, status SUCCESS, no parser errors")
+not_clean = [(path_of(r["url"]), r.get("pipes_status"), r.get("status"), r.get("errors")) for r in good
+             if r.get("pipes_status") != "PARSE_SUCCESS" or r.get("status") != "STATUS_SUCCESS" or r.get("errors")]
+check("all parse success", bool(good) and not not_clean,
+      not_clean or f"{len(good)}/{len(good)} PARSE_SUCCESS, status STATUS_SUCCESS, no parser errors")
 
 # A distinct correlation id detects replies that only echo the source URL.
 bad = [(path_of(r["url"]), r["doc_id"], r.get("reply_correlation_id")) for r in docs
@@ -88,10 +94,12 @@ check("byte size echoed", bool(docs) and not bad,
       bad or f"{len(docs)}/{len(docs)} origin.byte_size == bytes sent")
 
 # Both sides hashed the bytes independently; an empty hash on the server side does not count.
-bad = [(path_of(r["url"]), r["client_sha256"][:12], r["origin_sha256"][:12]) for r in docs
+# A failed parse returns no digest, so failed documents are left out.
+hashed = [r for r in docs if r.get("status") != "STATUS_FAILED"]
+bad = [(path_of(r["url"]), r["client_sha256"][:12], r["origin_sha256"][:12]) for r in hashed
        if not (r["origin_sha256"] and r["origin_sha256"] == r["client_sha256"])]
-check("same sha256", bool(docs) and not bad,
-      bad or f"{len(docs)}/{len(docs)} sha256 equal, non-empty")
+check("same sha256", bool(hashed) and not bad,
+      bad or f"{len(hashed)}/{len(hashed)} sha256 equal, non-empty")
 
 gets = Counter()
 try:
@@ -110,7 +118,7 @@ def key(r):
     return (u.hostname, u.path)  # the log records the Host header without the port
 
 
-counts = {path_of(r["url"]): gets[key(r)] for r in docs}
+counts = {path_of(r["url"]): gets[key(r)] for r in results}
 bad = {p: n for p, n in counts.items() if n != 1}
 check("one GET per URL", bool(docs) and not bad, bad or f"1 GET each for {len(counts)} URLs")
 
@@ -191,6 +199,54 @@ check(
     bool(table) and table["content_type"].startswith("text/csv") and table.get("rows") == 12
     and table.get("rows_type") == "integers",
     {k: table.get(k) for k in ("content_type", "rows", "rows_type")} if table else "no result",
+)
+
+# Random bytes named .pdf: detected as a PDF by name, and PDFBox cannot read them.
+garbage = by_path.get("/bad/garbage.pdf")
+check(
+    "broken pdf reports why",
+    bool(garbage) and garbage.get("status") == "STATUS_FAILED" and "PDFParser" in garbage.get("errors", ""),
+    {k: garbage.get(k) for k in ("pipes_status", "status")} | {"error": garbage.get("errors", "").split("\n")[0][:80]}
+    if garbage else "no result",
+)
+
+# The first 40% of testPDF.pdf. PDFBox recovers the page but not the document information at
+# the end of the file, so the title is gone while the status still says success.
+cut = by_path.get("/bad/truncated.pdf")
+check(
+    "truncated pdf parsed leniently",
+    bool(cut) and cut["content_type"].startswith("application/pdf") and cut.get("status") == "STATUS_SUCCESS"
+    and cut["origin_sha256"] == cut["client_sha256"],
+    {k: cut.get(k) for k in ("content_type", "status", "title")} if cut else "no result",
+)
+
+# ParseBytes rejects empty content, so the bolt does not send it.
+empty = next((r for r in results if path_of(r["url"]) == "/bad/empty"), None)
+check("empty body not sent", bool(empty) and empty.get("skipped") == "empty content" and not empty.get("error"),
+      {k: empty.get(k) for k in ("bytes", "skipped", "error")} if empty else "no result")
+
+# StdOutIndexer prints "url<TAB>value", then one line per mapped metadata value.
+indexed = {}
+try:
+    with open(INDEX) as f:
+        current = None
+        for line in f:
+            k, _, v = line.rstrip("\n").partition("\t")
+            if k == "url":
+                current = indexed.setdefault(path_of(v), {})
+            elif current is not None:
+                current.setdefault(k, []).append(v)
+except FileNotFoundError:
+    pass
+pdf_fields = indexed.get("/docs/testPDF.pdf", {})
+failed_fields = indexed.get("/bad/garbage.pdf", {})
+check(
+    "tika fields reach the indexer",
+    pdf_fields.get("tika.title") == ["Apache Tika - Apache Tika"] and pdf_fields.get("tika.status") == ["STATUS_SUCCESS"]
+    and pdf_fields.get("tika.pages") == ["1"]
+    and failed_fields.get("tika.status") == ["STATUS_FAILED"] and bool(failed_fields.get("tika.errors")),
+    f"{sum(1 for d in indexed.values() if 'tika.status' in d)} indexed documents carry tika.status; testPDF.pdf "
+    + str({k: v for k, v in pdf_fields.items() if k in ("tika.title", "tika.status", "tika.pages")}),
 )
 
 print()

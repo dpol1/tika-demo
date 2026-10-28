@@ -12,11 +12,15 @@ Routes, on any host name:
     /docs/<file>     a file from testserver/docs/, as application/pdf
     /octet/blob      the bytes of docs/testPDF.pdf, no extension, as application/octet-stream
     /big             a generated 4 MiB HTML page
+    /bad/truncated.pdf  the first 40% of docs/testPDF.pdf, as application/pdf
+    /bad/garbage.pdf    64 KiB of fixed pseudo-random bytes, as application/pdf
+    /bad/empty          an empty 200 response, as text/html
 
 Usage: server.py [access.log] [port] [bind address]
 """
 
 import os
+import random
 import sys
 import time
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
@@ -31,6 +35,7 @@ with open(os.path.join(HERE, "fixture.pdf"), "rb") as fh:
 with open(os.path.join(HERE, "fixture.csv"), "rb") as fh:
     FIXTURE_CSV = fh.read()
 logfile = open(LOG_PATH, "a", buffering=1)
+GARBAGE = random.Random(4795).randbytes(64 * 1024)
 BIG_HTML = b"<html><body><h1>/big</h1>" + b"0123456789abcdef" * (4 * 1024 * 1024 // 16) + b"</body></html>"
 
 
@@ -65,6 +70,13 @@ class Handler(BaseHTTPRequestHandler):
                 body, ctype = doc_bytes(self.path), "application/pdf"
             elif self.path == "/octet/blob":
                 body, ctype = doc_bytes("testPDF.pdf"), "application/octet-stream"
+            elif self.path == "/bad/truncated.pdf":
+                pdf = doc_bytes("testPDF.pdf")
+                body, ctype = pdf[: len(pdf) * 2 // 5], "application/pdf"
+            elif self.path == "/bad/garbage.pdf":
+                body, ctype = GARBAGE, "application/pdf"
+            elif self.path == "/bad/empty":
+                body = b""
             elif self.path == "/big":
                 body = BIG_HTML
             else:

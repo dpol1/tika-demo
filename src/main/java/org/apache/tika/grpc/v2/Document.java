@@ -20,6 +20,7 @@ private static final long serialVersionUID = 0L;
     id_ = "";
     contentType_ = "";
     extra_ = java.util.Collections.emptyList();
+    extensions_ = java.util.Collections.emptyList();
   }
 
   @java.lang.Override
@@ -320,6 +321,77 @@ private static final long serialVersionUID = 0L;
     return extra_.get(index);
   }
 
+  public static final int EXTENSIONS_FIELD_NUMBER = 40;
+  @SuppressWarnings("serial")
+  private java.util.List<org.apache.tika.grpc.v2.ExtensionResult> extensions_;
+  /**
+   * <pre>
+   * Results that external parsers attached to this document (TIKA-4771). Tika's own
+   * parse never sets them: a composer appends them after calling Tika and the external
+   * parsers with the same bytes. One entry per contribution slot.
+   * </pre>
+   *
+   * <code>repeated .org.apache.tika.grpc.v2.ExtensionResult extensions = 40;</code>
+   */
+  @java.lang.Override
+  public java.util.List<org.apache.tika.grpc.v2.ExtensionResult> getExtensionsList() {
+    return extensions_;
+  }
+  /**
+   * <pre>
+   * Results that external parsers attached to this document (TIKA-4771). Tika's own
+   * parse never sets them: a composer appends them after calling Tika and the external
+   * parsers with the same bytes. One entry per contribution slot.
+   * </pre>
+   *
+   * <code>repeated .org.apache.tika.grpc.v2.ExtensionResult extensions = 40;</code>
+   */
+  @java.lang.Override
+  public java.util.List<? extends org.apache.tika.grpc.v2.ExtensionResultOrBuilder> 
+      getExtensionsOrBuilderList() {
+    return extensions_;
+  }
+  /**
+   * <pre>
+   * Results that external parsers attached to this document (TIKA-4771). Tika's own
+   * parse never sets them: a composer appends them after calling Tika and the external
+   * parsers with the same bytes. One entry per contribution slot.
+   * </pre>
+   *
+   * <code>repeated .org.apache.tika.grpc.v2.ExtensionResult extensions = 40;</code>
+   */
+  @java.lang.Override
+  public int getExtensionsCount() {
+    return extensions_.size();
+  }
+  /**
+   * <pre>
+   * Results that external parsers attached to this document (TIKA-4771). Tika's own
+   * parse never sets them: a composer appends them after calling Tika and the external
+   * parsers with the same bytes. One entry per contribution slot.
+   * </pre>
+   *
+   * <code>repeated .org.apache.tika.grpc.v2.ExtensionResult extensions = 40;</code>
+   */
+  @java.lang.Override
+  public org.apache.tika.grpc.v2.ExtensionResult getExtensions(int index) {
+    return extensions_.get(index);
+  }
+  /**
+   * <pre>
+   * Results that external parsers attached to this document (TIKA-4771). Tika's own
+   * parse never sets them: a composer appends them after calling Tika and the external
+   * parsers with the same bytes. One entry per contribution slot.
+   * </pre>
+   *
+   * <code>repeated .org.apache.tika.grpc.v2.ExtensionResult extensions = 40;</code>
+   */
+  @java.lang.Override
+  public org.apache.tika.grpc.v2.ExtensionResultOrBuilder getExtensionsOrBuilder(
+      int index) {
+    return extensions_.get(index);
+  }
+
   private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
@@ -355,6 +427,9 @@ private static final long serialVersionUID = 0L;
     for (int i = 0; i < extra_.size(); i++) {
       output.writeMessage(21, extra_.get(i));
     }
+    for (int i = 0; i < extensions_.size(); i++) {
+      output.writeMessage(40, extensions_.get(i));
+    }
     getUnknownFields().writeTo(output);
   }
 
@@ -389,6 +464,10 @@ private static final long serialVersionUID = 0L;
     for (int i = 0; i < extra_.size(); i++) {
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(21, extra_.get(i));
+    }
+    for (int i = 0; i < extensions_.size(); i++) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(40, extensions_.get(i));
     }
     size += getUnknownFields().getSerializedSize();
     memoizedSize = size;
@@ -431,6 +510,8 @@ private static final long serialVersionUID = 0L;
     }
     if (!getExtraList()
         .equals(other.getExtraList())) return false;
+    if (!getExtensionsList()
+        .equals(other.getExtensionsList())) return false;
     if (!getUnknownFields().equals(other.getUnknownFields())) return false;
     return true;
   }
@@ -465,6 +546,10 @@ private static final long serialVersionUID = 0L;
     if (getExtraCount() > 0) {
       hash = (37 * hash) + EXTRA_FIELD_NUMBER;
       hash = (53 * hash) + getExtraList().hashCode();
+    }
+    if (getExtensionsCount() > 0) {
+      hash = (37 * hash) + EXTENSIONS_FIELD_NUMBER;
+      hash = (53 * hash) + getExtensionsList().hashCode();
     }
     hash = (29 * hash) + getUnknownFields().hashCode();
     memoizedHashCode = hash;
@@ -601,6 +686,7 @@ private static final long serialVersionUID = 0L;
         getOriginFieldBuilder();
         getMetadataFieldBuilder();
         getExtraFieldBuilder();
+        getExtensionsFieldBuilder();
       }
     }
     @java.lang.Override
@@ -636,6 +722,13 @@ private static final long serialVersionUID = 0L;
         extraBuilder_.clear();
       }
       bitField0_ = (bitField0_ & ~0x00000040);
+      if (extensionsBuilder_ == null) {
+        extensions_ = java.util.Collections.emptyList();
+      } else {
+        extensions_ = null;
+        extensionsBuilder_.clear();
+      }
+      bitField0_ = (bitField0_ & ~0x00000080);
       return this;
     }
 
@@ -677,6 +770,15 @@ private static final long serialVersionUID = 0L;
         result.extra_ = extra_;
       } else {
         result.extra_ = extraBuilder_.build();
+      }
+      if (extensionsBuilder_ == null) {
+        if (((bitField0_ & 0x00000080) != 0)) {
+          extensions_ = java.util.Collections.unmodifiableList(extensions_);
+          bitField0_ = (bitField0_ & ~0x00000080);
+        }
+        result.extensions_ = extensions_;
+      } else {
+        result.extensions_ = extensionsBuilder_.build();
       }
     }
 
@@ -808,6 +910,32 @@ private static final long serialVersionUID = 0L;
           }
         }
       }
+      if (extensionsBuilder_ == null) {
+        if (!other.extensions_.isEmpty()) {
+          if (extensions_.isEmpty()) {
+            extensions_ = other.extensions_;
+            bitField0_ = (bitField0_ & ~0x00000080);
+          } else {
+            ensureExtensionsIsMutable();
+            extensions_.addAll(other.extensions_);
+          }
+          onChanged();
+        }
+      } else {
+        if (!other.extensions_.isEmpty()) {
+          if (extensionsBuilder_.isEmpty()) {
+            extensionsBuilder_.dispose();
+            extensionsBuilder_ = null;
+            extensions_ = other.extensions_;
+            bitField0_ = (bitField0_ & ~0x00000080);
+            extensionsBuilder_ = 
+              com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                 getExtensionsFieldBuilder() : null;
+          } else {
+            extensionsBuilder_.addAllMessages(other.extensions_);
+          }
+        }
+      }
       this.mergeUnknownFields(other.getUnknownFields());
       onChanged();
       return this;
@@ -885,6 +1013,19 @@ private static final long serialVersionUID = 0L;
               }
               break;
             } // case 170
+            case 322: {
+              org.apache.tika.grpc.v2.ExtensionResult m =
+                  input.readMessage(
+                      org.apache.tika.grpc.v2.ExtensionResult.parser(),
+                      extensionRegistry);
+              if (extensionsBuilder_ == null) {
+                ensureExtensionsIsMutable();
+                extensions_.add(m);
+              } else {
+                extensionsBuilder_.addMessage(m);
+              }
+              break;
+            } // case 322
             default: {
               if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                 done = true; // was an endgroup tag
@@ -1931,6 +2072,354 @@ private static final long serialVersionUID = 0L;
         extra_ = null;
       }
       return extraBuilder_;
+    }
+
+    private java.util.List<org.apache.tika.grpc.v2.ExtensionResult> extensions_ =
+      java.util.Collections.emptyList();
+    private void ensureExtensionsIsMutable() {
+      if (!((bitField0_ & 0x00000080) != 0)) {
+        extensions_ = new java.util.ArrayList<org.apache.tika.grpc.v2.ExtensionResult>(extensions_);
+        bitField0_ |= 0x00000080;
+       }
+    }
+
+    private com.google.protobuf.RepeatedFieldBuilderV3<
+        org.apache.tika.grpc.v2.ExtensionResult, org.apache.tika.grpc.v2.ExtensionResult.Builder, org.apache.tika.grpc.v2.ExtensionResultOrBuilder> extensionsBuilder_;
+
+    /**
+     * <pre>
+     * Results that external parsers attached to this document (TIKA-4771). Tika's own
+     * parse never sets them: a composer appends them after calling Tika and the external
+     * parsers with the same bytes. One entry per contribution slot.
+     * </pre>
+     *
+     * <code>repeated .org.apache.tika.grpc.v2.ExtensionResult extensions = 40;</code>
+     */
+    public java.util.List<org.apache.tika.grpc.v2.ExtensionResult> getExtensionsList() {
+      if (extensionsBuilder_ == null) {
+        return java.util.Collections.unmodifiableList(extensions_);
+      } else {
+        return extensionsBuilder_.getMessageList();
+      }
+    }
+    /**
+     * <pre>
+     * Results that external parsers attached to this document (TIKA-4771). Tika's own
+     * parse never sets them: a composer appends them after calling Tika and the external
+     * parsers with the same bytes. One entry per contribution slot.
+     * </pre>
+     *
+     * <code>repeated .org.apache.tika.grpc.v2.ExtensionResult extensions = 40;</code>
+     */
+    public int getExtensionsCount() {
+      if (extensionsBuilder_ == null) {
+        return extensions_.size();
+      } else {
+        return extensionsBuilder_.getCount();
+      }
+    }
+    /**
+     * <pre>
+     * Results that external parsers attached to this document (TIKA-4771). Tika's own
+     * parse never sets them: a composer appends them after calling Tika and the external
+     * parsers with the same bytes. One entry per contribution slot.
+     * </pre>
+     *
+     * <code>repeated .org.apache.tika.grpc.v2.ExtensionResult extensions = 40;</code>
+     */
+    public org.apache.tika.grpc.v2.ExtensionResult getExtensions(int index) {
+      if (extensionsBuilder_ == null) {
+        return extensions_.get(index);
+      } else {
+        return extensionsBuilder_.getMessage(index);
+      }
+    }
+    /**
+     * <pre>
+     * Results that external parsers attached to this document (TIKA-4771). Tika's own
+     * parse never sets them: a composer appends them after calling Tika and the external
+     * parsers with the same bytes. One entry per contribution slot.
+     * </pre>
+     *
+     * <code>repeated .org.apache.tika.grpc.v2.ExtensionResult extensions = 40;</code>
+     */
+    public Builder setExtensions(
+        int index, org.apache.tika.grpc.v2.ExtensionResult value) {
+      if (extensionsBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        ensureExtensionsIsMutable();
+        extensions_.set(index, value);
+        onChanged();
+      } else {
+        extensionsBuilder_.setMessage(index, value);
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * Results that external parsers attached to this document (TIKA-4771). Tika's own
+     * parse never sets them: a composer appends them after calling Tika and the external
+     * parsers with the same bytes. One entry per contribution slot.
+     * </pre>
+     *
+     * <code>repeated .org.apache.tika.grpc.v2.ExtensionResult extensions = 40;</code>
+     */
+    public Builder setExtensions(
+        int index, org.apache.tika.grpc.v2.ExtensionResult.Builder builderForValue) {
+      if (extensionsBuilder_ == null) {
+        ensureExtensionsIsMutable();
+        extensions_.set(index, builderForValue.build());
+        onChanged();
+      } else {
+        extensionsBuilder_.setMessage(index, builderForValue.build());
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * Results that external parsers attached to this document (TIKA-4771). Tika's own
+     * parse never sets them: a composer appends them after calling Tika and the external
+     * parsers with the same bytes. One entry per contribution slot.
+     * </pre>
+     *
+     * <code>repeated .org.apache.tika.grpc.v2.ExtensionResult extensions = 40;</code>
+     */
+    public Builder addExtensions(org.apache.tika.grpc.v2.ExtensionResult value) {
+      if (extensionsBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        ensureExtensionsIsMutable();
+        extensions_.add(value);
+        onChanged();
+      } else {
+        extensionsBuilder_.addMessage(value);
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * Results that external parsers attached to this document (TIKA-4771). Tika's own
+     * parse never sets them: a composer appends them after calling Tika and the external
+     * parsers with the same bytes. One entry per contribution slot.
+     * </pre>
+     *
+     * <code>repeated .org.apache.tika.grpc.v2.ExtensionResult extensions = 40;</code>
+     */
+    public Builder addExtensions(
+        int index, org.apache.tika.grpc.v2.ExtensionResult value) {
+      if (extensionsBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        ensureExtensionsIsMutable();
+        extensions_.add(index, value);
+        onChanged();
+      } else {
+        extensionsBuilder_.addMessage(index, value);
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * Results that external parsers attached to this document (TIKA-4771). Tika's own
+     * parse never sets them: a composer appends them after calling Tika and the external
+     * parsers with the same bytes. One entry per contribution slot.
+     * </pre>
+     *
+     * <code>repeated .org.apache.tika.grpc.v2.ExtensionResult extensions = 40;</code>
+     */
+    public Builder addExtensions(
+        org.apache.tika.grpc.v2.ExtensionResult.Builder builderForValue) {
+      if (extensionsBuilder_ == null) {
+        ensureExtensionsIsMutable();
+        extensions_.add(builderForValue.build());
+        onChanged();
+      } else {
+        extensionsBuilder_.addMessage(builderForValue.build());
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * Results that external parsers attached to this document (TIKA-4771). Tika's own
+     * parse never sets them: a composer appends them after calling Tika and the external
+     * parsers with the same bytes. One entry per contribution slot.
+     * </pre>
+     *
+     * <code>repeated .org.apache.tika.grpc.v2.ExtensionResult extensions = 40;</code>
+     */
+    public Builder addExtensions(
+        int index, org.apache.tika.grpc.v2.ExtensionResult.Builder builderForValue) {
+      if (extensionsBuilder_ == null) {
+        ensureExtensionsIsMutable();
+        extensions_.add(index, builderForValue.build());
+        onChanged();
+      } else {
+        extensionsBuilder_.addMessage(index, builderForValue.build());
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * Results that external parsers attached to this document (TIKA-4771). Tika's own
+     * parse never sets them: a composer appends them after calling Tika and the external
+     * parsers with the same bytes. One entry per contribution slot.
+     * </pre>
+     *
+     * <code>repeated .org.apache.tika.grpc.v2.ExtensionResult extensions = 40;</code>
+     */
+    public Builder addAllExtensions(
+        java.lang.Iterable<? extends org.apache.tika.grpc.v2.ExtensionResult> values) {
+      if (extensionsBuilder_ == null) {
+        ensureExtensionsIsMutable();
+        com.google.protobuf.AbstractMessageLite.Builder.addAll(
+            values, extensions_);
+        onChanged();
+      } else {
+        extensionsBuilder_.addAllMessages(values);
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * Results that external parsers attached to this document (TIKA-4771). Tika's own
+     * parse never sets them: a composer appends them after calling Tika and the external
+     * parsers with the same bytes. One entry per contribution slot.
+     * </pre>
+     *
+     * <code>repeated .org.apache.tika.grpc.v2.ExtensionResult extensions = 40;</code>
+     */
+    public Builder clearExtensions() {
+      if (extensionsBuilder_ == null) {
+        extensions_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000080);
+        onChanged();
+      } else {
+        extensionsBuilder_.clear();
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * Results that external parsers attached to this document (TIKA-4771). Tika's own
+     * parse never sets them: a composer appends them after calling Tika and the external
+     * parsers with the same bytes. One entry per contribution slot.
+     * </pre>
+     *
+     * <code>repeated .org.apache.tika.grpc.v2.ExtensionResult extensions = 40;</code>
+     */
+    public Builder removeExtensions(int index) {
+      if (extensionsBuilder_ == null) {
+        ensureExtensionsIsMutable();
+        extensions_.remove(index);
+        onChanged();
+      } else {
+        extensionsBuilder_.remove(index);
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * Results that external parsers attached to this document (TIKA-4771). Tika's own
+     * parse never sets them: a composer appends them after calling Tika and the external
+     * parsers with the same bytes. One entry per contribution slot.
+     * </pre>
+     *
+     * <code>repeated .org.apache.tika.grpc.v2.ExtensionResult extensions = 40;</code>
+     */
+    public org.apache.tika.grpc.v2.ExtensionResult.Builder getExtensionsBuilder(
+        int index) {
+      return getExtensionsFieldBuilder().getBuilder(index);
+    }
+    /**
+     * <pre>
+     * Results that external parsers attached to this document (TIKA-4771). Tika's own
+     * parse never sets them: a composer appends them after calling Tika and the external
+     * parsers with the same bytes. One entry per contribution slot.
+     * </pre>
+     *
+     * <code>repeated .org.apache.tika.grpc.v2.ExtensionResult extensions = 40;</code>
+     */
+    public org.apache.tika.grpc.v2.ExtensionResultOrBuilder getExtensionsOrBuilder(
+        int index) {
+      if (extensionsBuilder_ == null) {
+        return extensions_.get(index);  } else {
+        return extensionsBuilder_.getMessageOrBuilder(index);
+      }
+    }
+    /**
+     * <pre>
+     * Results that external parsers attached to this document (TIKA-4771). Tika's own
+     * parse never sets them: a composer appends them after calling Tika and the external
+     * parsers with the same bytes. One entry per contribution slot.
+     * </pre>
+     *
+     * <code>repeated .org.apache.tika.grpc.v2.ExtensionResult extensions = 40;</code>
+     */
+    public java.util.List<? extends org.apache.tika.grpc.v2.ExtensionResultOrBuilder> 
+         getExtensionsOrBuilderList() {
+      if (extensionsBuilder_ != null) {
+        return extensionsBuilder_.getMessageOrBuilderList();
+      } else {
+        return java.util.Collections.unmodifiableList(extensions_);
+      }
+    }
+    /**
+     * <pre>
+     * Results that external parsers attached to this document (TIKA-4771). Tika's own
+     * parse never sets them: a composer appends them after calling Tika and the external
+     * parsers with the same bytes. One entry per contribution slot.
+     * </pre>
+     *
+     * <code>repeated .org.apache.tika.grpc.v2.ExtensionResult extensions = 40;</code>
+     */
+    public org.apache.tika.grpc.v2.ExtensionResult.Builder addExtensionsBuilder() {
+      return getExtensionsFieldBuilder().addBuilder(
+          org.apache.tika.grpc.v2.ExtensionResult.getDefaultInstance());
+    }
+    /**
+     * <pre>
+     * Results that external parsers attached to this document (TIKA-4771). Tika's own
+     * parse never sets them: a composer appends them after calling Tika and the external
+     * parsers with the same bytes. One entry per contribution slot.
+     * </pre>
+     *
+     * <code>repeated .org.apache.tika.grpc.v2.ExtensionResult extensions = 40;</code>
+     */
+    public org.apache.tika.grpc.v2.ExtensionResult.Builder addExtensionsBuilder(
+        int index) {
+      return getExtensionsFieldBuilder().addBuilder(
+          index, org.apache.tika.grpc.v2.ExtensionResult.getDefaultInstance());
+    }
+    /**
+     * <pre>
+     * Results that external parsers attached to this document (TIKA-4771). Tika's own
+     * parse never sets them: a composer appends them after calling Tika and the external
+     * parsers with the same bytes. One entry per contribution slot.
+     * </pre>
+     *
+     * <code>repeated .org.apache.tika.grpc.v2.ExtensionResult extensions = 40;</code>
+     */
+    public java.util.List<org.apache.tika.grpc.v2.ExtensionResult.Builder> 
+         getExtensionsBuilderList() {
+      return getExtensionsFieldBuilder().getBuilderList();
+    }
+    private com.google.protobuf.RepeatedFieldBuilderV3<
+        org.apache.tika.grpc.v2.ExtensionResult, org.apache.tika.grpc.v2.ExtensionResult.Builder, org.apache.tika.grpc.v2.ExtensionResultOrBuilder> 
+        getExtensionsFieldBuilder() {
+      if (extensionsBuilder_ == null) {
+        extensionsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+            org.apache.tika.grpc.v2.ExtensionResult, org.apache.tika.grpc.v2.ExtensionResult.Builder, org.apache.tika.grpc.v2.ExtensionResultOrBuilder>(
+                extensions_,
+                ((bitField0_ & 0x00000080) != 0),
+                getParentForChildren(),
+                isClean());
+        extensions_ = null;
+      }
+      return extensionsBuilder_;
     }
     @java.lang.Override
     public final Builder setUnknownFields(

@@ -52,7 +52,7 @@ private static final long serialVersionUID = 0L;
   /**
    * <pre>
    * The caller's id for this request, returned unchanged as Document.id and
-   * ParseBytesReply.correlation_id.
+   * ParseBytesResponse.correlation_id.
    * </pre>
    *
    * <code>string correlation_id = 1;</code>
@@ -74,7 +74,7 @@ private static final long serialVersionUID = 0L;
   /**
    * <pre>
    * The caller's id for this request, returned unchanged as Document.id and
-   * ParseBytesReply.correlation_id.
+   * ParseBytesResponse.correlation_id.
    * </pre>
    *
    * <code>string correlation_id = 1;</code>
@@ -850,7 +850,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * The caller's id for this request, returned unchanged as Document.id and
-     * ParseBytesReply.correlation_id.
+     * ParseBytesResponse.correlation_id.
      * </pre>
      *
      * <code>string correlation_id = 1;</code>
@@ -871,7 +871,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * The caller's id for this request, returned unchanged as Document.id and
-     * ParseBytesReply.correlation_id.
+     * ParseBytesResponse.correlation_id.
      * </pre>
      *
      * <code>string correlation_id = 1;</code>
@@ -893,7 +893,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * The caller's id for this request, returned unchanged as Document.id and
-     * ParseBytesReply.correlation_id.
+     * ParseBytesResponse.correlation_id.
      * </pre>
      *
      * <code>string correlation_id = 1;</code>
@@ -911,7 +911,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * The caller's id for this request, returned unchanged as Document.id and
-     * ParseBytesReply.correlation_id.
+     * ParseBytesResponse.correlation_id.
      * </pre>
      *
      * <code>string correlation_id = 1;</code>
@@ -926,7 +926,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * The caller's id for this request, returned unchanged as Document.id and
-     * ParseBytesReply.correlation_id.
+     * ParseBytesResponse.correlation_id.
      * </pre>
      *
      * <code>string correlation_id = 1;</code>
