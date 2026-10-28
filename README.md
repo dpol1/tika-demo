@@ -3,7 +3,8 @@
 StormCrawler fetches pages, PDFs and a CSV file from a local web server and sends their
 bytes to Apache Tika over gRPC. Tika's `ParseBytes` call parses those bytes and returns a
 typed `Document` with metadata and parse status. The bolt that talks to Tika uses only the
-classes generated from Tika's proto files.
+classes generated from Tika's proto files, and adds Tika's results to the crawl's metadata
+as `tika.*` fields, which the indexer prints.
 
 A crawler already holds the bytes of every page it fetches. With `ParseBytes`, Tika parses
 those exact bytes and never downloads the page a second time. The checker, `verify.py`,
@@ -34,18 +35,27 @@ flowchart LR
     seeds --> frontier[URLFrontier]
     frontier --> fetcher[StormCrawler fetcher]
     web[local web server] -- pages, PDFs, CSV --> fetcher
-    fetcher --> jsoup[JSoupParserBolt] --> indexer["indexer (stdout)"]
     fetcher --> bolt[ParseBytesBolt]
     bolt -- "ParseBytes (gRPC)" --> tika[Tika]
     tika -- Document --> bolt
+    bolt -- "tika.* metadata" --> jsoup[JSoupParserBolt] --> indexer["indexer (stdout)"]
     bolt --> results["out/results.jsonl"]
     results --> verify[verify.py]
+    indexer -- out/index.log --> verify
     web -- access log --> verify
 ```
 
+ParseBytesBolt sits between the fetcher and `JSoupParserBolt`, which still discovers the links
+of HTML pages. A parse failure comes back inside the `Document` (status and errors), so that
+document still goes on to the indexer. When Tika is `UNAVAILABLE`, the bolt retries twice,
+waiting 1 and then 2 seconds, and then fails the tuple so URLFrontier hands the URL out again
+instead of the document being lost. An empty body is not sent: `ParseBytes` rejects empty
+content.
+
 ## What the checker verifies
 
-- Each seeded or discovered URL produces one result, with no RPC or parse errors.
+- Each seeded or discovered URL produces one result, with no RPC errors and, apart from the
+  documents under `/bad/`, no parse errors.
 - Correlation IDs, source URLs, byte sizes and truncation flags match the request.
 - The SHA-256 that ParseBytesBolt computes equals `origin.sha256` in Tika's reply; for the
   PDFs and the CSV file, it also equals the SHA-256 of the file on disk.
@@ -55,14 +65,25 @@ flowchart LR
 - The PDF with attachments and the PDF with an owner password parse successfully.
 - `fixture.csv` has a header line and 11 data rows. Tika counts the header, so `csv:num-rows`
   is the integer 12.
+- `/bad/garbage.pdf`, random bytes served as a PDF, comes back `STATUS_FAILED` with the
+  PDFParser's exception in `errors`.
+- `/bad/truncated.pdf`, the first 40% of `testPDF.pdf`, parses as a PDF with
+  `STATUS_SUCCESS`: PDFBox recovers the page, but the title at the end of the file is lost.
+- `/bad/empty` is not sent to Tika.
+- The indexer's output carries `tika.title`, `tika.status` and `tika.pages` for `testPDF.pdf`,
+  and `tika.status` `STATUS_FAILED` with `tika.errors` for the broken PDF.
 
 See [`verify.py`](verify.py) for the checks and [`sample-run/`](sample-run/) for a recorded run.
 
 ## What this demo does not show
 
 - `Document` carries no extracted text and no embedded documents. StormCrawler's own
-  `JSoupParserBolt` still extracts the text and links of HTML pages; `ParseBytesBolt` only
-  writes Tika's replies to `out/results.jsonl`.
+  `JSoupParserBolt` still extracts the text and links of HTML pages; `ParseBytesBolt` adds
+  Tika's metadata only.
+- A failed parse returns no `origin.sha256` and no content type, so the checksum check skips
+  failed documents.
+- A truncated PDF that PDFBox can partly read comes back `STATUS_SUCCESS`, not
+  `STATUS_PARTIAL`, even with the crawler's `truncated` flag set.
 - The request carries no content type or charset, so Tika detects both from the bytes. ASCII
   HTML without a declared charset comes back as `text/html; charset=windows-1252`.
 - For the PDF with attachments, `parsers_used` lists the parsers that read the embedded files,
@@ -145,7 +166,8 @@ The `run` workflow, started by hand from the Actions tab, builds Tika from the `
 branch, runs `run.sh` and uploads `out/` as a workflow artifact.
 
 When the `tika-demo` branch changes its protos, copy them into `proto/`, run `gen-stubs.sh` and
-update the commit in [NOTICE](NOTICE).
+update the commit in [NOTICE](NOTICE). `document.proto` imports `google/protobuf/any.proto`,
+which is copied into `proto/` from protobuf-java 3.25.x.
 
 ## License
 

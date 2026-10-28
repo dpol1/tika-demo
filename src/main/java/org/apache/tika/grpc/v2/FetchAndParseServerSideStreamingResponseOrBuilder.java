@@ -4,21 +4,21 @@
 // Protobuf Java Version: 3.25.8
 package org.apache.tika.grpc.v2;
 
-public interface ParseBytesReplyOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:org.apache.tika.grpc.v2.ParseBytesReply)
+public interface FetchAndParseServerSideStreamingResponseOrBuilder extends
+    // @@protoc_insertion_point(interface_extends:org.apache.tika.grpc.v2.FetchAndParseServerSideStreamingResponse)
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>string correlation_id = 1;</code>
-   * @return The correlationId.
+   * <code>string fetch_key = 1;</code>
+   * @return The fetchKey.
    */
-  java.lang.String getCorrelationId();
+  java.lang.String getFetchKey();
   /**
-   * <code>string correlation_id = 1;</code>
-   * @return The bytes for correlationId.
+   * <code>string fetch_key = 1;</code>
+   * @return The bytes for fetchKey.
    */
   com.google.protobuf.ByteString
-      getCorrelationIdBytes();
+      getFetchKeyBytes();
 
   /**
    * <code>.org.apache.tika.grpc.v2.Document document = 2;</code>

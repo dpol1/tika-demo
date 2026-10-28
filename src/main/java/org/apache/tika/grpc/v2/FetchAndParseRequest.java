@@ -20,7 +20,6 @@ private static final long serialVersionUID = 0L;
     fetcherId_ = "";
     fetchKey_ = "";
     additionalFetchConfigJson_ = "";
-    emitterId_ = "";
     parseContextJson_ = "";
   }
 
@@ -169,45 +168,6 @@ private static final long serialVersionUID = 0L;
     }
   }
 
-  public static final int EMITTER_ID_FIELD_NUMBER = 4;
-  @SuppressWarnings("serial")
-  private volatile java.lang.Object emitterId_ = "";
-  /**
-   * <code>string emitter_id = 4;</code>
-   * @return The emitterId.
-   */
-  @java.lang.Override
-  public java.lang.String getEmitterId() {
-    java.lang.Object ref = emitterId_;
-    if (ref instanceof java.lang.String) {
-      return (java.lang.String) ref;
-    } else {
-      com.google.protobuf.ByteString bs = 
-          (com.google.protobuf.ByteString) ref;
-      java.lang.String s = bs.toStringUtf8();
-      emitterId_ = s;
-      return s;
-    }
-  }
-  /**
-   * <code>string emitter_id = 4;</code>
-   * @return The bytes for emitterId.
-   */
-  @java.lang.Override
-  public com.google.protobuf.ByteString
-      getEmitterIdBytes() {
-    java.lang.Object ref = emitterId_;
-    if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b = 
-          com.google.protobuf.ByteString.copyFromUtf8(
-              (java.lang.String) ref);
-      emitterId_ = b;
-      return b;
-    } else {
-      return (com.google.protobuf.ByteString) ref;
-    }
-  }
-
   public static final int PARSE_CONTEXT_JSON_FIELD_NUMBER = 5;
   @SuppressWarnings("serial")
   private volatile java.lang.Object parseContextJson_ = "";
@@ -278,9 +238,6 @@ private static final long serialVersionUID = 0L;
     if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(additionalFetchConfigJson_)) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 3, additionalFetchConfigJson_);
     }
-    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(emitterId_)) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 4, emitterId_);
-    }
     if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(parseContextJson_)) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 5, parseContextJson_);
     }
@@ -301,9 +258,6 @@ private static final long serialVersionUID = 0L;
     }
     if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(additionalFetchConfigJson_)) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, additionalFetchConfigJson_);
-    }
-    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(emitterId_)) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, emitterId_);
     }
     if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(parseContextJson_)) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, parseContextJson_);
@@ -329,8 +283,6 @@ private static final long serialVersionUID = 0L;
         .equals(other.getFetchKey())) return false;
     if (!getAdditionalFetchConfigJson()
         .equals(other.getAdditionalFetchConfigJson())) return false;
-    if (!getEmitterId()
-        .equals(other.getEmitterId())) return false;
     if (!getParseContextJson()
         .equals(other.getParseContextJson())) return false;
     if (!getUnknownFields().equals(other.getUnknownFields())) return false;
@@ -350,8 +302,6 @@ private static final long serialVersionUID = 0L;
     hash = (53 * hash) + getFetchKey().hashCode();
     hash = (37 * hash) + ADDITIONAL_FETCH_CONFIG_JSON_FIELD_NUMBER;
     hash = (53 * hash) + getAdditionalFetchConfigJson().hashCode();
-    hash = (37 * hash) + EMITTER_ID_FIELD_NUMBER;
-    hash = (53 * hash) + getEmitterId().hashCode();
     hash = (37 * hash) + PARSE_CONTEXT_JSON_FIELD_NUMBER;
     hash = (53 * hash) + getParseContextJson().hashCode();
     hash = (29 * hash) + getUnknownFields().hashCode();
@@ -488,7 +438,6 @@ private static final long serialVersionUID = 0L;
       fetcherId_ = "";
       fetchKey_ = "";
       additionalFetchConfigJson_ = "";
-      emitterId_ = "";
       parseContextJson_ = "";
       return this;
     }
@@ -533,9 +482,6 @@ private static final long serialVersionUID = 0L;
         result.additionalFetchConfigJson_ = additionalFetchConfigJson_;
       }
       if (((from_bitField0_ & 0x00000008) != 0)) {
-        result.emitterId_ = emitterId_;
-      }
-      if (((from_bitField0_ & 0x00000010) != 0)) {
         result.parseContextJson_ = parseContextJson_;
       }
     }
@@ -599,14 +545,9 @@ private static final long serialVersionUID = 0L;
         bitField0_ |= 0x00000004;
         onChanged();
       }
-      if (!other.getEmitterId().isEmpty()) {
-        emitterId_ = other.emitterId_;
-        bitField0_ |= 0x00000008;
-        onChanged();
-      }
       if (!other.getParseContextJson().isEmpty()) {
         parseContextJson_ = other.parseContextJson_;
-        bitField0_ |= 0x00000010;
+        bitField0_ |= 0x00000008;
         onChanged();
       }
       this.mergeUnknownFields(other.getUnknownFields());
@@ -650,14 +591,9 @@ private static final long serialVersionUID = 0L;
               bitField0_ |= 0x00000004;
               break;
             } // case 26
-            case 34: {
-              emitterId_ = input.readStringRequireUtf8();
-              bitField0_ |= 0x00000008;
-              break;
-            } // case 34
             case 42: {
               parseContextJson_ = input.readStringRequireUtf8();
-              bitField0_ |= 0x00000010;
+              bitField0_ |= 0x00000008;
               break;
             } // case 42
             default: {
@@ -913,78 +849,6 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private java.lang.Object emitterId_ = "";
-    /**
-     * <code>string emitter_id = 4;</code>
-     * @return The emitterId.
-     */
-    public java.lang.String getEmitterId() {
-      java.lang.Object ref = emitterId_;
-      if (!(ref instanceof java.lang.String)) {
-        com.google.protobuf.ByteString bs =
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        emitterId_ = s;
-        return s;
-      } else {
-        return (java.lang.String) ref;
-      }
-    }
-    /**
-     * <code>string emitter_id = 4;</code>
-     * @return The bytes for emitterId.
-     */
-    public com.google.protobuf.ByteString
-        getEmitterIdBytes() {
-      java.lang.Object ref = emitterId_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        emitterId_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-    /**
-     * <code>string emitter_id = 4;</code>
-     * @param value The emitterId to set.
-     * @return This builder for chaining.
-     */
-    public Builder setEmitterId(
-        java.lang.String value) {
-      if (value == null) { throw new NullPointerException(); }
-      emitterId_ = value;
-      bitField0_ |= 0x00000008;
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>string emitter_id = 4;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearEmitterId() {
-      emitterId_ = getDefaultInstance().getEmitterId();
-      bitField0_ = (bitField0_ & ~0x00000008);
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>string emitter_id = 4;</code>
-     * @param value The bytes for emitterId to set.
-     * @return This builder for chaining.
-     */
-    public Builder setEmitterIdBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) { throw new NullPointerException(); }
-      checkByteStringIsUtf8(value);
-      emitterId_ = value;
-      bitField0_ |= 0x00000008;
-      onChanged();
-      return this;
-    }
-
     private java.lang.Object parseContextJson_ = "";
     /**
      * <pre>
@@ -1040,7 +904,7 @@ private static final long serialVersionUID = 0L;
         java.lang.String value) {
       if (value == null) { throw new NullPointerException(); }
       parseContextJson_ = value;
-      bitField0_ |= 0x00000010;
+      bitField0_ |= 0x00000008;
       onChanged();
       return this;
     }
@@ -1054,7 +918,7 @@ private static final long serialVersionUID = 0L;
      */
     public Builder clearParseContextJson() {
       parseContextJson_ = getDefaultInstance().getParseContextJson();
-      bitField0_ = (bitField0_ & ~0x00000010);
+      bitField0_ = (bitField0_ & ~0x00000008);
       onChanged();
       return this;
     }
@@ -1072,7 +936,7 @@ private static final long serialVersionUID = 0L;
       if (value == null) { throw new NullPointerException(); }
       checkByteStringIsUtf8(value);
       parseContextJson_ = value;
-      bitField0_ |= 0x00000010;
+      bitField0_ |= 0x00000008;
       onChanged();
       return this;
     }

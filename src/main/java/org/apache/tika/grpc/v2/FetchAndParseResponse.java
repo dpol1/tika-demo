@@ -5,18 +5,18 @@
 package org.apache.tika.grpc.v2;
 
 /**
- * Protobuf type {@code org.apache.tika.grpc.v2.FetchAndParseReply}
+ * Protobuf type {@code org.apache.tika.grpc.v2.FetchAndParseResponse}
  */
-public final class FetchAndParseReply extends
+public final class FetchAndParseResponse extends
     com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:org.apache.tika.grpc.v2.FetchAndParseReply)
-    FetchAndParseReplyOrBuilder {
+    // @@protoc_insertion_point(message_implements:org.apache.tika.grpc.v2.FetchAndParseResponse)
+    FetchAndParseResponseOrBuilder {
 private static final long serialVersionUID = 0L;
-  // Use FetchAndParseReply.newBuilder() to construct.
-  private FetchAndParseReply(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+  // Use FetchAndParseResponse.newBuilder() to construct.
+  private FetchAndParseResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
   }
-  private FetchAndParseReply() {
+  private FetchAndParseResponse() {
     fetchKey_ = "";
   }
 
@@ -24,20 +24,20 @@ private static final long serialVersionUID = 0L;
   @SuppressWarnings({"unused"})
   protected java.lang.Object newInstance(
       UnusedPrivateParameter unused) {
-    return new FetchAndParseReply();
+    return new FetchAndParseResponse();
   }
 
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return org.apache.tika.grpc.v2.TikaV2Proto.internal_static_org_apache_tika_grpc_v2_FetchAndParseReply_descriptor;
+    return org.apache.tika.grpc.v2.TikaV2Proto.internal_static_org_apache_tika_grpc_v2_FetchAndParseResponse_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return org.apache.tika.grpc.v2.TikaV2Proto.internal_static_org_apache_tika_grpc_v2_FetchAndParseReply_fieldAccessorTable
+    return org.apache.tika.grpc.v2.TikaV2Proto.internal_static_org_apache_tika_grpc_v2_FetchAndParseResponse_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            org.apache.tika.grpc.v2.FetchAndParseReply.class, org.apache.tika.grpc.v2.FetchAndParseReply.Builder.class);
+            org.apache.tika.grpc.v2.FetchAndParseResponse.class, org.apache.tika.grpc.v2.FetchAndParseResponse.Builder.class);
   }
 
   private int bitField0_;
@@ -152,10 +152,10 @@ private static final long serialVersionUID = 0L;
     if (obj == this) {
      return true;
     }
-    if (!(obj instanceof org.apache.tika.grpc.v2.FetchAndParseReply)) {
+    if (!(obj instanceof org.apache.tika.grpc.v2.FetchAndParseResponse)) {
       return super.equals(obj);
     }
-    org.apache.tika.grpc.v2.FetchAndParseReply other = (org.apache.tika.grpc.v2.FetchAndParseReply) obj;
+    org.apache.tika.grpc.v2.FetchAndParseResponse other = (org.apache.tika.grpc.v2.FetchAndParseResponse) obj;
 
     if (!getFetchKey()
         .equals(other.getFetchKey())) return false;
@@ -186,44 +186,44 @@ private static final long serialVersionUID = 0L;
     return hash;
   }
 
-  public static org.apache.tika.grpc.v2.FetchAndParseReply parseFrom(
+  public static org.apache.tika.grpc.v2.FetchAndParseResponse parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static org.apache.tika.grpc.v2.FetchAndParseReply parseFrom(
+  public static org.apache.tika.grpc.v2.FetchAndParseResponse parseFrom(
       java.nio.ByteBuffer data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static org.apache.tika.grpc.v2.FetchAndParseReply parseFrom(
+  public static org.apache.tika.grpc.v2.FetchAndParseResponse parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static org.apache.tika.grpc.v2.FetchAndParseReply parseFrom(
+  public static org.apache.tika.grpc.v2.FetchAndParseResponse parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static org.apache.tika.grpc.v2.FetchAndParseReply parseFrom(byte[] data)
+  public static org.apache.tika.grpc.v2.FetchAndParseResponse parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static org.apache.tika.grpc.v2.FetchAndParseReply parseFrom(
+  public static org.apache.tika.grpc.v2.FetchAndParseResponse parseFrom(
       byte[] data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static org.apache.tika.grpc.v2.FetchAndParseReply parseFrom(java.io.InputStream input)
+  public static org.apache.tika.grpc.v2.FetchAndParseResponse parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static org.apache.tika.grpc.v2.FetchAndParseReply parseFrom(
+  public static org.apache.tika.grpc.v2.FetchAndParseResponse parseFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -231,26 +231,26 @@ private static final long serialVersionUID = 0L;
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
 
-  public static org.apache.tika.grpc.v2.FetchAndParseReply parseDelimitedFrom(java.io.InputStream input)
+  public static org.apache.tika.grpc.v2.FetchAndParseResponse parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input);
   }
 
-  public static org.apache.tika.grpc.v2.FetchAndParseReply parseDelimitedFrom(
+  public static org.apache.tika.grpc.v2.FetchAndParseResponse parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
   }
-  public static org.apache.tika.grpc.v2.FetchAndParseReply parseFrom(
+  public static org.apache.tika.grpc.v2.FetchAndParseResponse parseFrom(
       com.google.protobuf.CodedInputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static org.apache.tika.grpc.v2.FetchAndParseReply parseFrom(
+  public static org.apache.tika.grpc.v2.FetchAndParseResponse parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -263,7 +263,7 @@ private static final long serialVersionUID = 0L;
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
   }
-  public static Builder newBuilder(org.apache.tika.grpc.v2.FetchAndParseReply prototype) {
+  public static Builder newBuilder(org.apache.tika.grpc.v2.FetchAndParseResponse prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
   @java.lang.Override
@@ -279,26 +279,26 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
-   * Protobuf type {@code org.apache.tika.grpc.v2.FetchAndParseReply}
+   * Protobuf type {@code org.apache.tika.grpc.v2.FetchAndParseResponse}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:org.apache.tika.grpc.v2.FetchAndParseReply)
-      org.apache.tika.grpc.v2.FetchAndParseReplyOrBuilder {
+      // @@protoc_insertion_point(builder_implements:org.apache.tika.grpc.v2.FetchAndParseResponse)
+      org.apache.tika.grpc.v2.FetchAndParseResponseOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return org.apache.tika.grpc.v2.TikaV2Proto.internal_static_org_apache_tika_grpc_v2_FetchAndParseReply_descriptor;
+      return org.apache.tika.grpc.v2.TikaV2Proto.internal_static_org_apache_tika_grpc_v2_FetchAndParseResponse_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return org.apache.tika.grpc.v2.TikaV2Proto.internal_static_org_apache_tika_grpc_v2_FetchAndParseReply_fieldAccessorTable
+      return org.apache.tika.grpc.v2.TikaV2Proto.internal_static_org_apache_tika_grpc_v2_FetchAndParseResponse_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              org.apache.tika.grpc.v2.FetchAndParseReply.class, org.apache.tika.grpc.v2.FetchAndParseReply.Builder.class);
+              org.apache.tika.grpc.v2.FetchAndParseResponse.class, org.apache.tika.grpc.v2.FetchAndParseResponse.Builder.class);
     }
 
-    // Construct using org.apache.tika.grpc.v2.FetchAndParseReply.newBuilder()
+    // Construct using org.apache.tika.grpc.v2.FetchAndParseResponse.newBuilder()
     private Builder() {
       maybeForceBuilderInitialization();
     }
@@ -330,17 +330,17 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return org.apache.tika.grpc.v2.TikaV2Proto.internal_static_org_apache_tika_grpc_v2_FetchAndParseReply_descriptor;
+      return org.apache.tika.grpc.v2.TikaV2Proto.internal_static_org_apache_tika_grpc_v2_FetchAndParseResponse_descriptor;
     }
 
     @java.lang.Override
-    public org.apache.tika.grpc.v2.FetchAndParseReply getDefaultInstanceForType() {
-      return org.apache.tika.grpc.v2.FetchAndParseReply.getDefaultInstance();
+    public org.apache.tika.grpc.v2.FetchAndParseResponse getDefaultInstanceForType() {
+      return org.apache.tika.grpc.v2.FetchAndParseResponse.getDefaultInstance();
     }
 
     @java.lang.Override
-    public org.apache.tika.grpc.v2.FetchAndParseReply build() {
-      org.apache.tika.grpc.v2.FetchAndParseReply result = buildPartial();
+    public org.apache.tika.grpc.v2.FetchAndParseResponse build() {
+      org.apache.tika.grpc.v2.FetchAndParseResponse result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
@@ -348,14 +348,14 @@ private static final long serialVersionUID = 0L;
     }
 
     @java.lang.Override
-    public org.apache.tika.grpc.v2.FetchAndParseReply buildPartial() {
-      org.apache.tika.grpc.v2.FetchAndParseReply result = new org.apache.tika.grpc.v2.FetchAndParseReply(this);
+    public org.apache.tika.grpc.v2.FetchAndParseResponse buildPartial() {
+      org.apache.tika.grpc.v2.FetchAndParseResponse result = new org.apache.tika.grpc.v2.FetchAndParseResponse(this);
       if (bitField0_ != 0) { buildPartial0(result); }
       onBuilt();
       return result;
     }
 
-    private void buildPartial0(org.apache.tika.grpc.v2.FetchAndParseReply result) {
+    private void buildPartial0(org.apache.tika.grpc.v2.FetchAndParseResponse result) {
       int from_bitField0_ = bitField0_;
       if (((from_bitField0_ & 0x00000001) != 0)) {
         result.fetchKey_ = fetchKey_;
@@ -404,16 +404,16 @@ private static final long serialVersionUID = 0L;
     }
     @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof org.apache.tika.grpc.v2.FetchAndParseReply) {
-        return mergeFrom((org.apache.tika.grpc.v2.FetchAndParseReply)other);
+      if (other instanceof org.apache.tika.grpc.v2.FetchAndParseResponse) {
+        return mergeFrom((org.apache.tika.grpc.v2.FetchAndParseResponse)other);
       } else {
         super.mergeFrom(other);
         return this;
       }
     }
 
-    public Builder mergeFrom(org.apache.tika.grpc.v2.FetchAndParseReply other) {
-      if (other == org.apache.tika.grpc.v2.FetchAndParseReply.getDefaultInstance()) return this;
+    public Builder mergeFrom(org.apache.tika.grpc.v2.FetchAndParseResponse other) {
+      if (other == org.apache.tika.grpc.v2.FetchAndParseResponse.getDefaultInstance()) return this;
       if (!other.getFetchKey().isEmpty()) {
         fetchKey_ = other.fetchKey_;
         bitField0_ |= 0x00000001;
@@ -682,23 +682,23 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    // @@protoc_insertion_point(builder_scope:org.apache.tika.grpc.v2.FetchAndParseReply)
+    // @@protoc_insertion_point(builder_scope:org.apache.tika.grpc.v2.FetchAndParseResponse)
   }
 
-  // @@protoc_insertion_point(class_scope:org.apache.tika.grpc.v2.FetchAndParseReply)
-  private static final org.apache.tika.grpc.v2.FetchAndParseReply DEFAULT_INSTANCE;
+  // @@protoc_insertion_point(class_scope:org.apache.tika.grpc.v2.FetchAndParseResponse)
+  private static final org.apache.tika.grpc.v2.FetchAndParseResponse DEFAULT_INSTANCE;
   static {
-    DEFAULT_INSTANCE = new org.apache.tika.grpc.v2.FetchAndParseReply();
+    DEFAULT_INSTANCE = new org.apache.tika.grpc.v2.FetchAndParseResponse();
   }
 
-  public static org.apache.tika.grpc.v2.FetchAndParseReply getDefaultInstance() {
+  public static org.apache.tika.grpc.v2.FetchAndParseResponse getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
 
-  private static final com.google.protobuf.Parser<FetchAndParseReply>
-      PARSER = new com.google.protobuf.AbstractParser<FetchAndParseReply>() {
+  private static final com.google.protobuf.Parser<FetchAndParseResponse>
+      PARSER = new com.google.protobuf.AbstractParser<FetchAndParseResponse>() {
     @java.lang.Override
-    public FetchAndParseReply parsePartialFrom(
+    public FetchAndParseResponse parsePartialFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -717,17 +717,17 @@ private static final long serialVersionUID = 0L;
     }
   };
 
-  public static com.google.protobuf.Parser<FetchAndParseReply> parser() {
+  public static com.google.protobuf.Parser<FetchAndParseResponse> parser() {
     return PARSER;
   }
 
   @java.lang.Override
-  public com.google.protobuf.Parser<FetchAndParseReply> getParserForType() {
+  public com.google.protobuf.Parser<FetchAndParseResponse> getParserForType() {
     return PARSER;
   }
 
   @java.lang.Override
-  public org.apache.tika.grpc.v2.FetchAndParseReply getDefaultInstanceForType() {
+  public org.apache.tika.grpc.v2.FetchAndParseResponse getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }
 

@@ -11,7 +11,7 @@ public interface ParseBytesRequestOrBuilder extends
   /**
    * <pre>
    * The caller's id for this request, returned unchanged as Document.id and
-   * ParseBytesReply.correlation_id.
+   * ParseBytesResponse.correlation_id.
    * </pre>
    *
    * <code>string correlation_id = 1;</code>
@@ -21,7 +21,7 @@ public interface ParseBytesRequestOrBuilder extends
   /**
    * <pre>
    * The caller's id for this request, returned unchanged as Document.id and
-   * ParseBytesReply.correlation_id.
+   * ParseBytesResponse.correlation_id.
    * </pre>
    *
    * <code>string correlation_id = 1;</code>

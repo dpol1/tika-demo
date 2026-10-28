@@ -4,8 +4,8 @@
 // Protobuf Java Version: 3.25.8
 package org.apache.tika.grpc.v2;
 
-public interface FetchAndParseReplyOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:org.apache.tika.grpc.v2.FetchAndParseReply)
+public interface FetchAndParseBiDirectionalStreamingResponseOrBuilder extends
+    // @@protoc_insertion_point(interface_extends:org.apache.tika.grpc.v2.FetchAndParseBiDirectionalStreamingResponse)
     com.google.protobuf.MessageOrBuilder {
 
   /**

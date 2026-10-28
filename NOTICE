@@ -4,7 +4,7 @@ Copyright 2026 Davide Polato
 This repository redistributes:
 
 - proto/org/apache/tika/grpc/v2/document.proto and tika_v2.proto, copied unchanged from
-  commit ebbf877c885e9831c16c5456e82d79e86cf7af41 of
+  commit 1b8355582828fd53e622923c2350da27761513d5 of
   https://github.com/ai-pipestream/tika (a fork of Apache Tika, Apache License 2.0), and the
   Java classes under src/main/java/org/apache/tika/grpc/v2 generated from them;
 - testserver/docs/testPDF.pdf, testPDF_childAttachments.pdf and testPDF_protected.pdf, as
@@ -12,7 +12,7 @@ This repository redistributes:
   Their own terms apply: testPDF_childAttachments.pdf is IRS Publication 15 (a US government
   work) and testPDF_protected.pdf is a Bank of England speech that reached Tika through
   PDFBOX-858;
-- proto/google/protobuf/timestamp.proto, from Protocol Buffers (BSD-3-Clause).
+- proto/google/protobuf/timestamp.proto and any.proto, from Protocol Buffers (BSD-3-Clause).
 
 Apache Tika, Apache StormCrawler and Apache Storm are developed at The Apache Software
 Foundation (https://www.apache.org/). URLFrontier is a crawler-commons project.

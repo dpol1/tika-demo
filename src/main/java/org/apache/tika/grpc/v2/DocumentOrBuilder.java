@@ -169,4 +169,58 @@ public interface DocumentOrBuilder extends
    */
   org.apache.tika.grpc.v2.MetadataFieldOrBuilder getExtraOrBuilder(
       int index);
+
+  /**
+   * <pre>
+   * Results that external parsers attached to this document (TIKA-4771). Tika's own
+   * parse never sets them: a composer appends them after calling Tika and the external
+   * parsers with the same bytes. One entry per contribution slot.
+   * </pre>
+   *
+   * <code>repeated .org.apache.tika.grpc.v2.ExtensionResult extensions = 40;</code>
+   */
+  java.util.List<org.apache.tika.grpc.v2.ExtensionResult> 
+      getExtensionsList();
+  /**
+   * <pre>
+   * Results that external parsers attached to this document (TIKA-4771). Tika's own
+   * parse never sets them: a composer appends them after calling Tika and the external
+   * parsers with the same bytes. One entry per contribution slot.
+   * </pre>
+   *
+   * <code>repeated .org.apache.tika.grpc.v2.ExtensionResult extensions = 40;</code>
+   */
+  org.apache.tika.grpc.v2.ExtensionResult getExtensions(int index);
+  /**
+   * <pre>
+   * Results that external parsers attached to this document (TIKA-4771). Tika's own
+   * parse never sets them: a composer appends them after calling Tika and the external
+   * parsers with the same bytes. One entry per contribution slot.
+   * </pre>
+   *
+   * <code>repeated .org.apache.tika.grpc.v2.ExtensionResult extensions = 40;</code>
+   */
+  int getExtensionsCount();
+  /**
+   * <pre>
+   * Results that external parsers attached to this document (TIKA-4771). Tika's own
+   * parse never sets them: a composer appends them after calling Tika and the external
+   * parsers with the same bytes. One entry per contribution slot.
+   * </pre>
+   *
+   * <code>repeated .org.apache.tika.grpc.v2.ExtensionResult extensions = 40;</code>
+   */
+  java.util.List<? extends org.apache.tika.grpc.v2.ExtensionResultOrBuilder> 
+      getExtensionsOrBuilderList();
+  /**
+   * <pre>
+   * Results that external parsers attached to this document (TIKA-4771). Tika's own
+   * parse never sets them: a composer appends them after calling Tika and the external
+   * parsers with the same bytes. One entry per contribution slot.
+   * </pre>
+   *
+   * <code>repeated .org.apache.tika.grpc.v2.ExtensionResult extensions = 40;</code>
+   */
+  org.apache.tika.grpc.v2.ExtensionResultOrBuilder getExtensionsOrBuilder(
+      int index);
 }

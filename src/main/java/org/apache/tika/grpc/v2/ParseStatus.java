@@ -52,40 +52,40 @@ private static final long serialVersionUID = 0L;
   public enum Status
       implements com.google.protobuf.ProtocolMessageEnum {
     /**
-     * <code>UNSPECIFIED = 0;</code>
+     * <code>STATUS_UNSPECIFIED = 0;</code>
      */
-    UNSPECIFIED(0),
+    STATUS_UNSPECIFIED(0),
     /**
-     * <code>SUCCESS = 1;</code>
+     * <code>STATUS_SUCCESS = 1;</code>
      */
-    SUCCESS(1),
+    STATUS_SUCCESS(1),
     /**
-     * <code>PARTIAL = 2;</code>
+     * <code>STATUS_PARTIAL = 2;</code>
      */
-    PARTIAL(2),
+    STATUS_PARTIAL(2),
     /**
-     * <code>FAILED = 3;</code>
+     * <code>STATUS_FAILED = 3;</code>
      */
-    FAILED(3),
+    STATUS_FAILED(3),
     UNRECOGNIZED(-1),
     ;
 
     /**
-     * <code>UNSPECIFIED = 0;</code>
+     * <code>STATUS_UNSPECIFIED = 0;</code>
      */
-    public static final int UNSPECIFIED_VALUE = 0;
+    public static final int STATUS_UNSPECIFIED_VALUE = 0;
     /**
-     * <code>SUCCESS = 1;</code>
+     * <code>STATUS_SUCCESS = 1;</code>
      */
-    public static final int SUCCESS_VALUE = 1;
+    public static final int STATUS_SUCCESS_VALUE = 1;
     /**
-     * <code>PARTIAL = 2;</code>
+     * <code>STATUS_PARTIAL = 2;</code>
      */
-    public static final int PARTIAL_VALUE = 2;
+    public static final int STATUS_PARTIAL_VALUE = 2;
     /**
-     * <code>FAILED = 3;</code>
+     * <code>STATUS_FAILED = 3;</code>
      */
-    public static final int FAILED_VALUE = 3;
+    public static final int STATUS_FAILED_VALUE = 3;
 
 
     public final int getNumber() {
@@ -112,10 +112,10 @@ private static final long serialVersionUID = 0L;
      */
     public static Status forNumber(int value) {
       switch (value) {
-        case 0: return UNSPECIFIED;
-        case 1: return SUCCESS;
-        case 2: return PARTIAL;
-        case 3: return FAILED;
+        case 0: return STATUS_UNSPECIFIED;
+        case 1: return STATUS_SUCCESS;
+        case 2: return STATUS_PARTIAL;
+        case 3: return STATUS_FAILED;
         default: return null;
       }
     }
@@ -394,7 +394,7 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (status_ != org.apache.tika.grpc.v2.ParseStatus.Status.UNSPECIFIED.getNumber()) {
+    if (status_ != org.apache.tika.grpc.v2.ParseStatus.Status.STATUS_UNSPECIFIED.getNumber()) {
       output.writeEnum(1, status_);
     }
     if (fetchParseTimeMs_ != 0L) {
@@ -421,7 +421,7 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (status_ != org.apache.tika.grpc.v2.ParseStatus.Status.UNSPECIFIED.getNumber()) {
+    if (status_ != org.apache.tika.grpc.v2.ParseStatus.Status.STATUS_UNSPECIFIED.getNumber()) {
       size += com.google.protobuf.CodedOutputStream
         .computeEnumSize(1, status_);
     }
