@@ -14,7 +14,7 @@ from urllib.parse import urlparse
 ROWS = [json.loads(line) for line in Path("sample-run/results.jsonl").read_text().splitlines()]
 LOG = Path("sample-run/access.log").read_text().splitlines(keepends=True)
 INDEX = Path("sample-run/index.log")
-P5 = "http://parsebytes.127.0.0.1.nip.io:8099/p5"
+P5 = next(r["url"] for r in ROWS if urlparse(r["url"]).path == "/p5")
 
 
 def run(rows, log=LOG):
