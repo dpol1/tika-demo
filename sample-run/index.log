@@ -1,0 +1,78 @@
+url	http://localhost:8099/bad/empty
+tika.status	SKIPPED_EMPTY
+url	http://localhost:8099/bad/garbage.pdf
+tika.content_type	
+tika.status	STATUS_FAILED
+tika.errors	121 chars
+url	http://localhost:8099/bad/truncated.pdf
+tika.content_type	application/pdf
+tika.pages	1
+tika.status	STATUS_SUCCESS
+url	http://localhost:8099/big
+tika.content_type	text/html; charset=windows-1252
+tika.status	STATUS_SUCCESS
+url	http://localhost:8099/docs/testPDF.pdf
+tika.title	Apache Tika - Apache Tika
+tika.created	2007-09-15T09:02:31Z
+tika.content_type	application/pdf
+tika.pages	1
+tika.status	STATUS_SUCCESS
+tika.authors	Bertrand Delacrétaz
+url	http://localhost:8099/docs/testPDF_childAttachments.pdf
+tika.title	2013 Publication 15
+tika.created	2013-02-05T20:47:05Z
+tika.content_type	application/pdf
+tika.pages	67
+tika.status	STATUS_SUCCESS
+tika.authors	W:CAR:MP:FP
+url	http://localhost:8099/docs/testPDF_protected.pdf
+tika.title	176 chars
+tika.created	2009-04-28T09:06:56Z
+tika.content_type	application/pdf
+tika.pages	41
+tika.status	STATUS_SUCCESS
+tika.authors	The Bank of England
+url	http://localhost:8099/fixture.csv
+tika.rows	12
+tika.content_type	text/csv; charset=windows-1252; delimiter=comma
+tika.status	STATUS_SUCCESS
+url	http://localhost:8099/fixture.pdf
+tika.title	ParseBytes fixture
+tika.content_type	application/pdf
+tika.pages	1
+tika.status	STATUS_SUCCESS
+tika.authors	StormCrawler e2e
+url	http://localhost:8099/octet/blob
+tika.title	Apache Tika - Apache Tika
+tika.created	2007-09-15T09:02:31Z
+tika.content_type	application/pdf
+tika.pages	1
+tika.status	STATUS_SUCCESS
+tika.authors	Bertrand Delacrétaz
+url	http://localhost:8099/p1
+tika.content_type	text/html; charset=windows-1252
+tika.status	STATUS_SUCCESS
+url	http://localhost:8099/p2
+tika.content_type	text/html; charset=windows-1252
+tika.status	STATUS_SUCCESS
+url	http://localhost:8099/p3
+tika.content_type	text/html; charset=windows-1252
+tika.status	STATUS_SUCCESS
+url	http://localhost:8099/p4
+tika.content_type	text/html; charset=windows-1252
+tika.status	STATUS_SUCCESS
+url	http://localhost:8099/p5
+tika.content_type	text/html; charset=windows-1252
+tika.status	STATUS_SUCCESS
+url	http://localhost:8099/p6
+tika.content_type	text/html; charset=windows-1252
+tika.status	STATUS_SUCCESS
+url	http://localhost:8099/p7
+tika.content_type	text/html; charset=windows-1252
+tika.status	STATUS_SUCCESS
+url	http://localhost:8099/p8
+tika.content_type	text/html; charset=windows-1252
+tika.status	STATUS_SUCCESS
+url	http://localhost:8099/p9
+tika.content_type	text/html; charset=windows-1252
+tika.status	STATUS_SUCCESS
